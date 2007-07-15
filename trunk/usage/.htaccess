@@ -1,0 +1,5 @@
+RewriteEngine off
+AuthUserFile /home/kd10063/.htpasswd
+AuthType Basic
+AuthName Usage-Statistics
+require valid-user
