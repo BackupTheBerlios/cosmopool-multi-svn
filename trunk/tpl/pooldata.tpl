@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+  <div id="content2">
 
 {if $found}
   {lang->getMsg p1='pooldata_text'}<br><br>

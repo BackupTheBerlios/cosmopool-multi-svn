@@ -69,7 +69,7 @@ class pageHelp extends pageCommon{
         if(!($this->replaceCode($line, '===', '<p class="headline3">', '</p>') === false))
           $line = $this->replaceCode($line, '===', '<p class="headline3">', '</p>');
         if(!($this->replaceCode($line, '==', '<p class="headline2">', '</p>') === false)){
-          $this->headlines[] = str_ireplace('==', '', $line);
+          $this->headlines[$headline_count+1] = str_ireplace('==', '', $line);
           ++$headline_count;
           $line = $this->replaceCode($line, '==', '<hr><div align="right"><a href="#">top</a></div><p class="headline2" id="'.$headline_count.'">', '</p>');
         }

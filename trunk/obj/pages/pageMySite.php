@@ -107,7 +107,7 @@ class pageMySite extends pageCommon{
 
       // fetch "Pool"
       $pools_pool = new pools;
-      $pools_pool->name = "Pool";
+      $pools_pool->id = 1;
       $pools_pool->find(true);
 
       if($pools_pool->isAdmin($this->user->id)) {
@@ -133,7 +133,7 @@ class pageMySite extends pageCommon{
       $pools->search();
 
       while($pools->fetch()) {
-      if($pools->name != "Pool") {
+      if($pools->id != 1) {
         if($pools->isAdmin($this->user->id)) {
           $this->mypoolstable_thirdcol = true;
 

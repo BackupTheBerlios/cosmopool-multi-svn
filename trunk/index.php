@@ -108,6 +108,10 @@ switch ($pagename) {
     include('./obj/pages/pageUserData.php');
     $page = new pageUserData;
     break;
+  case 'register':
+    include('./obj/pages/pageRegister.php');
+    $page = new pageRegister;
+    break;
   case 'userdatapassword':
     include('./obj/pages/pageUserDataPassword.php');
     $page = new pageUserDataPassword;
@@ -147,6 +151,17 @@ switch ($pagename) {
   case 'pooladmin':
     include('./obj/pages/pagePoolAdmin.php');
     $page = new pagePoolAdmin;
+    break;
+  case 'mypools':
+    include('./obj/pages/pageMyPools.php');
+    $page = new pageMyPools;
+    break;
+  case 'static':
+    include('./obj/pages/pageStatic.php');
+    if($_GET['pageid'])
+      $page = new pageStatic($_GET['pageid']);
+    else
+      $page = new pageStatic("error");
     break;
 }
 

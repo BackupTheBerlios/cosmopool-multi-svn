@@ -45,5 +45,10 @@ class attributes extends DB_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
     
+    function getName() {
+      $lang = services::getService('lang');
+      
+      return $lang->getMsg('resdata_form_'.$this->name);
+    }
 }
 ?>

@@ -30,6 +30,7 @@ class resFetcher extends resources
     var $_search_description;	// bool
     var $_order; 					// string
     var $_user;
+    var $_attributes_string;
 
     // constructor
     function __construct() {

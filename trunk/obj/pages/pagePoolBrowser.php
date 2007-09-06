@@ -55,10 +55,11 @@ class pagePoolBrowser extends pageCommon{
       // fetch "Pool"
       
       $pools_pool = new pools;
-      $pools_pool->name = "Pool";
+      $pools_pool->id = 1;
       $pools_pool->find(true);
-
-      $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools_pool->id.'&cat=0&type=0">'.$pools_pool->name.'</a>', $pools_pool->area, " ", $lang->getMsg('tables_is_public_yes')), array("class" => "pools"));
+      $main_res = new resFetcher;
+      $main_res->_pools = array(1);
+      $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools_pool->id.'&cat=0&type=0">'.$pools_pool->name.'</a>', $pools_pool->area, " ", $lang->getMsg('tables_is_public_yes'), $main_res->count()), array("class" => "pools3"));
 
       // other pools
 
@@ -72,23 +73,23 @@ class pagePoolBrowser extends pageCommon{
       $act_country = 'none';
 
       while($pools->fetch()) {
-        if(!($pools->name == "Pool")) {
+        if(!($pools->id == 1)) {
         
           // country headlines
           if($pools->country != $act_country) {
             if($pools->country == '0') {
-              $table->addRow(array('&nbsp;'), array("color" => "white", "colspan" => "2"));
-              $table->addRow(array('<b>'.$lang->getMsg('showpool_nocountry_header').'</b>'), array("class" => "poolsblank", "colspan" => "2"));
+              $table->addRow(array('&nbsp;'), array("color" => "white"));
+              $table->addRow(array('<b>'.$lang->getMsg('showpool_nocountry_header').'</b>'), array("class" => "poolsblank"));
             }
             else {
-              $table->addRow(array('&nbsp;'), array("color" => "white", "colspan" => "2"));
-              $table->addRow(array('<b>'.$lang->getMsg('country_'.$pools->country).'</b>'), array("class" => "poolsblank", "colspan" => "2"));
+              $table->addRow(array('&nbsp;'), array("color" => "white"));
+              $table->addRow(array('<b>'.$lang->getMsg('country_'.$pools->country).'</b>'), array("class" => "poolsblank"));
             }
             $lastplz = true;
             $act_country = $pools->country;
           }
           if($pools->plz && !$lastplz) {
-            $table->addRow(array('&nbsp;'), array("color" => "white", "colspan" => "2"));
+            $table->addRow(array('&nbsp;'), array("color" => "white"));
           }
 
           if($pools->is_public == 1)
@@ -100,7 +101,9 @@ class pagePoolBrowser extends pageCommon{
           else
             $plz = false;
         
-          $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools->id.'">'.$pools->name.'</a>', $pools->area, $plz.' '.$pools->city, $is_public_cell), array("class" => "pools"));
+          $rescount = new resFetcher;
+          $rescount->_pools = array($pools->id);
+          $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools->id.'">'.$pools->name.'</a>', $pools->area, $plz.' '.$pools->city, $is_public_cell, $rescount->count()), array("class" => "pools3"));
           $lastplz = $pools->plz;
         }
       }

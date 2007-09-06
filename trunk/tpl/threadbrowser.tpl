@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+  <div id="content2">
 
   {if $pool}
     <a href="./index.php?page=showpool&pool_id={$pool->id}">{$pool->name}</a> -> 

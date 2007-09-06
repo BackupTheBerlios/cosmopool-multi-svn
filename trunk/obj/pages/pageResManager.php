@@ -29,6 +29,7 @@ class pageResManager extends pageCommon{
 
     private $form;
     private $userres;
+    private $function;
 
     public function pageResManager() {
       $this->pageCommon();
@@ -155,6 +156,24 @@ class pageResManager extends pageCommon{
 
       // waiting res are shown
       $this->res_offers = $this->user->getWaitingRes();
+
+      // function is set
+      
+      if($this->res_offers)
+        $this->function = 'offers';
+      else if($this->borrowed_res)
+        $this->function = 'borrowed';
+      else
+        $this->function = 'all';
+        
+      if($params->getParam('function'))
+        $this->function = $params->getParam('function');
+
+      if((!$this->res_offers) && $this->function=='offers')
+        $this->function = 'borrowed';
+      if((!$this->borrowed_res) && $this->function=='borrowed')
+        $this->function = 'all';
+      
     }
     
     private function assignAll() {
@@ -163,6 +182,7 @@ class pageResManager extends pageCommon{
       $lang = services::getService('lang');
       $tpl_engine = services::getService('tpl');
 
+      $tpl_engine->assign('function', $this->function);
       $tpl_engine->assign('userres', $this->userres);
       $tpl_engine->assign('res_offers', $this->res_offers);
       $tpl_engine->assign('borrowed_res', $this->borrowed_res);

@@ -42,18 +42,22 @@ class services {
           break;
         case 'lang':
           $config = services::getService('config');
-          $language = $config->getSetting('language');
           $params = services::getService('pageParams');
           
-          $language = $config->getSetting('language');          
-          
           // if there's a lang_cookie, the cookie-language is chosen
-          if($_COOKIE['language'])
-            $language = $_COOKIE['language'];
-            
-          // if there's something in get, this is it
-          if($params->getParam('lang'))
-            $language = $params->getParam('lang');
+      if($_GET['lang']) {
+        $language = $_GET['lang'];
+      }
+      else if($_COOKIE['language']) {
+        $language = $_COOKIE['language'];
+      }
+      else if(is_array(parseHttpAcceptLanguage())) {
+        $blang = parseHttpAcceptLanguage();
+        $language = $blang[0]['code'];
+      }
+      else {
+        $language = $config->getSetting('language');
+      }
           
           if($language == 'de')
             self::$services[$service_name] = new lang_de;

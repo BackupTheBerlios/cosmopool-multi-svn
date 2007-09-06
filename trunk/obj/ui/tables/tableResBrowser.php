@@ -32,7 +32,7 @@ class tableResBrowser extends tableSort {
     // constructor
     function __construct($data, $get_add) {
 
-      parent::__construct(array("width" => "100%", "class" => "pools"), "show_res", "index.php?page=resbrowser");
+      parent::__construct(array("class" => "res2"), "show_res", "index.php?page=resbrowser");
 
       $params = services::getService('pageParams');
       $lang = services::getService('lang');
@@ -42,27 +42,34 @@ class tableResBrowser extends tableSort {
       // table-header
       $this -> setHeaderContents(0, 0, $lang->getMsg('tableheaders_what'),$get_add,'name');
       $this -> setHeaderContents(0, 1, $lang->getMsg('tableheaders_owner'),$get_add);
-	   if($data[0]['type'] != 0)
-        $this -> setHeaderContents(0, 2, $lang->getMsg('tableheaders_type'),$get_add);
+      $this -> setHeaderContents(0, 2, $lang->getMsg('tableheaders_type'),$get_add);
 
-
+      $even = true;
       foreach($data as $row) {
 		
-		if (!$row['detail']) {
+		  if (!$row['detail']) {
 		
-		  $this->processRow($row);
+		    $this->processRow($row);
 		  
-		} else {
+		  } else {
 		
-		  $this->processDetailRow($row);
-		}
-		++$this->count;
+		    $this->processDetailRow($row);
+		  }
+		  if($even) {
+          $this -> updateRowAttributes($this->count, array("class" => "pools1"));
+          $even = false;
+        }
+        else {
+          $this -> updateRowAttributes($this->count, array("class" => "pools2"));
+          $even = true;
+		  }
+		  ++$this->count;
       }
 
-      $this -> updateColAttributes(0, array("class" => "pools"));
-      $this -> updateColAttributes(1, array("width" => "100", "class" => "pools"));
+      $this -> updateColAttributes(1, array("width" => "100"));
 	   if($data[0]['type'] != 0)
-        $this -> updateColAttributes(2, array("width" => "60", "class" => "pools"));
+        $this -> updateColAttributes(2, array("width" => "60"));
+      $this -> updateRowAttributes(0, array("class" => "pools"));
     }
 	
 	private function processRow($row) {
@@ -85,14 +92,16 @@ class tableResBrowser extends tableSort {
 	  $this -> setCellContents($this->count, 0, $first_col);
 	  $this -> setCellContents($this->count, 1, $row['user_name']);
 	  if ($row['type'] != 0) 
-		$this -> setCellContents($this->count, 2, $type_resolved);
+		 $this -> setCellContents($this->count, 2, $type_resolved);
+	  else 
+	    $this -> setCellContents($this->count, 2, "Immateriell");
 	}
 	
 	private function processDetailRow($row) {
      $lang = services::getService('lang');
      
      $title = '<b id="detailrow">'.$row['name'].'</b>';
-	  $desc = $row['description'];
+	  $desc = wordwrap($row['description'],55,' ',true);
 	  if(is_array($row['attributes'])) {
 	    foreach($row['attributes'] as $attribute) {
 	       $attr_fields .= '<b>'.$lang->getMsg('resdata_form_'.$attribute['name']).': </b> '.$attribute['value'].'<br>';
@@ -127,10 +136,7 @@ class tableResBrowser extends tableSort {
 	  $first_col = "$title<br>\n$desc<br><br>\n$attr_fields<br>\n$contact<br><br>\n$do";
 	  
 	  $this -> setCellContents($this->count, 0, $first_col);
-	  if($row['type'] != 0)
-        $this -> updateCellAttributes($this->count, 0, array("colspan" => "3"));
-	  else
-	    $this -> updateCellAttributes($this->count, 0, array("colspan" => "2"));
+     $this -> updateCellAttributes($this->count, 0, array("colspan" => "3"));
 	}
 	
 	private function resolveType($type) {

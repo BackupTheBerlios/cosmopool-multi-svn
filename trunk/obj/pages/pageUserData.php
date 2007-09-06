@@ -50,14 +50,10 @@ class pageUserData extends pageCommon{
       $session = services::getService('pageParams');
       $mail = services::getService('mail');
       
-      if(!$this->user->login)
-        $this->addHeaderLink('home', $lang->getMsg('mailinglist_backlink'), 'left');
-      
       $this->form = new formUserData('UserForm', $this->user->login);
 
       // defaults
-      if($this->user->login) {
-        $this->form->setDefaults(array(
+      $this->form->setDefaults(array(
           'name' => $this->user->email,
           'email' => $this->user->email,
           'email2' => $this->user->email,
@@ -73,20 +69,10 @@ class pageUserData extends pageCommon{
           'city' => $this->user->city),
           'description' => $this->user->description,
           'adresspublic' => $this->user->plz_city_public
-        ));
-      }
-      else
-        $this->form->setDefaults(array(
-          'emailpublic' => 1
-        ));
+      ));
 
       // Try to validate a form 
       if ($this->form->validate()) {
-        if(!$this->user->login) {
-          $this->user = new user;
-          $this->user->name = $this->form->exportValue('name');
-          $this->user->password = crypt($this->form->exportValue('password'), 'dl');
-        }
         $this->user->email = $this->form->exportValue('email');
         $this->user->phone = $this->form->exportValue('phone');
         $adress1 = $this->form->getElementValue('adress1');
@@ -114,22 +100,13 @@ class pageUserData extends pageCommon{
         if(($this->user->phone_public == 1) && (strlen($this->user->phone) < 1))
           $this->user->phone_public = 0;
       
-        if($this->user->login) 
-          $this->user->update();
-        else 
-          $this->user->insert();
+        $this->user->update();
 
         // add user to Pool
         if(!$this->user->isMember(1))
           $this->user->addMembership(1);
         
-        if($this->user->login) 
-          $this->addMsg('msg_data_change_success');
-        else {
-          $session->addParam('msg', 'msg_register_success', 'page');
-          $mail->send("registered", $this->user->email, $this->user, $this->form->exportValue('password'));
-          $this->switchPage('home');
-        }
+        $this->addMsg('msg_data_change_success');
       }
     }
     
@@ -146,13 +123,8 @@ class pageUserData extends pageCommon{
       $this->form->accept($renderer);
       $tpl_engine->assign('form', $renderer->toHtml());
 
-      if($this->user->login) {
-        $tpl_engine->assign('text', $lang->getMsg('userdata_text_change'));
-        $tpl_engine->assign('header', $lang->getMsg('userdata_header_change'));
-      }
-      else
-        $tpl_engine->assign('text', $lang->getMsg('userdata_text_register'));
-        $tpl_engine->assign('header', $lang->getMsg('userdata_header_register'));
+      $tpl_engine->assign('text', $lang->getMsg('userdata_text_change'));
+      $tpl_engine->assign('header', $lang->getMsg('userdata_header_change'));
     }
     
 }

@@ -37,6 +37,10 @@ class pageResBrowser extends pageCommon{
 	 private $get_add;
 	 private $get_add_cat;
 	 private $res_count = array();
+	 private $pools_get;
+	 private $pools = array();
+	 private $attributes = array();
+	 private $attribute_presets = array();
 
     public function pageResBrowser() {
       $this->pageCommon();
@@ -52,7 +56,7 @@ class pageResBrowser extends pageCommon{
     
     private function process() {
       $this->commonProcess();
-    
+
       $config = services::getService('config');
       $lang = services::getService('lang');
       $params = services::getService('pageParams');
@@ -61,18 +65,31 @@ class pageResBrowser extends pageCommon{
       // process form	  
 	   $this->processForm();
 	   
-      // if a pool is chosen, it is intanciated	   
-	   
-      if($params->getParam('pool_id')) {
+      // if a pool is chosen, it is intanciated	
+      
+      $is_one_pool = false;
+      if(!(count(explode("a", $params->getParam('searchwhere')))>1)) {
         $pool = new pools;
-        $pool->get($params->getParam('pool_id'));
-        $get_add .= "&pool_id=$pool->id";
+        $pool->id = $params->getParam('searchwhere');
+        $pool->find(true);
+        $is_one_pool = true;
       }
 
       if(!$params->getParam('show_page')) {
         $params->addParam('show_page', 1, 'now');
       }
 
+      // get Attributes      
+      
+      $attr = new attributes;
+      $attr->category_id = $params->getParam('cat');
+
+      if($attr->find()) {
+        while($attr->fetch()) {
+          $this->attributes[] = clone $attr;
+        }
+	   }
+      
       // tabledata is fetched and ordered
 
       $tabledata = array();
@@ -80,15 +97,24 @@ class pageResBrowser extends pageCommon{
       $res_fetcher = new resFetcher;
       $res_fetcher->_cat = $params->getParam('cat');
 
-      if($params->getParam('action') == 'search') {
-        $res_fetcher->_search_string = $params->getParam('searchstring');
-        $res_fetcher->_pools = explode("a", $params->getParam('searchwhere'));
-		  $get_add .= "&searchstring=".$params->getParam('searchstring');
-		  $get_add .= "&searchwhere=".$params->getParam('searchwhere');
-		  $get_add .= "&action=".$params->getParam('action');
-      }
-      else
+      $res_fetcher->_search_string = $params->getParam('searchstring');
+      $get_add .= "&searchstring=".$params->getParam('searchstring');
+	   $get_add .= "&searchwhere=".$params->getParam('searchwhere');
+
+      if($is_one_pool)
         $res_fetcher->_pools = array($pool->id);
+      else
+        $res_fetcher->_pools = explode("a", $params->getParam('searchwhere'));
+
+      // fetch users pools
+      $my_pools_ids = $this->user->getPoolIDs();
+      foreach($my_pools_ids as $pool_id) {
+        $userpool = new pools;
+        $userpool->id = $pool_id;
+        $userpool->find(true);
+        $this->pools_get .= $pool_id.'a';
+        $this->pools[] = array($pool_id, $userpool->name);
+      }
         
       if($params->getParam('order')) {
         $res_fetcher->_order = $params->getParam('order');}
@@ -97,10 +123,55 @@ class pageResBrowser extends pageCommon{
       $res_fetcher->search();
       $showres = $res_fetcher->getAsArray();
 
+      // presets for attributes
+      
+      foreach($this->attributes as $attr_obj) {
+        if($params->getParam('attribute'.$attr_obj->id)) {
+          $this->attribute_presets[$attr_obj->id] = $params->getParam('attribute'.$attr_obj->id);
+          $get_add .= "&attribute".$attr_obj->id."=".$params->getParam('attribute'.$attr_obj->id);
+        }
+      }
+        
       // contact and action-colums are build
+      
       $count = 1;
       $page = $params->getParam('show_page');
       foreach($showres as $show_res) {
+        $fitsattr = true;
+        
+        foreach($this->attributes as $attr_obj) {
+          // string-type
+          
+          if($params->getParam('attribute'.$attr_obj->id)) {
+            if($attr_obj->type == "string") {
+              $resattr = new attributesString;
+              $resattr->attribute_id = $attr_obj->id;
+              $resattr->res_id = $show_res->id;
+              if(!$resattr->isLike($params->getParam('attribute'.$attr_obj->id)))
+                $fitsattr = false;
+            }
+            if($attr_obj->type == "select") {
+              $resattr = new attributesSelect;
+              $resattr->attribute_id = $attr_obj->id;
+              $resattr->res_id = $show_res->id;
+              if($resattr->find()) {
+                $fitsattr = false;
+                while($resattr->fetch()) {
+                  $select_keys = new attributesSelectKeys;
+                  $select_keys->key = $resattr->value;
+                  $select_keys->find(true);
+                  if(stripos ( $lang->getMsg('resdata_form_select_'.$select_keys->value), $params->getParam('attribute'.$attr_obj->id)) !== false)
+                    $fitsattr = true;
+                }
+              }
+              else
+                $fitsattr = false;
+            }
+          }
+        }
+        
+        if($fitsattr) {
+
         if($count >= ($page * 20 - 19) && $count <= ($page * 20)) {
         $contact = "";
         $action = "";
@@ -209,13 +280,14 @@ class pageResBrowser extends pageCommon{
 		  $tabledata[] = $act_row;
 		  
 		  }++$count;
-      }--$count;
+      }}--$count;
       
       $count2 = 1;
       while($count2 < ($count / 20)) {
         $this->res_count[] = $count2;
         ++$count2;
       }
+        $this->res_count[] = $count2;
       
       $this->get_add_cat = $get_add;
       $get_add .= "&cat=".$params->getParam('cat');
@@ -228,20 +300,78 @@ class pageResBrowser extends pageCommon{
         foreach($showcats as $cat_id => $cat_name) {
           $show_res = new resFetcher;
           $show_res->_cat = $cat_id;
-		    if($params->getParam('action') == 'search') {
-            $show_res->_search_string = $params->getParam('searchstring');
+		    $show_res->_search_string = $params->getParam('searchstring');
+		    if(!$is_one_pool)
             $show_res->_pools = explode("a", $params->getParam('searchwhere'));
-          }
           else
             $show_res->_pools = array($pool->id);
     
           $rescounter = $show_res->count();
 
           if($rescounter > 0)
-            $this->cats[$cat_id] = array("name" => $cat_name, "count" => $rescounter);
+            $this->cats[] = array("id" => $cat_id, "name" => $cat_name, "count" => $rescounter);
+          
         }
+          // order categories after rescount
+          $c = 0;
+          foreach($this->cats as $cat) {
+            if($c == 0) {
+              $ocats = array($cat);}
+            else {
+            $c2=0;
+            while($c2 <= $c) {
+              if($cat["count"] <= $ocats[$c2]["count"]) {
+                $before = array_slice($ocats, 0, $c2);
+                $after = array_slice($ocats, $c2);
+                if(is_array($before[0])) {
+                  $ocats = array_merge($before, array($cat));
+                  if(is_array($after[0])) 
+                    $ocats = array_merge($ocats, $after);
+                }
+                else
+                  $ocats = array_merge(array($cat), $after);
+                $c2=$c+1;
+              }
+              else if(($cat["count"] > $ocats[$c2]["count"]) && (($cat["count"] <= $ocats[$c2+1]["count"]) || !$ocats[$c2+1]["count"])) {
+                $before = array_slice($ocats, 0, $c2+1);
+                $after = array_slice($ocats, $c2+1);
+                if(is_array($after[0])) {
+                  $ocats = array_merge(array($cat), $after);
+                  if(is_array($before[0])) 
+                    $ocats = array_merge($before, $ocats);
+                }
+                else
+                  $ocats = array_merge($before, array($cat));
+                $c2=$c+1;
+              }
+              ++$c2;
+            }
+            }
+            ++$c;
+          }
+          if(is_array($ocats))
+            $this->cats = array_reverse($ocats);
+          
+          // add subcategories to the most counting category
+          $lowercats = $categories->getChildren($this->cats[0]["id"]);
+          if(is_array($lowercats)) {
+            foreach($lowercats as $cat_id => $cat_name) {
+              $show_res = new resFetcher;
+              $show_res->_cat = $cat_id;
+	    	     $show_res->_search_string = $params->getParam('searchstring');
+	     	     if(!$is_one_pool)
+                $show_res->_pools = explode("a", $params->getParam('searchwhere'));
+              else
+                $show_res->_pools = array($pool->id);
+    
+              $rescounter = $show_res->count();
+
+              if($rescounter > 0)
+                $this->lowercats[] = array("id" => $cat_id, "name" => $cat_name, "count" => $rescounter);
+          
+            }
+          }
       }
-      
 	   $this->get_add = $get_add;
 	   
 	   // table itself
@@ -250,10 +380,7 @@ class pageResBrowser extends pageCommon{
 
       // page-header
 
-      if($params->getParam('action') == 'search') 
-        $this->header = $lang->getMsg('resbrowser_header_search');
-      else
-        $this->header = $lang->getMsg('resbrowser_header_browse').$pool->name;
+      $this->header = $lang->getMsg('resbrowser_header_search');
         
       // hierarchie-links
 
@@ -267,6 +394,9 @@ class pageResBrowser extends pageCommon{
           $hierarchie[] = array('id' => $parent, 'name' => $categories->getName($parent));
         }
         $this->hierarchie = array_reverse($hierarchie);
+      }
+      else if($params->getParam('cat') != 0) {
+        $this->hierarchie = array(array('id' => 0, 'name' => $lang->getMsg('cat_all')));
       }
       
       $this->table = $table;
@@ -326,15 +456,25 @@ class pageResBrowser extends pageCommon{
       
       $tpl_engine->assign('restable', $this->table->toHtml());
         
+      if($params->getParam('searchstring'))
+        $tpl_engine->assign('searchstring', $params->getParam('searchstring'));
+      if($params->getParam('searchwhere'))
+        $tpl_engine->assign('searchwhere', $params->getParam('searchwhere'));
+
       $tpl_engine->assign('pool', $this->pool);
       $tpl_engine->assign('res_count', $this->res_count);
       $tpl_engine->assign('get_add', $this->get_add);
       $tpl_engine->assign('get_add_cat', $this->get_add_cat);
       $tpl_engine->assign('cats', $this->cats);
+      $tpl_engine->assign('lowercats', $this->lowercats);
       $tpl_engine->assign('hierarchie', $this->hierarchie);
       $tpl_engine->assign('act_cat', $cats->getName($params->getParam('cat')));
       $tpl_engine->assign('act_cat_id', $params->getParam('cat'));
       $tpl_engine->assign('act_page', $params->getParam('show_page'));
+      $tpl_engine->assign('pools_get', $this->pools_get);
+      $tpl_engine->assign('pools', $this->pools);
+      $tpl_engine->assign('attributes', $this->attributes);
+      $tpl_engine->assign('attribute_presets', $this->attribute_presets);
       
     }
     

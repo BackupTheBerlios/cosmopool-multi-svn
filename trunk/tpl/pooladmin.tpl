@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+  <div id="content2">
 
 {if $admins}
 <p class="standard"><b>{lang->getMsg p1='pooladmin_adminlist_header'}</b>: 

@@ -43,7 +43,7 @@ class pageCommon extends page {
       $lang = services::getService('lang');
       $session = services::getService('pageParams');
 
-      if(!isset($this->user) && $session->getParam('page') != 'userdata') {
+      if(!isset($this->user) && $session->getParam('page') != 'register' && $session->getParam('page') != 'static') {
         $session->addParam('msg', 'msg_login_first', 'page');
         
         $this->switchPage('home');
@@ -52,15 +52,6 @@ class pageCommon extends page {
       if($this->user->login) {
         $this->addHeaderLink('logout', $lang->getMsg('link_logout'), 'right');
         $this->addHeaderLink('mysite', $lang->getMsg('link_mysite'), 'left');
-
-        // footerlinks
-        $links = array();
-        $links[] = array("page" => "mysite", "name" => $lang->getMsg('link_mysite'), "params" => "");
-        $links[] = array("page" => "blank", "name" => $lang->getMsg('common_footerlinks_search'), "params" => "");
-        $links[] = array("page" => "search", "name" => $lang->getMsg('common_footerlinks_search'), "params" => "");
-        $links[] = array("page" => "resdata", "name" => $lang->getMsg('common_footerlinks_resdata_new'), "params" => "");
-        $links[] = array("page" => "resmanager", "name" => $lang->getMsg('common_footerlinks_resmanager'), "params" => "");
-        $this->footerlinks = $links;
       }
       
       $this->toDoList();
@@ -118,7 +109,7 @@ class pageCommon extends page {
 
       // footerlinks
       if($this->user->login) {
-        $tpl_engine->assign('footerlinks', $this->footerlinks);
+        $tpl_engine->assign('footerlinks', true);
         $tpl_engine->assign('todo', $this->todo);
       }
 

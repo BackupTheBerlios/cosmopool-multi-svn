@@ -35,7 +35,13 @@ class rendererUserdata extends HTML_QuickForm_Renderer_Default
       $this->setHeaderTemplate($userdata_default_header);
       $this->setElementTemplate($userdata_default_element);
       $this->setRequiredNoteTemplate($userdata_default_required_note);
-      $this->setElementTemplate($userdata_element, 'submit');
+      $this->setElementTemplate($userdata_submit_element, 'submit1');
+      $this->setElementTemplate($userdata_submit_element, 'submit2');
+      $this->setElementTemplate($userdata_agb_element, 'agb');
+      if(!$_POST['submit2']) {
+        $this->setElementTemplate($userdata_nofail_element, 'adress1');
+        $this->setElementTemplate($userdata_nofail_element, 'adress2');
+      }
     }
     
 }

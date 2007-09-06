@@ -95,6 +95,7 @@ class lang_de extends lang {
       "tableheaders_type" => "Typ",
       "tableheaders_is_public" => "&Ouml;ffentlich",
       "tableheaders_adress" => "Wo",
+      "tableheaders_rescount" => "Ressourcen",
       "tables_is_public_yes" => "Ja",
       "tables_is_public_no" => "Nein",
       "tables_borrowed" => "verliehen",
@@ -118,6 +119,10 @@ class lang_de extends lang {
       "common_footerlinks_poolbrowser" => "alle Pools",
       "common_footerlinks_pooldata_new" => "Pool gr&uuml;nden",
       "common_help_link" => "Hilfe",
+      "common_bottom_developers" => "Entwicklerseite",
+      "common_bottom_about" => "&Uuml;ber whopools.net",
+      "common_bottom_contact" => "Kontakt",
+      "common_bottom_supersite" => "SuperSite",
 
       // linktexts
 
@@ -134,8 +139,7 @@ class lang_de extends lang {
       "home_lostpasswordheader" => "Passwort vergessen",
       "home_lostpassword_link" => "Passwort vergessen?",
       "home_lostpassword_text" => "Tippe deine E-Mail Adresse ein, und das Passwort wird dir zugeschickt.",
-      "home_welcome-1" => "Willkommen bei who<b>pools</b>.<i>net</i>, einem Online-Tool um jegliche Art von <font color=green>Ressourcen</font> mit anderen zu teilen. Gründe Ressourcen<b>pools</b>, tritt welchen bei, leihe, schenke, werde beschenkt, behalte dein <font color=gold>Geld</font>, make your day! Einfach registrieren und dann loslegen.<br><br>
-                           Who<b>pools</b>.<i>net</i> benutzt \"cosmopool multi\", das Freie Software ist. Im folgenden einige Links dazu:",
+      "home_welcome-1" => "Who<b>pools</b>.<i>net</i> ist ein Online-Tool um jegliche Art von Ressourcen mit anderen zu teilen. Gründe Ressourcen<b>pools</b>, tritt welchen bei, leihe, schenke, werde beschenkt. Einfach registrieren und dann loslegen.<br>",
       "home_links_1" => "die SuperSite",
       "home_links_2" => "die Software hier",
       "home_links_3" => "die neue Software(-planung)",
@@ -159,6 +163,7 @@ class lang_de extends lang {
       
       "resdata_link1" => "noch eine Ressource eingeben",
       "resdata_link2" => "Ressourcen verwalten",
+      "resdata_all_header" => "zur&uuml;ck zu \"Alle Ressourcen\"",
       "resdata_form_name" => "&Uuml;berschrift",
       "resdata_form_description" => "Beschreibung",
       "resdata_form_category" => "Kategorie",
@@ -345,6 +350,7 @@ class lang_de extends lang {
       
       "search_text" => "Suchbegriffe durch Leerzeichen getrennt eingeben.",
       "search_header" => "Ressourcen suchen",
+      "search_option_all_pools" => "meine Pools",
 
       // userdatapassword-page
 
@@ -358,9 +364,7 @@ class lang_de extends lang {
       // userdata-page
 
       "userdata_header_change" => "Pers&ouml;hnliche Daten",
-      "userdata_header_register" => "Registrieren",
       "userdata_text_change" => "Auf dieser Seite kannst Du deine pers&ouml;nlichen Daten &auml;ndern.",
-      "userdata_text_register" => "Wenn Du dich <font color=gold>registrierst</font>, kannst Du dich sofort bei whopools.net einloggen. Die angegebenen Daten kannst <font color=green>nachtr&auml;glich</font> noch <font color=green>&auml;ndern</font>.",
       "userdata_name" => "Benutzername",
       "userdata_password" => "Passwort",
       "userdata_password2" => "Passwort wiederholen",
@@ -390,11 +394,29 @@ class lang_de extends lang {
       "userdata_plz_necessary" => "PLZ ist erforderlich. ",
       "userdata_plz_numeric" => "Postleitzahlen bestehen aus Ziffern. ",
       "userdata_city_necessary" => "Ort ist erforderlich. ",
+      
+      // register-page
+      
+      "register_submit1" => "Einverstanden. Konto einrichten.",
+      "register_submit2" => "Das Konto jetzt einrichten.",
+      "register_agb" => "Nutzungsbedingungen",
+      "register_text1" => "Wenn Du dich <font color=gold>registrierst</font>, kannst Du dich sofort bei whopools.net einloggen. Die angegebenen Daten kannst <font color=green>nachtr&auml;glich</font> noch <font color=green>&auml;ndern</font>.",
+      "register_text2" => "Bitte gib noch deine Kontaktdaten an. Danach ist die Registrierung abgeschlossen.
+      Die E-Mail-Adresse sollte &ouml;ffentlich sein, sonst bist Du f&uuml;r Fremde schlecht zu erreichen.
+      Spambots k&ouml;nnen die Daten nat&uuml;rlich nicht sehen.",
+      "register_agb_desc-1" => "&Uuml;berpr&uuml;fe die oben eingegebenen
+Daten und lies die <br>nachstehenden
+allgemeinen Nutzungsbedingungen durch.",
+      "register_agb_desc-2" => "Klick auf \"Einverstanden\", um die
+oben genannten <br>allgemeinen Nutzungsbedingungen
+anzunehmen",
+      "register_header1" => "Registrieren - Schritt 1",
+      "register_header2" => "Registrieren - Schritt 2",
 
       // mysite-page
 
       "mysite_header" => "Meine Seite",
-      "mysite_welcome" => "Willkommen. Von dieser Seite aus kannst du auf alle Hauptfunktionen von whopools zugreifen: auf die Ressourcenverwaltung und -suche, die Aeusserung von Beduerfnissen sowie die Nutzungsgemeinschaften(Pools), in denen du Mitglied bist (oder noch werden kannst...). Die wichtigsten Fragen, die dabei aufkommen koennen, werden hoffentlich <a href=\"http://www.nutzigems.org/wiki/index.php?title=SoftwareFAQ\">hier</a> beantwortet.",
+      "mysite_welcome" => "Willkommen. Von dieser Seite aus kannst du auf alle Hauptfunktionen von whopools.net zugreifen: auf die Ressourcenverwaltung und -suche, die &Auml;u&szlig;erung von Bed&uuml;rfnissen sowie die Nutzungsgemeinschaften(Pools), in denen du Mitglied bist (oder noch werden kannst...). Die wichtigsten Fragen, die dabei aufkommen k&ouml;nnen, werden hoffentlich <a href=\"./index.php?page=help\">hier</a> beantwortet.",
       "mysite_res_header" => "Meine Ressourcen",
       "mysite_userdata_header" => "Meine Daten",
       "mysite_searchres_header" => "Ressourcensuche",
@@ -424,6 +446,7 @@ class lang_de extends lang {
       "mysite_poolsadmintable_changedatalink" => "Daten &auml;ndern",
       "mysite_poolsadmintable_adminlink" => "Administration",
       "mysite_freeres_header" => "Ressourcen freischalten",
+      "mysite_fun" => "Do.",
       
       // help-page
       
@@ -546,6 +569,7 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "showpool_become_member_msg_isproven" => "Antrag wird &uuml;berpr&uuml;ft, es kann etwas dauern, bis sie freigeschaltet werden. Sie bekommen dann eine E-Mail.",
       "showpool_leavepool_link" => "Von Pool abmelden",
       "showpool_res_header" => "Ressourcen",
+      "showpool_admin_header" => "Administration",
       "showpool_res_category" => "Kategorie",
       "showpool_res_goods" => "Ressourcen",
       "showpool_forum_header" => "Forum",
@@ -560,6 +584,11 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "showpool_membercount_text-2" => " Ressourcen in diesem Pool",
       "showpool_members_header" => "Mitglieder",
       "showpool_nocountry_header" => "kein/jedes Land",
+      "showpool_do" => "Funktionen",
+      "showpool_description" => "Beschreibung",
+      "showpool_area" => "Bereich",
+      "showpool_place" => "Ort",
+      "showpool_public" => "&Ouml;ffentlich?",
       
       // threadbrowser
       
@@ -582,7 +611,7 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "search_form_searchstring" => "Suchbegriffe",
       "search_form_category" => "Kategorie",
       "search_form_where_inmine" => " in meinen Pools",
-      "search_form_where_pooltoo" => " auch im Pool",
+      "search_form_where_pooltoo" => " auch im \"main Pool\"",
       "search_form_where" => "Wo suchen",
       "search_form_submit" => "Suchen",
 
@@ -606,6 +635,7 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       
       // categories
       
+      "cat_all" => "Alle",
       "cat_advising" => "Beratung",
       "cat_arts" => "Kunst/Kultur",
       "cat_audio" => "Audio und HiFi",

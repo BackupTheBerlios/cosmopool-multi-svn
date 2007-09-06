@@ -41,19 +41,20 @@
     {/if}{/if}
   </div>
 
-  {foreach from=$msg item="msg"}
-  <div class="msgtop">
-  <font color="#000000">[</font> {$msg} <font color="#000000">]</font>
-  </div>
-  {/foreach}
 
+
+  <div id="content">
+  {foreach from=$msg item="msg"}
+  <span class="msgtop">
+  <font color="#000000">&nbsp;</font> {$msg} <font color="#000000">&nbsp;</font>
+  </span>
+  {/foreach}
   {if $lostpassword}
   <div id="headline">{lang->getMsg p1='home_lostpasswordheader'}</div>
   {else}
   <div id="headline">{lang->getMsg p1='home_header'}</div>
   {/if}
-
-  <div id="content">
+  <div id="content2">
   {$newsform}
 
 {if $lostpassword}
@@ -61,21 +62,20 @@
 {lang->getMsg p1='home_lostpassword_text'}<br><br>
 {$pwform}
 </div>
+</div>
   <div id="linklist">
-    <div id="linklist_links">
         <a href="index.php?page=home"><< {lang->getMsg p1='homepage_backlink'}</a>
-    </div>
   </div>
 {else}
 
-        {lang->getMsg p1='home_welcome-1'}<br><br><br>
-        <table align="center"><tr>
+        {lang->getMsg p1='home_welcome-1'}
+<!--        <table align="center"><tr>
                    <td width=30 align=center><img src="./images/home-links-2.png"></td>
-                   <td width=160 align=center><a href="http://www.whopools.net/software/">cosmopool-multi</a><br>
+                   <td width=160 align=center><a href="http://www.whopools.net/software/" target="_blank">cosmopool-multi</a><br>
                        {lang->getMsg p1='home_links_2'}</td>
                    <td width=30 align=center><img src="./images/home-links-3.png"></td>
-                   <td width=210 align=center><a href="http://wws.dynalias.org/">cosmopool-global wiki</a><br>
-                       {lang->getMsg p1='home_links_3'}</td></tr></table>
+                   <td width=210 align=center><a href="http://wws.dynalias.org/" target="_blank">cosmopool-global wiki</a><br>
+                       {lang->getMsg p1='home_links_3'}</td></tr></table>-->
         <p class="headline2">News</p>
         <div class="news">
         <p class="standard">
@@ -84,14 +84,15 @@
 {/foreach}        
         </p>
         </div></div>
+    <div id="footer"> <a href="./index.php?page=static&pageid=about">{lang->getMsg p1='common_bottom_about'}</a> |&nbsp; 
+    <a href="http://www.whopools.net/software/" target="_blank">{lang->getMsg p1='common_bottom_developers'}</a> |&nbsp;
+    <a href="http://www.cosmopool.net" target="_blank">{lang->getMsg p1='common_bottom_supersite'}</a>    |&nbsp; 
+    <a href="./index.php?page=static&pageid=contact">{lang->getMsg p1='common_bottom_contact'}</a> </div>
+</div>
 		<div id="login">
-        <div id="login_headline">
-          {lang->getMsg p1='home_login_header'}
-        </div>
-        <p>
-          {lang->getMsg p1='home_login_registertext-1'} <a href="index.php?page=userdata">{lang->getMsg p1='home_login_registertext-2'}</a>.
-        </p>
         {$login_form}
+        <div class="logintext"><br><a href=./index.php?page=home&lostpassword=true>{lang->getMsg p1='home_lostpassword_link'}</a><br><br></div>
+          <div class="logintext2">{lang->getMsg p1='home_login_registertext-1'} <a href="index.php?page=register">{lang->getMsg p1='home_login_registertext-2'}</a>.</div>
 {/if}
 </div><script type="text/javascript">
 		<!--

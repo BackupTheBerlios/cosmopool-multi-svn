@@ -70,7 +70,9 @@ class cats {
 
     function getName($id) {
       $lang = services::getService('lang');
-      return $lang->getMsg('cat_'.$this->cat_names[$id]);
+      if($id != 0)
+        return $lang->getMsg('cat_'.$this->cat_names[$id]);
+      else return $lang->getMsg('cat_all');
     }
 
     function getChildren($id = 0) {
@@ -103,7 +105,8 @@ class cats {
 
     function getThisAndBelow($id) {
       $list = array();
-      $list[$id] = $this->getName($id);
+      if($id != 0)
+        $list[$id] = $this->getName($id);
 
       $children = $this->getChildren($id);
       if(is_array($children)) {
@@ -114,6 +117,13 @@ class cats {
         
           if(is_array($grand_children)) {
             $list = $list + $grand_children;
+
+            foreach($grand_children as $grand_child_id => $grand_name) {
+              $great_grand_children = $this->getChildren($grand_child_id);
+              if(is_array($great_grand_children)) {
+                $list = $list + $great_grand_children;
+              }
+            }
           }
         }
       }
@@ -129,6 +139,7 @@ class cats {
 
     function getAll() {
       $list = array();
+      $list[0] = "---";
       foreach($this->cats[0] as $id => $child) {
         $list["$id"] = $this->getName($id);
         if(is_array($child))

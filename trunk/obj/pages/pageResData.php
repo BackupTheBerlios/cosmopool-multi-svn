@@ -31,6 +31,7 @@ class pageResData extends pageCommon{
     private $form;
     private $new_res_link;
     private $header;
+    private $is_change;
 
     public function pageResData() {
       $this->pageCommon();
@@ -52,10 +53,14 @@ class pageResData extends pageCommon{
       $params = services::getService('pageParams');
       $categories = services::getService('cats');
 
-      if($params->getParam('res_id'))
+      if($params->getParam('res_id')) {
         $this->header = $lang->getMsg('resdata_header_change');
-      else
+        $this->is_change = true;
+      }
+      else {
         $this->header = $lang->getMsg('resdata_header_new');
+        $this->is_change = false;
+      }
 
 	   $aItems = $categories->getThisAndBelow(1);
 	   $sJavaScriptArray = sprintf('new Array(%s)', implode(',',array_keys($aItems)));
@@ -168,7 +173,7 @@ class pageResData extends pageCommon{
 
         if($params->getParam('res_id')) {
           $params->addParam('msg', 'msg_data_change_success', 'page');
-          $this->switchPage('resmanager');
+          $this->switchPage('resmanager&function=all');
         }
         else {
           $this->form->removeElement('resdata_isbn_submit');
@@ -177,9 +182,8 @@ class pageResData extends pageCommon{
 		    $this->new_res_link = true;
         }
       }
-      if($this->form->exportValue('resdata_isbn_submit')) {
+      if($_POST['resdata_isbn_submit']) {
         $this->form->addRule('name', $lang->getMsg('resdata_form_namenecessary'), 'required');
-        $this->form->addRule('description', $lang->getMsg('resdata_form_descnecessary'), 'required');
         $this->form->addRule('resdata_cat', $lang->getMsg('resdata_form_catnecessary'), 'required');
       }
     }
@@ -195,6 +199,7 @@ class pageResData extends pageCommon{
       $renderer = new renderer;
 
       $this->form->accept($renderer);
+      $tpl_engine->assign('is_change', $this->is_change);
       $tpl_engine->assign('javascriptarray', $this->sJavaScriptArray);
       $tpl_engine->assign('form', $renderer->toHtml());
       $tpl_engine->assign('new_res_link', $this->new_res_link);

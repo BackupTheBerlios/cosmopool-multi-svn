@@ -34,11 +34,11 @@
     {/if}
   </div>
 
-  <div id="headline">{$header}</div>
-  {foreach from=$msg item="msg"}
-  <div class="msgtop">
-  <font color="#000000">[</font> {$msg} <font color="#000000">]</font>
-  </div>
-  {/foreach}
-
   <div id="content">
+  {foreach from=$msg item="msg"}
+  <span class="msgtop">
+  <font color="#000000">&nbsp;</font> {$msg} <font color="#000000">&nbsp;</font>
+  </span>
+  {/foreach}
+  <div id="headline">{$header}</div>
+

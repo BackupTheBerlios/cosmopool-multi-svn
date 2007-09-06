@@ -122,6 +122,10 @@ class pageShowPool extends pageCommon{
           if($rescounter > 0)
             $this->cats[$cat_id] = array("name" => $cat_name, "count" => $rescounter);
         }
+        $allcount = 0;
+        foreach($this->cats as $cat)
+          $allcount += $cat['count'];
+        $this->cats[0] = array("name" => $lang->getMsg('cat_all'), "count" => $allcount);
 	   }
 	   else {
 	     if(!$pool->isMember($this->user->id, true))
@@ -235,6 +239,8 @@ class pageShowPool extends pageCommon{
 	  $tpl_engine->assign('user_is_waiting', $this->user_is_waiting);
 	  $tpl_engine->assign('become_member_form', $this->become_member_form);
       
+      if($this->pool->isAdmin($this->user->id))
+        $tpl_engine->assign('isadmin', true);
       if($this->form) {
       $renderer = new renderer;
       $this->form->accept($renderer);

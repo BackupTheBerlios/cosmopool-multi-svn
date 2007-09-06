@@ -155,7 +155,7 @@ class pageHome extends page{
       }
       else {
         if(isset($this->user))
-          $this->switchPage('logout');
+          $this->switchPage('mysite');
       }
     }
     

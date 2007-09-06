@@ -95,6 +95,7 @@ class lang_en extends lang {
       "tableheaders_type" => "type",
       "tableheaders_is_public" => "public",
       "tableheaders_adress" => "what place",
+      "tableheaders_rescount" => "resources",
       "tables_is_public_yes" => "yes",
       "tables_is_public_no" => "no",
       "tables_borrowed" => "lent out",
@@ -118,6 +119,10 @@ class lang_en extends lang {
       "common_footerlinks_poolbrowser" => "all pools",
       "common_footerlinks_pooldata_new" => "found pool",
       "common_help_link" => "help",
+      "common_bottom_developers" => "developers",
+      "common_bottom_about" => "about",
+      "common_bottom_contact" => "contact",
+      "common_bottom_supersite" => "supersite",
 
       // linktexts
 
@@ -134,8 +139,7 @@ class lang_en extends lang {
       "home_lostpasswordheader" => "Lost password",
       "home_lostpassword_link" => "Lost password?",
       "home_lostpassword_text" => "Type your email-adress. So a new password will be sent.",
-      "home_welcome-1" => "Welcome to who<b>pools</b>.<i>net</i>, an online-tool to share any kinds of <font color=green>resources</font>. Become member of resource<b>pools</b>, found own ones, borrow, lend, give, leave your <font color=gold>money</font> at home, make your day! Just register and then begin.<br><br>
-                           Who<b>pools</b>.<i>net</i> uses \"cosmopool multi\", which is Free Software. Follow these links for more information:",
+      "home_welcome-1" => "Welcome to who<b>pools</b>.<i>net</i>, an online-tool to share any kinds of <font color=green>resources</font>. Become member of resource<b>pools</b>, found own ones, borrow, lend, give, leave your <font color=gold>money</font> at home, make your day! Just register and then begin.<br><br>",
       "home_links_1" => "the SuperSite",
       "home_links_2" => "this software",
       "home_links_3" => "the new software(-plan)",
@@ -160,6 +164,7 @@ class lang_en extends lang {
       "resdata_link1" => "put in another resource",
       "resdata_link2" => "manage resources",
       "resdata_form_name" => "headline",
+      "resdata_all_header" => "back to \"All resources\"",
       "resdata_form_description" => "description",
       "resdata_form_category" => "category",
       "resdata_form_type" => "type",
@@ -345,6 +350,7 @@ class lang_en extends lang {
       
       "search_text" => "Please separate searchwords with spaces.",
       "search_header" => "Search resources",
+      "search_option_all_pools" => "my pools",
 
       // userdatapassword-page
 
@@ -358,9 +364,7 @@ class lang_en extends lang {
       // userdata-page
 
       "userdata_header_change" => "Personal data",
-      "userdata_header_register" => "Register",
       "userdata_text_change" => "On this page you can change your personal data.",
-      "userdata_text_register" => "When you have <font color=gold>registered</font>, you can login on whopools.net. You can <font color=green>change</font> your data <font color=green>afterwards</font>.",
       "userdata_name" => "username",
       "userdata_password" => "password",
       "userdata_password2" => "repeat password",
@@ -391,10 +395,25 @@ class lang_en extends lang {
       "userdata_plz_numeric" => "Zipcodes consist of just digits. ",
       "userdata_city_necessary" => "City required. ",
 
+      // register-page
+      
+      "register_submit1" => "Ok. Create account.",
+      "register_submit2" => "Create account now.",
+      "register_agb" => "terms of service",
+      "register_text1" => "If you <font color=gold>register</font>, you can instantly sign into whopools.net. You can change the submitted data <font color=green>afterwards</font>.",
+      "register_text2" => "Please enter your contact data. After that, your account is ready.
+      Your email should be public. Otherwise, its difficult to get through to you for a stranger.
+      Spambots can't see your data.",
+      "register_agb_desc-1" => "Please check the data you've entered above and review the <br>
+      terms of service below.",
+      "register_agb_desc-2" => "Click \"Ok\", to accept the terms of service above.",
+      "register_header1" => "Register - Step 1",
+      "register_header2" => "Register - Step 2",
+
       // mysite-page
 
       "mysite_header" => "My page",
-      "mysite_welcome" => "Hello. On this page you can reach all main functions of whopools: search and manage resources, pools you're a member of(or want to become). Remaining questions hopefully are answered <a href=\"http://www.nutzigems.org/wiki/index.php?title=Eng.SoftwareFAQ\">here</a>.",
+      "mysite_welcome" => "Hello. On this page you can reach all main functions of whopools: search and manage resources, pools you're a member of(or want to become). Remaining questions hopefully are answered <a href=\"./index.php?page=help\">here</a>.",
       "mysite_res_header" => "My resources",
       "mysite_userdata_header" => "My pers. data",
       "mysite_searchres_header" => "Search 4 resources",
@@ -424,6 +443,7 @@ class lang_en extends lang {
       "mysite_poolsadmintable_changedatalink" => "Change poolData",
       "mysite_poolsadmintable_adminlink" => "Administration",
       "mysite_freeres_header" => "Release resources",
+      "mysite_fun" => "Do.",
       
       // help-page
       
@@ -506,6 +526,7 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "showpool_become_member_msg_isproven" => "Your request is beeing checked. Maybe it will take a while until you will be a member. You will be sent an email.",
       "showpool_leavepool_link" => "Give up membership",
       "showpool_res_header" => "Resources",
+      "showpool_admin_header" => "Administration",
       "showpool_res_category" => "Category",
       "showpool_res_goods" => "Resources",
       "showpool_forum_header" => "Forum",
@@ -520,6 +541,11 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "showpool_membercount_text-2" => " resources in this pool",
       "showpool_members_header" => "members",
       "showpool_nocountry_header" => "no/every country",
+      "showpool_do" => "Do",
+      "showpool_description" => "description",
+      "showpool_area" => "area",
+      "showpool_place" => "place",
+      "showpool_public" => "public?",
 
       // threadbrowser
       
@@ -542,7 +568,7 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "search_form_searchstring" => "Searchwords",
       "search_form_category" => "Category",
       "search_form_where_inmine" => " in my pools",
-      "search_form_where_pooltoo" => " also in the pool",
+      "search_form_where_pooltoo" => " also in \"main Pool\"",
       "search_form_where" => "where",
       "search_form_submit" => "search",
 
@@ -566,6 +592,7 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       
       // categories
       
+      "cat_all" => "All",
       "cat_advising" => "Advice",
       "cat_arts" => "Arts/culture",
       "cat_audio" => "Audio and HiFi",

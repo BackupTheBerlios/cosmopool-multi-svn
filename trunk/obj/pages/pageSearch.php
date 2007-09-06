@@ -25,10 +25,13 @@
  
 require_once('./obj/pages/pageCommon.php');
 require_once('./obj/forms/formSearch.php');
+require_once('./obj/forms/rendererSearch.php');
  
 class pageSearch extends pageCommon{
 
     private $form;
+    private $pools = array();
+    private $pools_get;
 
     public function pageSearch() {
       $this->pageCommon();
@@ -53,25 +56,27 @@ class pageSearch extends pageCommon{
       // Instantiate the HTML_QuickForm object
       $this->form = new formSearch('SearchForm');
 
+      // fetch users pools
+      $my_pools_ids = $this->user->getPoolIDs();
+      foreach($my_pools_ids as $pool_id) {
+        $userpool = new pools;
+        $userpool->id = $pool_id;
+        $userpool->find(true);
+        $this->pools_get .= $pool_id.'a';
+        $this->pools[] = array($pool_id, $userpool->name);
+      }
+      
+      $this->form->setPools($this->pools, $this->pools_get);
+
       // Try to validate a form 
       if ($this->form->validate()) {
   
         $search_res = new resFetcher;
         $search_res->_cat = $this->form->exportValue('cat');
         $search_res->_search_string = $this->form->exportValue('searchstring');
+        $search_res->_pools = $this->form->exportValue('searchwhere');
         $pool_ids = array();
-        $pools_get = "";
-        $pool_ids = $this->user->getPoolIDs();
-        foreach($pool_ids as $pool_id) {
-		    if($pool_id != 1) {
-              $search_res->_pools[] = $pool_id;
-              $pools_get .= $pool_id.'a';
-		    }
-        }
-        if($this->form->exportValue('searchwhere') == 1) {
-          $search_res->_pools[] = 1;
-          $pools_get .= '1a';
-        }
+        $pools_get = $this->form->exportValue('searchwhere');
 
         /*$something_found = true;
         if($params->getParam('cat')) {
@@ -122,7 +127,6 @@ class pageSearch extends pageCommon{
           $this->addMsg('msg_no_results');
         else {
           $this->switchPage('resbrowser&cat='.$this->form->exportValue('cat').
-                            '&action=search'.
                             '&searchwhere='.$pools_get.
                             '&searchstring='.$this->form->exportValue('searchstring'));
         }
@@ -136,7 +140,7 @@ class pageSearch extends pageCommon{
       $lang = services::getService('lang');
 
       // Output the form
-      $renderer = new renderer;
+      $renderer = new rendererSearch;
 
       $this->form->accept($renderer);
       $tpl_engine->assign('form', $renderer->toHtml());

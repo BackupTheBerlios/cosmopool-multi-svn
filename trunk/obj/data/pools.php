@@ -52,7 +52,7 @@ class pools extends DB_DataObject
     function getDescription() {
       $text = $this->description;
       $text = convertNewsSubmits($text);
-      return $text;
+      return wordwrap($text,55,' ',true);
     }    
     
     function removeMember($user_id) {

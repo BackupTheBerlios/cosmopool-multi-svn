@@ -105,7 +105,7 @@ class formResData extends form {
       
       // rules      
       
-      if(!$this->exportValue('resdata_isbn_submit')) {
+      if(!$_POST['resdata_isbn_submit']) {
         $this->addRule('name', $lang->getMsg('resdata_form_namenecessary'), 'required');
         $this->addRule('resdata_cat', $lang->getMsg('resdata_form_catnecessary'), 'required');
       }
@@ -115,7 +115,18 @@ class formResData extends form {
       if($params->getParam('resdata_isbn_submit') && is_isbn($params->getParam('resdata_isbn'))) {
         $lastletter = 0;
         $isbnfound = 0;
-        $urlendings = array('de', 'com', 'co.uk', 'jp', 'fr', 'ca');
+        $firstletter = substr($params->getParam('resdata_isbn'),0,1);
+        if($firstletter == 0 || $firstletter == 1)
+          $urlendings = array('com', 'co.uk', 'de', 'jp', 'fr', 'ca');
+        else if($firstletter == 2)
+          $urlendings = array('fr', 'de', 'com', 'co.uk', 'jp', 'ca');
+        else if($firstletter == 3)
+          $urlendings = array('de', 'com', 'co.uk', 'jp', 'fr', 'ca');
+        else if($firstletter == 4)
+          $urlendings = array('jp', 'de', 'com', 'co.uk', 'fr', 'ca');
+        else
+          $urlendings = array('com', 'co.uk', 'de', 'fr', 'ca', 'jp');
+          
         $lastletters = array(1,2,3,4,5,6,7,8,9,'x');
         foreach($urlendings as $urlending) {
           foreach($lastletters as $lastletter) {
@@ -177,8 +188,8 @@ class formResData extends form {
         }
         foreach($authors as $key => $author) {
           if($key != 0)
-            $authors_field .= ", ";
-          $authors_field .= $author;
+            $authors_field .= "; ";
+          $authors_field .= $this->changeAuthor($author);
         }
         
         // description
@@ -188,9 +199,15 @@ class formResData extends form {
         $description = substr($newxml, $first, $sec-$first);
         $description = substr($description, 0, strrpos($description, '--'));
 
+        // name
+        if($authors_field)
+          $name = $authors_field.": ".$title;
+        else
+          $name = $title;
+
         $this->setDefaults(array(
           'resdata_title' => $title,
-          'name' => $authors_field.": ".$title,
+          'name' => $name,
           'description' => $description,
           'resdata_authors' => $authors_field,
           'resdata_binding' => $binding,
@@ -277,6 +294,38 @@ class formResData extends form {
       }  
 
     }
+	
+	// change authors name so that his surname comes first
+   function changeAuthor($author) {
+     $names = explode(" ", $author);
+
+     // the last element is popped off and analysed
+     // surname is extracted, the rest of it is push on the
+     // array again and the surname is shifted at the beginning
+     // e.a. is not a name
+     if($names[count($names)-1] == "e.a." || $names[count($names)-1] == "ea.") {
+       $last = $names[count($names)-2];
+       $names[count($names)-2] = $names[count($names)-1];
+     }
+     else
+       $last = $names[count($names)-1];
+     $add = false;
+     if(count(explode("(", $last)) > 1) {
+       $expl = explode("(", $last);
+       $last = $expl[0];
+       $add = "(".$expl[1];
+     }
+         
+     array_pop($names);
+     if($names[0])
+       array_unshift($names, $last.",");
+     else
+       array_unshift($names, $last);
+     if($add)
+       $names[count($names)-1] .= $add;
+         
+     return implode(" ", $names);
+   }	
 	
 	function freezeForm() {
 	  $this->removeElement('submit');

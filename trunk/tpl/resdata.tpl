@@ -1,4 +1,8 @@
 {include file="header.tpl" javascript=true}
+<div id="subnavi">
+  <a href="./index.php?page=resmanager&function=all" class="subnavi_linkclosed">{lang->getMsg p1='resdata_all_header'}</a><span class="subnavi_linkclosed"></span>
+</div>
+  <div id="content2">
 
 {$form}
 {if $new_res_link == true}

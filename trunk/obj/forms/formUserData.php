@@ -35,15 +35,9 @@ class formUserData extends form {
       $this->form($name);
 
       // Add some elements to the form
-      if(!$login) {
-        $this->addElement('text', 'name', $lang->getMsg('userdata_name'), array('size' => 30, 'maxlength' => 50));
-        $this->addElement('password', 'password', $lang->getMsg('userdata_password'), array('size' => 20, 'maxlength' => 30));
-        $this->addElement('password', 'password2', $lang->getMsg('userdata_password2'), array('size' => 20, 'maxlength' => 20));
-      }
       $this->addElement('text', 'email', $lang->getMsg('userdata_email'), array('size' => 30, 'maxlength' => 50));
       $this->addElement('text', 'email2', $lang->getMsg('userdata_email2'), array('size' => 30, 'maxlength' => 50));
-     /* $this->addElement('checkbox', 'emailpublic', $lang->getMsg('userdata_emailpublic'));
-      $this->addElement('header', 'country', $lang->getMsg('userdata_country'));
+      $this->addElement('checkbox', 'emailpublic', $lang->getMsg('userdata_emailpublic'));
       $this->addElement('text', 'phone', $lang->getMsg('userdata_phone'), array('size' => 20, 'maxlength' => 20));
       $this->addElement('checkbox', 'phonepublic', $lang->getMsg('userdata_phonepublic'));
       $adress1 = array();
@@ -58,7 +52,7 @@ class formUserData extends form {
       $this->addElement('select', 'country', $lang->getMsg('userdata_country'), array("DE"=>$lang->getMsg('country_DE'), "AT"=>$lang->getMsg('country_AT'), "CH"=>$lang->getMsg('country_CH'), "GR"=>$lang->getMsg('country_GR'), "US"=>$lang->getMsg('country_US'), "GB"=>$lang->getMsg('country_GB')));
       $this->addElement('checkbox', 'adresspublic', $lang->getMsg('userdata_adresspublic'));
       $this->addElement('textarea', 'description', $lang->getMsg('userdata_description'), array('rows' => 5, 'cols' => 50));
-*/
+
       // Define filters and validation rules
       $this->addRule('login', $lang->getMsg('userdata_name_required'), 'required');
       $this->addRule('password', $lang->getMsg('userdata_password_required'), 'required');

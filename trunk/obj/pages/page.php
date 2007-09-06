@@ -41,12 +41,22 @@ class page {
       $this->act_page = $page_params->getParam('page');
       $this->act_get = $this->getActGet();
       
-      if($page_params->getParam('lang')) {
-        $new_language = $page_params->getParam('lang');
-        if(($new_language == 'en') || ($new_language == 'de')) {
-          setcookie('language', $new_language, time()+60*60*24*365);}
-        else {
-          setcookie('language', $config->getSetting('language'), time()+60*60*24*365);}
+      // set interface-language
+      // if lang is in get, a cookie is set, lang in get is set
+      // else if lang is in cookie, lang in cookie is set
+      // else if lang is in browser, a cookie is set etc.
+      // else if lang is in config.ini, cookie, set
+      if($_GET['lang']) {
+        setcookie('language', $_GET['lang'], time()+60*60*24*365);
+      }
+      else if($_COOKIE['language']) {
+      }
+      else if(is_array(parseHttpAcceptLanguage())) {
+        $blang = parseHttpAcceptLanguage();
+        setcookie('language', $blang[0]['code'], time()+60*60*24*365);
+      }
+      else {
+        setcookie('language', $config->getSetting('language'), time()+60*60*24*365);
       }
 
       if(($login != "") && ($password != "")){
@@ -93,6 +103,8 @@ class page {
           if($key != 'lang')
             $get .= '&'.$key.'='.$value;
         }
+      if(isset($_POST['page']))
+        $get .= '&page='.$_POST['page'];
       return $get;
     }
     
@@ -108,6 +120,7 @@ class page {
     private function assignAll() {
       $tpl_engine = services::getService('tpl');
       $lang = services::getService('lang');
+      $page_params = services::getService('pageParams');
 
       $act_lang = $lang->getLang();
       
@@ -118,6 +131,7 @@ class page {
           $assign_languages[] = $language; }}
           
       $tpl_engine->assign('act_lang', $act_lang);
+      $tpl_engine->assign('page', $page_params->getParam('page'));
       $tpl_engine->assign('other_lang', $assign_languages);
       
       $tpl_engine->assign('act_page', $this->act_page);

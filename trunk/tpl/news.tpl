@@ -23,17 +23,16 @@
 
   </div>
 
-  <div id="headline">{lang->getMsg p1='news_header'}: {$shownews.name}</div>
 
   <div id="content">
+  <div id="headline">{lang->getMsg p1='news_header'}: {$shownews.name}</div>
+  <div id="content2">
       <b>{$shownews.abstract}</b><br><br>
       <p class="standard">{$shownews.text}</p>
-  </div>
+  </div></div>
   <div id="linklist">
-    <div id="linklist_links">
         <a href="index.php?page=home"><< {lang->getMsg p1='homepage_backlink'}</a>
     </div>
-  </div>
   <!-- 4stats Tracker Code // begin -->
 <script type="text/javascript" language="javascript" src="http://4stats.de/de/counter?id=21841&cntr=hide"></script><noscript><a href="http://www.4stats.de/" target="_blank"><img src="http://4stats.de/de/stats?id=21841&cntr=hide" border="0" alt="4stats Webseiten Statistik + Counter" /></a></noscript>
 <!-- 4stats Tracker Code // end -->
