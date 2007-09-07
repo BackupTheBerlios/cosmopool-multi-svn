@@ -55,8 +55,9 @@
 	<td class="pools1"></td>
 
 	<td class="pools1">
-     <img src="./images/linklist_dot.png"> <a href="index.php?page=userdata">{lang->getMsg p1='mysite_links_userdata_name'}</a><br>
-     <img src="./images/linklist_dot.png"> <a href="index.php?page=userdatapassword">{lang->getMsg p1='mysite_links_userdatapassword_name'}</a><br>
+     <img src="./images/linklist_dot.png"> <a href="index.php?page=userdata&function=data">{lang->getMsg p1='mysite_links_userdata_name'}</a><br>
+     <img src="./images/linklist_dot.png"> <a href="index.php?page=userdata&function=password">{lang->getMsg p1='mysite_links_userdatapassword_name'}</a><br>
+     <img src="./images/linklist_dot.png"> <a href="index.php?page=userdata&function=photos">{lang->getMsg p1='mysite_links_photos'}</a><br>
 	</td>
 	<td class="pools1"></td>
 
@@ -72,14 +73,13 @@
   <tr>
 	<td class="pools1" colspan="5">
      <b>{lang->getMsg p1='mysite_borrowed_header'}: </b> 
-  {foreach from=$borrowed key="key" item="res"}{if $key != 0}, {/if}"{$res->name}" von {$res->user->name}{/foreach}
+  {foreach from=$borrowed key="key" item="res"}{if $key != 0}, {/if}"{$res->name}" {lang->getMsg p1='mysite_by'} <a href="./index.php?page=showmember&showmember={$res->user->id}">{$res->user->name}</a>{/foreach}
 	</td>
   </tr>
 {/if}
 	
 </table>
 <br>{lang->getMsg p1='mysite_fun'}
-
 
 
 {include file="./footer.tpl"}

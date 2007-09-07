@@ -94,7 +94,7 @@ class tableResBrowser extends tableSort {
 	  if ($row['type'] != 0) 
 		 $this -> setCellContents($this->count, 2, $type_resolved);
 	  else 
-	    $this -> setCellContents($this->count, 2, "Immateriell");
+	    $this -> setCellContents($this->count, 2, $lang->getMsg('resbrowser_notmaterial'));
 	}
 	
 	private function processDetailRow($row) {

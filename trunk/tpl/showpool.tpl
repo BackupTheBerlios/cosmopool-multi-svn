@@ -50,7 +50,7 @@
     {foreach from=$members item="member"}
     {if $member.count != 1}<br>
     {/if}
-     <a href="./index.php?page=showmember&pool_id={$pool->id}&showmember={$member.obj->id}" target="ueber" onclick="javascript: window.open(this,'ueber','width=350,height=300,scrollbars=yes');">{$member.obj->name}</a>{if $member.admin}(Admin) {/if}  
+     <a href="./index.php?page=showmember&showmember={$member.obj->id}">{$member.obj->name}</a>{if $member.admin}(Admin) {/if}  
     {/foreach}
     </p>
   </div>

@@ -1,10 +1,11 @@
+</div>
 
-  </div>
     <div id="footer"> <a href="./index.php?page=static&pageid=about">{lang->getMsg p1='common_bottom_about'}</a> |&nbsp; 
     <a href="http://www.whopools.net/software/" target="_blank">{lang->getMsg p1='common_bottom_developers'}</a> |&nbsp;
     <a href="http://www.cosmopool.net" target="_blank">{lang->getMsg p1='common_bottom_supersite'}</a>    |&nbsp; 
     <a href="./index.php?page=static&pageid=contact">{lang->getMsg p1='common_bottom_contact'}</a> </div>
-</div>
+  </div>
+<div id="leftcolumn">
   {if $footerlinks}
   <div id="linklist">
     <div class="linklist_links">
@@ -37,18 +38,19 @@
     <b>toDo</b><br><br>
     <div id="todolist_links">
       {if $todo.res}
-      / <a href="index.php?page=resmanager">{$todo.res} Anfragen</a>
+      / <a href="index.php?page=resmanager">{$todo.res} {lang->getMsg p1='common_todo_request'}</a>
       {/if}
       {if $todo.user}
       {foreach from=$todo.user item="pool"}
       <br><br><b>{$pool.pool->name}</b>:<br>
-		\ <a href="index.php?page=pooladmin&pool_id={$pool.pool->id}">{$pool.count} Nutzis warten</a>
+		\ <a href="index.php?page=pooladmin&pool_id={$pool.pool->id}">{$pool.count} {lang->getMsg p1='common_todo_userswait'}</a>
 		{/foreach}
       {/if}
     </div>
   </div>
    
   {/if}
+</div>
   <!-- 4stats Tracker Code // begin -->
 <script type="text/javascript" language="javascript" src="http://4stats.de/de/counter?id=21841&cntr=hide"></script><noscript><a href="http://www.4stats.de/" target="_blank"><img src="http://4stats.de/de/stats?id=21841&cntr=hide" border="0" alt="4stats Webseiten Statistik + Counter" /></a></noscript>
 <!-- 4stats Tracker Code // end -->

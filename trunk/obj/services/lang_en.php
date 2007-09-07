@@ -49,6 +49,8 @@ class lang_en extends lang {
       "language_changer" => "Language:",
 
       // messages, the ones written in red
+      "msg_add_picture" => "Picture added.",
+      "msg_delete_picture" => "Picture deleted.",
       "msg_login_correct" => "you're logged in",
       "msg_login_wrong" => "wrong login",
       "msg_logged_out" => "you're logged out",
@@ -113,11 +115,14 @@ class lang_en extends lang {
       
       // page commons
       
+      "common_language" => "language",
       "common_footerlinks_search" => "Search",
       "common_footerlinks_resdata_new" => "Resource input",
       "common_footerlinks_resmanager" => "Resource admin",
       "common_footerlinks_poolbrowser" => "all pools",
       "common_footerlinks_pooldata_new" => "found pool",
+      "common_todo_request" => "requests",
+      "common_todo_userswait" => "users wait",
       "common_help_link" => "help",
       "common_bottom_developers" => "developers",
       "common_bottom_about" => "about",
@@ -139,7 +144,7 @@ class lang_en extends lang {
       "home_lostpasswordheader" => "Lost password",
       "home_lostpassword_link" => "Lost password?",
       "home_lostpassword_text" => "Type your email-adress. So a new password will be sent.",
-      "home_welcome-1" => "Welcome to who<b>pools</b>.<i>net</i>, an online-tool to share any kinds of <font color=green>resources</font>. Become member of resource<b>pools</b>, found own ones, borrow, lend, give, leave your <font color=gold>money</font> at home, make your day! Just register and then begin.<br><br>",
+      "home_welcome-1" => "Welcome to who<b>pools</b>.<i>net</i>, an online-tool to share any kinds of resources. Become member of resource<b>pools</b>, found own ones, borrow, lend, give. Just register and then begin.",
       "home_links_1" => "the SuperSite",
       "home_links_2" => "this software",
       "home_links_3" => "the new software(-plan)",
@@ -147,8 +152,8 @@ class lang_en extends lang {
       "home_ng_res_count-2" => " pools and ",
       "home_ng_res_count-3" => " resources",
       "home_login_header" => "login",
-      "home_login_registertext-1" => "You have to be registered, otherwise:",
-      "home_login_registertext-2" => "Register",
+      "home_login_registertext-1" => "You have to create an account, otherwise:",
+      "home_login_registertext-2" => "Signup",
       "home_news_name" => "&Uuml;berschrift",
       "home_news_lang" => "Sprache",
       "home_news_abstract" => "Abstract",
@@ -394,6 +399,14 @@ class lang_en extends lang {
       "userdata_plz_necessary" => "Zipcode required. ",
       "userdata_plz_numeric" => "Zipcodes consist of just digits. ",
       "userdata_city_necessary" => "City required. ",
+      "userdata_navi_data" => "My pers. data",
+      "userdata_navi_password" => "Change password",
+      "userdata_navi_photos" => "My pictures",
+      "userdata_photos_form_file" => "choose picture",
+      "userdata_photos_text" => "The picture with the black border is your main picture, it is shown to other users when the visit your page. Click on other picture to change it.",
+      "userdata_photos_header" => "My pictures",
+      "userdata_photos_delete" => "delete",
+      "userdata_photos_big" => "show big",
 
       // register-page
       
@@ -440,10 +453,12 @@ class lang_en extends lang {
       "mysite_links_resmanager_name" => "Manage resources",
       "mysite_links_pooldata_name" => "Found a new pool",
       "mysite_links_userdatapassword_name" => "Change password",
+      "mysite_links_photos" => "My photos",
       "mysite_poolsadmintable_changedatalink" => "Change poolData",
       "mysite_poolsadmintable_adminlink" => "Administration",
       "mysite_freeres_header" => "Release resources",
       "mysite_fun" => "Do.",
+      "mysite_by" => "from",
       
       // help-page
       
@@ -489,7 +504,8 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "resbrowser_header_search" => "Search-results:",
       "resbrowser_header_browse" => "Resources in ",
       "resbrowser_refinesearch_header" => "Refine search: ",
-      "resbrowser_page" => "Seite: ",
+      "resbrowser_page" => "page: ",
+      "resbrowser_notmaterial" => "not physical",
       
       // resmanager-page
 
@@ -571,6 +587,10 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "search_form_where_pooltoo" => " also in \"main Pool\"",
       "search_form_where" => "where",
       "search_form_submit" => "search",
+
+      // showmember-page
+      
+      "showmember_back" => "back to previous page",
 
       // forms
       
@@ -666,8 +686,7 @@ As soon as the pool will be accepted, you will be sent an email." ,
       "mails_found_pool_admin_header" => "whopools.net: Neuer Pool gegründet" ,
       "mails_found_pool_admin_body" => "Guten Tag,
 
-Es wurde ein neuer Pool gegründet, bitte schalte den jemand frei,
-oder halt nicht." ,
+There's a new pool. Please someone accept it or refuse it." ,
       "mails_found_pool_accepted_header" => "whopools.net: Your new pool has been accepted" ,
       "mails_found_pool_accepted_body" => "Hello,
       

@@ -49,6 +49,8 @@ class lang_de extends lang {
       "language_changer" => "Sprache:",
 
       // messages, the ones written in red
+      "msg_add_picture" => "Bild hinzuf&uuml;gt.",
+      "msg_delete_picture" => "Bild gel&ouml;scht.",
       "msg_login_correct" => "Du bist jetzt eingeloggt",
       "msg_login_wrong" => "Falscher Login!",
       "msg_logged_out" => "Du bist jetzt ausgeloggt!",
@@ -113,12 +115,15 @@ class lang_de extends lang {
       
       // page commons
       
+      "common_language" => "Sprache",
       "common_footerlinks_search" => "Suche",
       "common_footerlinks_resdata_new" => "RessourcenEingabe",
       "common_footerlinks_resmanager" => "RessourcenAdmin",
       "common_footerlinks_poolbrowser" => "alle Pools",
       "common_footerlinks_pooldata_new" => "Pool gr&uuml;nden",
       "common_help_link" => "Hilfe",
+      "common_todo_request" => "Anfragen",
+      "common_todo_userswait" => "Nutzer warten",
       "common_bottom_developers" => "Entwicklerseite",
       "common_bottom_about" => "&Uuml;ber whopools.net",
       "common_bottom_contact" => "Kontakt",
@@ -394,6 +399,14 @@ class lang_de extends lang {
       "userdata_plz_necessary" => "PLZ ist erforderlich. ",
       "userdata_plz_numeric" => "Postleitzahlen bestehen aus Ziffern. ",
       "userdata_city_necessary" => "Ort ist erforderlich. ",
+      "userdata_navi_data" => "Meine Daten",
+      "userdata_navi_password" => "Passwort &auml;ndern",
+      "userdata_photos_form_file" => "Bild w&auml;hlen",
+      "userdata_photos_text" => "Das schwarz umrandete Bild ist Dein Hauptbild, es wird anderen Benutzern angezeigt, wenn Sie deine Seite aufrufen. Klick auf andere Bilder, um es zu wechseln.",
+      "userdata_photos_header" => "Meine Bilder",
+      "userdata_photos_delete" => "l&ouml;schen",
+      "userdata_photos_big" => "in gro&szlig;",
+      "userdata_navi_photos" => "Meine Bilder",
       
       // register-page
       
@@ -441,12 +454,14 @@ anzunehmen",
       "mysite_links_search_name" => "Ressourcen Suchen",
       "mysite_links_resdata_name" => "Ressourcen Eingeben",
       "mysite_links_resmanager_name" => "Ressourcen Verwalten",
+      "mysite_links_photos" => "Meine Photos",
       "mysite_links_pooldata_name" => "Pool gr&uuml;nden",
       "mysite_links_userdatapassword_name" => "Passwort &auml;ndern",
       "mysite_poolsadmintable_changedatalink" => "Daten &auml;ndern",
       "mysite_poolsadmintable_adminlink" => "Administration",
       "mysite_freeres_header" => "Ressourcen freischalten",
       "mysite_fun" => "Do.",
+      "mysite_by" => "von",
       
       // help-page
       
@@ -533,6 +548,7 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "resbrowser_header_browse" => "Ressourcen in ",
       "resbrowser_refinesearch_header" => "Suche verfeinern: ",
       "resbrowser_page" => "Seite: ",
+      "resbrowser_notmaterial" => "nicht materiell",
       
       // resmanager-page
 
@@ -614,6 +630,10 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "search_form_where_pooltoo" => " auch im \"main Pool\"",
       "search_form_where" => "Wo suchen",
       "search_form_submit" => "Suchen",
+
+      // showmember-page
+      
+      "showmember_back" => "zur&uuml;ck zur vorherigen Seite",
 
       // forms
       

@@ -35,6 +35,7 @@ class formUserDataPassword extends form {
       $this->form($name);
 
       // Add some elements to the form
+      $this->addElement('hidden', 'function', "password");
       $this->addElement('password', 'oldpassword', $lang->getMsg('userdatapassword_oldpassword'), array('size' => 20, 'maxlength' => 30));
       $this->addElement('password', 'newpassword', $lang->getMsg('userdatapassword_newpassword'), array('size' => 20, 'maxlength' => 30));
       $this->addElement('password', 'newpassword2', $lang->getMsg('userdatapassword_newpassword2'), array('size' => 20, 'maxlength' => 20));

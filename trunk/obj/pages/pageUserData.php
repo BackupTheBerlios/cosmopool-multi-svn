@@ -24,11 +24,17 @@
  */
  
 require_once('./obj/pages/pageCommon.php');
+require_once('./obj/forms/formUserDataPassword.php');
+require_once('./obj/forms/formPhotos.php');
 require_once('./obj/forms/formUserData.php');
  
 class pageUserData extends pageCommon{
 
+    private $passwordform;
+    private $photoform;
     private $form;
+    private $function;
+    private $photos = array();
 
     public function pageUserData() {
       $this->pageCommon();
@@ -108,6 +114,94 @@ class pageUserData extends pageCommon{
         
         $this->addMsg('msg_data_change_success');
       }
+      
+      // password-form
+      
+      $this->passwordform = new formUserDataPassword('PasswordForm');
+
+      // Try to validate a form 
+      if ($this->passwordform->validate()) {
+        $this->user->password = crypt($this->passwordform->exportValue('newpassword'), 'dl');
+  
+        $this->user->update();
+        $session->addParam('password', $this->passwordform->exportValue('newpassword'), 'session');
+        $this->addMsg('msg_data_change_success');
+      }
+
+      // set main
+      
+      if($session->getParam('setmain')) {
+        $this->user->main_photo = $session->getParam('setmain');
+        $this->user->update();
+      }
+
+      // delete photos
+      
+      if($session->getParam('delete')) {
+        $photo = new userPhotos;
+        $photo->id = $session->getParam('delete');
+        $photo->find(true);
+        if($photo->user_id == $this->user->id) {
+          $photo->delete();
+          unlink($config->getSetting('doc_root').'images/uploads/'.$photo->name);
+          unlink($config->getSetting('doc_root').'images/uploads/thumb_'.$photo->name);
+          
+          if($session->getParam('delete') == $this->user->main_photo) {
+            $newmain = new userPhotos;
+            $newmain->user_id = $this->user->id;
+            if($newmain->find(true)) 
+              $this->user->main_photo = $newmain->id;
+            else 
+              $this->user->main_photo = "";
+            $this->user->update();
+          }
+          $this->switchPage('userdata&function=photos&msg=msg_delete_picture');
+        }
+      }
+
+      // show photos
+      
+      $photos = new userPhotos;
+      $photos->user_id = $this->user->id;
+      if($photos->find())
+      while($photos->fetch()) {
+        $this->photos[] = array("id" => $photos->id, "name" => $photos->name);
+      }
+      
+      // photoupload-form
+      
+      $this->photoform = new formPhotos('PhotoForm');
+
+      // Try to validate a form 
+      if ($this->photoform->validate() && $session->getParam('function') == 'photos') {
+        $photo = $this->photoform->getElement('photo');
+        $file_settings = $photo->getValue();
+        $destination = $config->getSetting('doc_root').'images/uploads/';
+        $name = time().$file_settings['name'];
+        $photo->moveUploadedFile($destination, $name);
+        
+        $storephoto = new userPhotos;
+        $storephoto->name = $name;
+        $storephoto->user_id = $this->user->id;
+        $storephoto->getFile();
+        $storephoto->write(); 
+        if(!$this->user->main_photo) {
+          $storephoto->find(true);
+          $this->user->main_photo = $storephoto->id;
+          $this->user->update();
+        }
+
+        // if the user has no photo yet, this one is set his main photo
+
+        $this->switchPage('userdata&function=photos&msg=msg_add_picture');
+      }
+
+      // function is set
+      
+      $this->function = 'data';
+        
+      if($session->getParam('function'))
+        $this->function = $session->getParam('function');
     }
     
     private function assignAll() {
@@ -116,15 +210,43 @@ class pageUserData extends pageCommon{
       $tpl_engine = services::getService('tpl');
       $lang = services::getService('lang');
 
-      // Set formular-templates
-      $renderer = new rendererUserdata();
-  
-      // Output the form
-      $this->form->accept($renderer);
-      $tpl_engine->assign('form', $renderer->toHtml());
+      $tpl_engine->assign('function', $this->function);
 
-      $tpl_engine->assign('text', $lang->getMsg('userdata_text_change'));
-      $tpl_engine->assign('header', $lang->getMsg('userdata_header_change'));
+
+
+      if($this->function == "password") {
+        $tpl_engine->assign('text', $lang->getMsg('userdatapassword_text'));
+        $tpl_engine->assign('header', $lang->getMsg('userdatapassword_header'));
+
+        // Set formular-templates
+        $renderer = new renderer();
+  
+        // Output the form
+        $this->passwordform->accept($renderer);
+        $tpl_engine->assign('form', $renderer->toHtml());
+      } else if($this->function == "photos") {
+        $tpl_engine->assign('photos', $this->photos);
+        $tpl_engine->assign('mainphoto', $this->user->main_photo);
+        $tpl_engine->assign('text', $lang->getMsg('userdata_photos_text'));
+        $tpl_engine->assign('header', $lang->getMsg('userdata_photos_header'));
+      
+        // Set formular-templates
+        $renderer = new renderer();
+  
+        // Output the form
+        $this->photoform->accept($renderer);
+        $tpl_engine->assign('form', $renderer->toHtml());
+      } else {
+        // Set formular-templates
+        $renderer = new rendererUserdata();
+  
+        // Output the form
+        $this->form->accept($renderer);
+        $tpl_engine->assign('form', $renderer->toHtml());
+
+        $tpl_engine->assign('text', $lang->getMsg('userdata_text_change'));
+        $tpl_engine->assign('header', $lang->getMsg('userdata_header_change'));
+      }
     }
     
 }

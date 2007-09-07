@@ -28,6 +28,7 @@ class user extends DB_DataObject
 {
 
     var $login = FALSE;
+    var $photo = FALSE;
 
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -47,6 +48,7 @@ class user extends DB_DataObject
     var $phone;                           // string(20)  
     var $phone_public;                    // int(1)  
     var $description;                     // blob(16777215)  blob
+    var $main_photo;
 
     /* Static get */
     function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('data_obj_Pools_user',$k,$v); }
@@ -77,9 +79,8 @@ class user extends DB_DataObject
 	  $pools->user_id = $user_id;
 	  $pools->find();
 	  while($pools->fetch()){
-	    if($pools->pool_id != 1) {
-		  $pools->fetchPool();
-		  if ($pools->pool->isMember($this->id))
+	    if(!$pools->is_public) {
+		  if ($this->isMember($pools->pool_id))
 		    return true;
 		}
 	  }
@@ -168,6 +169,19 @@ class user extends DB_DataObject
       $tos = $new_apply_pool->getAdminEMails();
       foreach($tos as $to)
         $mail->send('new_member', $to, $new_apply_pool);
+    }
+    
+    function getPhoto() {
+      $photo = new userPhotos;
+      $photo->id = $this->main_photo;
+      if($this->main_photo) {
+      if($photo->find(true)) {
+        $this->photo = $photo;
+        return true;
+      }
+      else
+        return false;
+      }
     }
 }
 ?>

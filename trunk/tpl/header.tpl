@@ -13,17 +13,18 @@
       <area shape="rect" coords="248,35,365,50" href="http://www.cosmopool.net/">
     </map>
     <div  id="lang_menutop">
-        language: 
+        {lang->getMsg p1='common_language'}: 
+    {foreach from=$other_lang item="lang"}<a href="./index.php?lang={$lang}{$act_get}"><img 
+        class="lang_menutop2" src="./images/lang_menu_{$lang}_b.png"></a>{/foreach}
     </div>
-    {foreach from=$other_lang item="lang"} 
-        <a href="./index.php?lang={$lang}{$act_get}">
-        <img  id="lang_menutop2" src="./images/lang_menu_{$lang}_b.png"></a> 
-    {/foreach}
     {if $is_logged_in}
     {if $act_lang == "de"}
     <a href="./index.php?page=help"><img src="./images/header-links-de-1.png" class="helplink"></a>
     <a href="./index.php?page=logout"><img src="./images/header-links-de-2.png" class="logoutlink"></a>
     {/if}{if $act_lang == "en"}
+    <a href="./index.php?page=help"><img src="./images/header-links-en-1.png" class="helplink"></a>
+    <a href="./index.php?page=logout"><img src="./images/header-links-en-2.png" class="logoutlink"></a>
+    {/if}{if $act_lang == "es"}
     <a href="./index.php?page=help"><img src="./images/header-links-en-1.png" class="helplink"></a>
     <a href="./index.php?page=logout"><img src="./images/header-links-en-2.png" class="logoutlink"></a>
     {/if}

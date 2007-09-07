@@ -23,16 +23,16 @@
  * my site
  */
  
-require_once('./obj/pages/page.php');
+require_once('./obj/pages/pageCommon.php');
  
-class pageShowMember extends page{
+class pageShowMember extends pageCommon{
 
     private $pool;
     private $member;
     private $not_member;
 
     public function pageShowMember() {
-      echo $this->page();
+      $this->pageCommon();
       
       $this->setTemplate('showmember.tpl');
       $this->process();
@@ -43,6 +43,7 @@ class pageShowMember extends page{
     }
     
     private function process() {
+      $this->commonProcess();
     
       $config = services::getService('config');
       $lang = services::getService('lang');
@@ -56,30 +57,32 @@ class pageShowMember extends page{
 	   // build userlist
 	   
 	   // assotiativ array with object and detail-flag
-	   if($pool->isMember($this->user->id) && $pool->id != 1){
 	   
-		  $pool_users = new poolsUser;
-		  $pool_users->pool_id = $pool->id;
-        $pool_users->user_id = $params->getParam('showmember');
+		$pool_users = new poolsUser;
+      $pool_users->user_id = $params->getParam('showmember');
 		
-		  if($pool_users->find(true)) {
-		    if($pool_users->user_id != $this->user->id) {
-		      $pool_users->fetchUser();
+		if($pool_users->find(true)) {
+		  $pool_users->fetchUser();
 			  
-			   $member = array("obj" => $pool_users->user, "detail" => ($pool_users->user->id == $detail_id), "count" => $count, "admin" => $pool->isAdmin($pool_users->user->id));
-			 }
-		  }
+		  $member = array("obj" => $pool_users->user, "detail" => ($pool_users->user->id == $detail_id), "count" => $count, "admin" => $pool->isAdmin($pool_users->user->id));
 		  $this->member = $member;
+		  $this->member['obj']->getPhoto();
 		}
         
       $this->pool = $pool;
     }
     
     private function assignAll() {
+      $this->commonAssign();
       
       $tpl_engine = services::getService('tpl');
       $lang = services::getService('lang');
 
+      //$tpl_engine->assign('public', !($this->user->inMine($this->member['obj']->id)));
+      $tpl_engine->assign('public', true);
+      if($this->member['obj']->photo) 
+        $tpl_engine->assign('photo', $this->member['obj']->photo);
+      $tpl_engine->assign('header', $this->member['obj']->name);
       $tpl_engine->assign('member', $this->member);
     }
     

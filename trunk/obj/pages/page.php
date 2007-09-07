@@ -49,7 +49,7 @@ class page {
       if($_GET['lang']) {
         setcookie('language', $_GET['lang'], time()+60*60*24*365);
       }
-      else if($_COOKIE['language']) {
+      else if($_COOKIE['language']) {;
       }
       else if(is_array(parseHttpAcceptLanguage())) {
         $blang = parseHttpAcceptLanguage();
@@ -124,7 +124,7 @@ class page {
 
       $act_lang = $lang->getLang();
       
-      $languages = array('de', 'en');
+      $languages = array('de', 'en', 'es');
       $assign_languages = array();
       foreach($languages as $language)  {
         if($language != $act_lang) {

@@ -35,6 +35,7 @@ class formUserData extends form {
       $this->form($name);
 
       // Add some elements to the form
+      $this->addElement('hidden', 'function', "data");
       $this->addElement('text', 'email', $lang->getMsg('userdata_email'), array('size' => 30, 'maxlength' => 50));
       $this->addElement('text', 'email2', $lang->getMsg('userdata_email2'), array('size' => 30, 'maxlength' => 50));
       $this->addElement('checkbox', 'emailpublic', $lang->getMsg('userdata_emailpublic'));

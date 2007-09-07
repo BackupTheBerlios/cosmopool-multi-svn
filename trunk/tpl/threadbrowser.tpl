@@ -21,7 +21,7 @@
 <tr><td class="pools">{$entry->text}
 </tr></td>
 <tr><td class="pools"><b>{$entry->getDateFormat()}</b> {lang->getMsg p1='threadbrowser_by'}
-<a href="./index.php?page=showmember&pool_id={$pool->id}&showmember={$entry->user_id}" target="ueber" onclick="javascript: window.open(this,'ueber','width=350,height=300,scrollbars=yes');">{$entry->user->name}</a>
+<a href="./index.php?page=showmember&showmember={$entry->user_id}">{$entry->user->name}</a>
 </tr></td>
 <tr><td>&nbsp;
 </tr></td>

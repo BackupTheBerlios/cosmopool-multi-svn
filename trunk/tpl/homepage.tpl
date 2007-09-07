@@ -14,12 +14,10 @@
       <area shape="rect" coords="248,35,365,50" href="http://www.cosmopool.net/">
     </map>
     <div  id="lang_menutop">
-        language: 
+        {lang->getMsg p1='common_language'}:&nbsp; 
+    {foreach from=$other_lang item="lang"}<a href="./index.php?lang={$lang}{$act_get}"><img 
+        class="lang_menutop2" src="./images/lang_menu_{$lang}_b.png"></a> {/foreach}
     </div>
-    {foreach from=$other_lang item="lang"} 
-        <a href="./index.php?lang={$lang}{$act_get}">
-        <img  id="lang_menutop2" src="./images/lang_menu_{$lang}_b.png"></a> 
-    {/foreach}
     {if $is_logged_in}
     {if $act_lang == "de"}
     <a href="./index.php?page=help"><img src="./images/header-links-de-1.png" class="helplink"></a>
@@ -76,14 +74,7 @@
                    <td width=30 align=center><img src="./images/home-links-3.png"></td>
                    <td width=210 align=center><a href="http://wws.dynalias.org/" target="_blank">cosmopool-global wiki</a><br>
                        {lang->getMsg p1='home_links_3'}</td></tr></table>-->
-        <p class="headline2">News</p>
-        <div class="news">
-        <p class="standard">
-{foreach from=$shownews item="news"}        
-        {$news.date}: <a href="./index.php?page=news&news_id={$news.id}">{$news.name}</a><br>
-{/foreach}        
-        </p>
-        </div></div>
+</div>
     <div id="footer"> <a href="./index.php?page=static&pageid=about">{lang->getMsg p1='common_bottom_about'}</a> |&nbsp; 
     <a href="http://www.whopools.net/software/" target="_blank">{lang->getMsg p1='common_bottom_developers'}</a> |&nbsp;
     <a href="http://www.cosmopool.net" target="_blank">{lang->getMsg p1='common_bottom_supersite'}</a>    |&nbsp; 

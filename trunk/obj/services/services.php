@@ -25,6 +25,7 @@
 
 require_once './obj/services/mail.php';
 require_once './obj/services/lang_de.php';
+require_once './obj/services/lang_es.php';
 require_once './obj/services/lang_en.php';
 require_once './obj/services/config.php';
 require_once './obj/services/tpl.php';
@@ -63,6 +64,8 @@ class services {
             self::$services[$service_name] = new lang_de;
           else if($language == 'en')
             self::$services[$service_name] = new lang_en;
+          else if($language == 'es')
+            self::$services[$service_name] = new lang_es;
           else
             self::$services[$service_name] = new lang_en;
           break;

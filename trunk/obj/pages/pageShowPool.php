@@ -192,7 +192,7 @@ class pageShowPool extends pageCommon{
                                    "title" => $showthreads->title,
                                    "act_date" => date('j. n. y, H:i', $showthreads->last_entry->date).
                                                  ' '.$lang->getMsg('showpool_forum_lastentry_by').' '.
-                                                 '<a href="./index.php?page=showmember&pool_id='.$pool->id.'&showmember='.$showthreads->last_entry->user->id.'" target="ueber" onclick="javascript: window.open(this,\'ueber\',\'width=350,height=300,scrollbars=yes\');">'.$showthreads->last_entry->user->name.'</a>'); 
+                                                 '<a href="./index.php?page=showmember&pool_id='.$pool->id.'&showmember='.$showthreads->last_entry->user->id.'">'.$showthreads->last_entry->user->name.'</a>'); 
         }
 	   }
 

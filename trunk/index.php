@@ -32,6 +32,7 @@ foreach($config as $class=>$values) {
     $options = $values;
 }
 
+require_once './obj/data/userPhotos.php';
 require_once './obj/data/forumThreads.php';
 require_once './obj/data/forumEntries.php';
 require_once './obj/data/resources.php';
@@ -155,6 +156,10 @@ switch ($pagename) {
   case 'mypools':
     include('./obj/pages/pageMyPools.php');
     $page = new pageMyPools;
+    break;
+  case 'showpicture':
+    include('./obj/pages/pageShowPicture.php');
+    $page = new pageShowPicture;
     break;
   case 'static':
     include('./obj/pages/pageStatic.php');
