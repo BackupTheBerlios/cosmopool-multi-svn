@@ -38,14 +38,15 @@ class formPoolData extends form {
 
       // Add some elements to the form
       $this->addElement('text', 'poolname', $lang->getMsg('pooldata_form_name'), array('size' => 30, 'maxlength' => 50));
-      $this->addElement('textarea', 'pooldesc', $lang->getMsg('pooldata_form_description'), array('rows' => 5, 'cols' => 30));
+      $this->addElement('textarea', 'pooldesc', $lang->getMsg('pooldata_form_description'), array('rows' => 8, 'cols' => 50));
       $this->addElement('text', 'poolarea', $lang->getMsg('pooldata_form_area'), array('size' => 30, 'maxlength' => 50));
 
       /*$is_located = array();
       $is_located[] = HTML_QuickForm::createElement('radio', null, null, $lang->getMsg('pooldata_form_is_located_no'), 0);
       $is_located[] = HTML_QuickForm::createElement('radio', null, null, $lang->getMsg('pooldata_form_is_located_yes'), 1);
       $this->addGroup($is_located, 'is_located', $lang->getMsg('pooldata_form_is_located'), '<br>');*/
-      $this->addElement('select', 'poolcountry', $lang->getMsg('pooldata_form_country'), array("0"=>$lang->getMsg('pooldata_form_country_none'),"DE"=>$lang->getMsg('country_DE'), "AT"=>$lang->getMsg('country_AT'), "CH"=>$lang->getMsg('country_CH'), "GR"=>$lang->getMsg('country_GR'), "US"=>$lang->getMsg('country_US'), "GB"=>$lang->getMsg('country_GB')));
+      $countries = services::getService('countries');
+      $this->addElement('select', 'poolcountry', $lang->getMsg('pooldata_form_country'), $countries->getAsArray());
       $adress[] = &HTML_QuickForm::createElement('text', 'plz1', null, array('size' => 2, 'maxlength' => 2));
       $adress[] = &HTML_QuickForm::createElement('text', 'plz2', null, array('size' => 3, 'maxlength' => 3));
       $adress[] = &HTML_QuickForm::createElement('text', 'city', null, array('size' => 20, 'maxlength' => 30));

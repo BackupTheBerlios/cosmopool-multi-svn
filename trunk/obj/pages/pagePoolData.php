@@ -125,8 +125,8 @@ class pagePoolData extends pageCommon{
           $new_admin->insert();
 
           $params->addParam('msg', 'msg_found_success', 'page');
-          $mail->send('found_pool_admin', $config->getSetting('email'));
-          $mail->send('found_pool_founder', $this->user->email);
+          $mail->send('found_pool_admin', $config->getSetting('email'), $pool);
+          $mail->send('found_pool_founder', $this->user, $pool);
           $this->switchPage('mysite');
         }
       }

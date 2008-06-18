@@ -31,6 +31,7 @@ class pageResBrowser extends pageCommon{
     private $pool;
     private $cats = array();
     private $res;
+    private $resdata;
     private $table;
     private $header;
     private $hierarchie;
@@ -107,6 +108,7 @@ class pageResBrowser extends pageCommon{
         $res_fetcher->_pools = explode("a", $params->getParam('searchwhere'));
 
       // fetch users pools
+      
       $my_pools_ids = $this->user->getPoolIDs();
       foreach($my_pools_ids as $pool_id) {
         $userpool = new pools;
@@ -197,12 +199,13 @@ class pageResBrowser extends pageCommon{
         $phone   = $show_res->user->phone;
         $user_desc = $show_res->user->description;
         
+        // show detail: resource
+        
         if ($detail) {
           // attributes for detail-article are fetched        
         
           $attributes = new attributes;
-          $category_id = $show_res->cat;
-          
+          $attributes->category_id = $show_res->cat;
           $attributes->find();
 
           $res_attr_array = array();
@@ -216,7 +219,7 @@ class pageResBrowser extends pageCommon{
               $res_attr->attribute_id = $attributes->id;
               if($res_attr->find(true))
                 $res_attr_array[] = array("value" => $res_attr->value,
-                                          "name" => $attributes->name);
+                                          "name" => 'resdata_form_'.$attributes->name);
             }
             // select-attributes
             if($attributes->type == "select") {
@@ -224,14 +227,16 @@ class pageResBrowser extends pageCommon{
               $res_attr->res_id = $show_res->id;
               $res_attr->attribute_id = $attributes->id;
               if($res_attr->find()) {
+                $value = "";
                 while($res_attr->fetch()) {
                   $keys = new attributesSelectKeys;
                   $keys->key = $res_attr->value;
+                  $keys->attribute_id = $res_attr->attribute_id;
                   $keys->find(true);
                   $value = $value.$lang->getMsg('resdata_form_select_'.$keys->value).'&nbsp;';
                 }
                 $res_attr_array[] = array("value" => $value,
-                                          "name" => $attributes->name);
+                                          "name" => 'resdata_form_'.$attributes->name);
               }
             }
           }
@@ -259,6 +264,7 @@ class pageResBrowser extends pageCommon{
 		  'name'           => $show_res->name,
 		  'description'    => $show_res->description,
 		  'type'           => $show_res->type,
+		  'resolvetype'    => $this->resolveType($show_res->type),
 		  'user_id'        => $show_res->user->id,
 		  'user_name'      => $show_res->user->name,
 		  'own_ressource'  => $show_res->user->id == $this->user->id,
@@ -273,10 +279,15 @@ class pageResBrowser extends pageCommon{
 		  'user_plz'       => $plz,
 		  'user_city'      => $city,
 		  'user_phone'     => $phone,
-		  'user_user_desc' => $user_desc
+		  'user_user_desc' => $user_desc,
+		  'user_email_public'     => $show_res->user->email_public,
+		  'user_phone_public'     => $show_res->user->phone_public,
+		  'user_plz_city_public'     => $show_res->user->plz_city_public
 		  );
-		  if($detail)
+		  if($detail) {
 		    $act_row = array_merge($act_row, array('attributes' => $res_attr_array));
+		    $this->resdata = $act_row;
+		  }
 		  $tabledata[] = $act_row;
 		  
 		  }++$count;
@@ -398,6 +409,9 @@ class pageResBrowser extends pageCommon{
       else if($params->getParam('cat') != 0) {
         $this->hierarchie = array(array('id' => 0, 'name' => $lang->getMsg('cat_all')));
       }
+      if($this->resdata) {
+        $this->hierarchie[] = array('id' => $params->getParam('cat'), 'name' => $categories->getName($params->getParam('cat')));
+      }
       
       $this->table = $table;
       $this->pool = $pool;
@@ -420,7 +434,7 @@ class pageResBrowser extends pageCommon{
           
           $owner = new user;
           $owner->get($res->user_id);
-          $mail->send('nogood_order', $owner->email, $res);
+          $mail->send('nogood_order', $owner, $res, $this->user, $params->getParam('comments'));
         }
     
         // beeing given
@@ -430,7 +444,7 @@ class pageResBrowser extends pageCommon{
           
           $owner = new user;
           $owner->get($res->user_id);
-          $mail->send('give_order', $owner->email, $res);
+          $mail->send('give_order', $owner, $res, $this->user, $params->getParam('comments'));
         }
     
         // borrow
@@ -440,7 +454,7 @@ class pageResBrowser extends pageCommon{
           
           $owner = new user;
           $owner->get($res->user_id);
-          $mail->send('borrow_order', $owner->email, $res);        }
+          $mail->send('borrow_order', $owner, $res, $this->user, $params->getParam('comments'));        }
       }
 	 }
 	
@@ -461,7 +475,13 @@ class pageResBrowser extends pageCommon{
       if($params->getParam('searchwhere'))
         $tpl_engine->assign('searchwhere', $params->getParam('searchwhere'));
 
+      if($this->resdata['user_plz_city_public'] || $this->resdata['user_phone_public'] || $this->resdata['user_email_public'])
+        $tpl_engine->assign('one_public', true);
+      else
+        $tpl_engine->assign('one_public', false);
+
       $tpl_engine->assign('pool', $this->pool);
+      $tpl_engine->assign('resdata', $this->resdata);
       $tpl_engine->assign('res_count', $this->res_count);
       $tpl_engine->assign('get_add', $this->get_add);
       $tpl_engine->assign('get_add_cat', $this->get_add_cat);
@@ -477,6 +497,26 @@ class pageResBrowser extends pageCommon{
       $tpl_engine->assign('attribute_presets', $this->attribute_presets);
       
     }
+
+	private function resolveType($type) {
+      $lang = services::getService('lang');
+       $action = false;
+	    switch ($type) {
+
+            // be given
+            case 1:
+            $action = $lang->getMsg('tables_contactbutton_gift');
+            break;
+
+            // borrow
+            case 2:
+            $action = $lang->getMsg('tables_contactbutton_borrow');
+            break;
+        }
+        if(!$action)
+            $action = $lang->getMsg('tables_contactbutton_noitem');
+		return $action;
+	}
     
 }
 ?>

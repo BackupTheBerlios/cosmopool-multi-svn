@@ -24,8 +24,6 @@
  */
  
 require_once('./obj/pages/pageCommon.php');
-require_once('./obj/forms/formSearch.php');
-require_once('./obj/forms/rendererSearch.php');
  
 class pageSearch extends pageCommon{
 

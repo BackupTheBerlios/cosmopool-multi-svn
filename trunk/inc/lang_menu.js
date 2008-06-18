@@ -8,8 +8,7 @@ node.onmouseover=function() {
 this.className+=" over";
   }
   node.onmouseout=function() {
-  this.className=this.className.replace»
-	(" over", "");
+  this.className=this.className.replace(" over", "");
    }
    }
   }

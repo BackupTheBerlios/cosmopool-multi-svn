@@ -29,7 +29,7 @@ require_once './obj/forms/renderer.php';
 class formSearch extends form {
 
     // constructor
-    function formSearch($name) {
+    function formSearch($name,$string) {
       $lang = services::getService('lang');
       $categories = services::getService('cats');
       $params = services::getService('pageParams');
@@ -39,62 +39,11 @@ class formSearch extends form {
       $this->form($name);
 
       // Add some elements to the form
-      $this->addElement('text', 'searchstring', $lang->getMsg('search_form_searchstring'), array('size' => 30, 'maxlength' => 50));
-      $this->addElement('select', 'cat', $lang->getMsg('search_form_category'), $cats, array('onchange' => 'search_cat_change_new(this.value)'));
-      $this->addElement('select', 'searchwhere', $lang->getMsg('search_form_where'));
+      $this->addElement('text', 'searchstring', $lang->getMsg('search_form_searchstring'), array('size' => 16, 'maxlength' => 50, 'class' => 'inputtextsearch', 'onfocus' => "clearText(this);", 'onblur' => "addText(this);", 'value' => $lang->getMsg('search_header'), 'style'=>"color:#666;"));
+      $this->addElement('hidden', 'cat', '0');
+      $this->addElement('hidden', 'searchwhere', $string);
 
-      /*// fetch additional attributes e.g. form-fields for chosen category
-      
-      if($params->getParam('cat')) {
-        $this->setDefaults(array('cat' => $params->getParam('cat'))); 
-
-        $cat = $params->getParam('cat');
-        
-        $this->addElement('hidden', 'cat', $cat);
-        
-        $attributes = new attributes;
-        $attributes->category_id = $cat;
-        if($attributes->find()) {
-          while($attributes->fetch()) {
-          
-            if($attributes->type == "string") {
-              if($attributes->name == "isbn") {
-                $this->addElement('text', 'search_'.$attributes->name, $lang->getMsg('resdata_form_'.$attributes->name), array('size' => 30, 'maxlength' => 255));
-              }
-              else
-                $this->addElement('text', 'search_'.$attributes->name, $lang->getMsg('resdata_form_'.$attributes->name), array('size' => 30, 'maxlength' => 255));
-            }
-            
-            if($attributes->type == "select") {
-              $keys = new attributesSelectKeys;
-              $keys->attribute_id = $attributes->id;
-              $keys->find();
-              
-              $options = array();
-              $options[0] = "----";
-              while($keys->fetch())
-                $options[$keys->key] = $lang->getMsg('resdata_form_select_'.$keys->value); 
-              
-              $select_elements = array();
-              for($i = 1; $attributes->amount >= $i; ++$i)
-                $select_elements[] = &HTML_QuickForm::createElement('select', $i, null, $options);
-              $this->addGroup($select_elements, 'search_'.$attributes->name, $lang->getMsg('resdata_form_'.$attributes->name), '&nbsp;');
-            }
-
-          }
-        }
-      }*/
-
-      $this->addElement('submit', 'submit', $lang->getMsg('search_form_submit'));
-    }
-    
-    function setPools($array,$string) {
-      $lang = services::getService('lang');
-      $el = $this->getElement('searchwhere');
-      $el->addOption($lang->getMsg('search_option_all_pools'), $string);
-      foreach($array as $userpool) {
-        $el->addOption($userpool[1], $userpool[0]);
-      }
+      $this->addElement('hidden', 'searchsubmit', 'submitted');
     }
     
 }

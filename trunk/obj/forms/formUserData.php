@@ -31,6 +31,7 @@ class formUserData extends form {
     // constructor
     function formUserData($name, $login) {
       $lang = services::getService('lang');
+      $countries = services::getService('countries');
     
       $this->form($name);
 
@@ -50,7 +51,7 @@ class formUserData extends form {
       $adress2[] = &HTML_QuickForm::createElement('text', 'city', null, array('size' => 20, 'maxlength' => 30));
       $this->addGroup($adress2, 'adress2', $lang->getMsg('userdata_adress2'), '&nbsp;');
 
-      $this->addElement('select', 'country', $lang->getMsg('userdata_country'), array("DE"=>$lang->getMsg('country_DE'), "AT"=>$lang->getMsg('country_AT'), "CH"=>$lang->getMsg('country_CH'), "GR"=>$lang->getMsg('country_GR'), "US"=>$lang->getMsg('country_US'), "GB"=>$lang->getMsg('country_GB')));
+      $this->addElement('select', 'country', $lang->getMsg('userdata_country'), $countries->getAsArray());
       $this->addElement('checkbox', 'adresspublic', $lang->getMsg('userdata_adresspublic'));
       $this->addElement('textarea', 'description', $lang->getMsg('userdata_description'), array('rows' => 5, 'cols' => 50));
 

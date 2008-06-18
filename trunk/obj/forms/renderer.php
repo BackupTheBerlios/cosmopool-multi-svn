@@ -41,6 +41,7 @@ class renderer extends HTML_QuickForm_Renderer_Default
       $this->HTML_QuickForm_Renderer_Default();
       $this->setHeaderTemplate($this->default_header);
       $this->setElementTemplate($this->default_element);
+      $this->setElementTemplate($msgsubmit, 'msgsubmit');
       $this->setElementTemplate($cat_element, 'resdata_cat');
       $this->setElementTemplate($isbn_element, 'resdata_isbn');
       $this->setElementTemplate($zipcode_element, 'pooladress');

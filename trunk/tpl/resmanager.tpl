@@ -91,13 +91,14 @@
   </tr>
   {/if}
   {/foreach}
+	</table>
+<img src="./images/arrow.png"> <input type="submit" name="resdata_del_submit" value="{lang->getMsg p1='resmanager_myrestable_delmarked'}"></form><br />
   {else}
 	<div class="all_res">
     <tr><td colspan="6" align="center">--- {lang->getMsg p1='resmanager_myrestable_noentrys'} ---</td></tr>
+	</table>
   </div>
   {/if}
-	</table>
-<img src="./images/arrow.png"> <input type="submit" name="resdata_del_submit" value="{lang->getMsg p1='resmanager_myrestable_delmarked'}"></form><br />
 {/if}
 
 

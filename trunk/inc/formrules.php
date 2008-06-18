@@ -20,6 +20,31 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+    function check_email($email) { 
+    	if( (preg_match('/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/', $email)) || 
+    		(preg_match('/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,3}|[0-9]{1,3})(\]?)$/',$email)) ) { 
+    		$host = explode('@', $email);
+    		if(checkdnsrr($host[1].'.', 'MX') ) return true;
+    		if(checkdnsrr($host[1].'.', 'A') ) return true;
+    		if(checkdnsrr($host[1].'.', 'CNAME') ) return true;
+    	}
+    	return false;
+    }
+        if (!function_exists('checkdnsrr')) {
+    	function checkdnsrr($host, $type = '') {
+    		if(!empty($host)) {
+    			if($type == '') $type = "MX";
+    			@exec("nslookup -type=$type $host", $output);
+    			while(list($k, $line) = each($output)) {
+    				if(eregi("^$host", $line)) {
+    					return true;
+    				}
+    			}
+    			return false;
+    		}
+    	}
+    }
+
 function parseHttpAcceptLanguage($str=NULL) { 
   // getting http instruction if not provided 
   $str=$str?$str:$_SERVER['HTTP_ACCEPT_LANGUAGE']; 

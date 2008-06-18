@@ -23,7 +23,7 @@
 {foreach from=$photos item="photo"}
 <div class="photo3"><a class="picture" href="./index.php?page=userdata&function=photos&setmain={$photo.id}"><img src="./images/uploads/thumb_{$photo.name}" 
 {if $mainphoto == $photo.id}class="photo2"{else}class="photo"{/if}></a><br>
-{lang->getMsg p1='userdata_photos_big'} |&nbsp; <a class="picture" href="./index.php?page=userdata&function=photos&delete={$photo.id}">{lang->getMsg p1='userdata_photos_delete'}</a></div>{/foreach}
+<a class="picture" href="./index.php?page=showpicture&id={$photo.obj->name}" target="ueber" onclick="javascript: window.open(this,'ueber','width=432,height={$photo.obj->getHeight()},scrollbars=yes');">{lang->getMsg p1='userdata_photos_big'}</a> |&nbsp; <a class="picture" href="./index.php?page=userdata&function=photos&delete={$photo.id}">{lang->getMsg p1='userdata_photos_delete'}</a></div>{/foreach}
 </div><div id="subnavi2"></div>
 
 {/if}

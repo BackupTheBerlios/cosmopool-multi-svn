@@ -143,19 +143,17 @@ if($_GET['action'] == 'delete_pool') {
   // delete ng
   $pools->get($_GET['pool_id']);
 
-  $to = current($pools->getAdminEMails());
+  $tos = $pools->getAdmins();
   if($pools->deleteAll()) {
     $msg = 'msg_delng_success';
 
-    // compose email
-    $subject = "NutziGem gelöscht";
-    $body = "Guten Tag,
+    // compose emails
+
+    $mail = services::getService('mail');
+    foreach($tos as $to) {
+      $mail->send('pool_deleted', $to, $pools);
+    }
     
-Die NutziGem, die Du administriert hast, wurde gelöscht.
-      
-Gruß";
-    
-    mail($to, $subject, $body);
     $freed = TRUE;
   }
 }
@@ -166,18 +164,15 @@ if(isset($_POST['ng_del_submit'])) {
     // delete ng
     $pools->get($_POST['ng_free_'.$count]);
     
-    $to = current($pools->getAdminEMails());
+    $tos = $pools->getAdmins();
     if($pools->deleteAll()) {
       $deleted = TRUE;
-      // compose email
-      $subject = "NutziGem nicht akzeptiert";
-      $body = "Guten Tag,
-    
-Die NutziGem, die Du gründen wolltest, wurde leider soeben abgelehnt.
       
-Gruß";
-    
-      mail($to, $subject, $body);
+      $mail = services::getService('mail');
+      foreach($tos as $to) {
+        $mail->send('found_pool_refused', $to, $pools);
+      }
+
       $freed = TRUE;
     }
   }
@@ -203,15 +198,12 @@ if(isset($_POST['ng_free_submit'])) {
       $pools->update();
       
       // compose email
-      $to = current($pools->getAdminEMails());
-      $subject = "NutziGem freigeschaltet";
-      $body = "Guten Tag,
-    
-Die NutziGem, die Du gegründet hast, wurde soeben freigeschaltet.
-      
-Gruß";
-    
-      mail($to, $subject, $body);
+      $tos = $pools->getAdmins();
+      $mail = services::getService('mail');
+      foreach($tos as $to) {
+        $mail->send('found_pool_accepted', $to, $pools);
+      }
+
       $freed = TRUE;
     }
   }

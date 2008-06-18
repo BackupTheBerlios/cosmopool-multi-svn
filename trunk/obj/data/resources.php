@@ -200,6 +200,8 @@ class resources extends DB_DataObject
       $is_pool->res_id = $this->id;
       if($is_pool->find())
         return true;
+      else
+        return false;
     }
     
     function inMine($user_id) {

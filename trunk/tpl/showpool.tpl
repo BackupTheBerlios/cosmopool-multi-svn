@@ -22,7 +22,8 @@
     {if $user_is_waiting}
     <p class="msg">{lang->getMsg p1='showpool_become_member_msg_isproven'}</p>
     {else}
-    <p class="standard"><a href="./index.php?page=showpool&pool_id={$pool->id}&action=no_member">{lang->getMsg p1='showpool_leavepool_link'}</a></p>
+    <p class="standard"><a href="./index.php?page=showpool&pool_id={$pool->id}&action=no_member">{lang->getMsg p1='showpool_leavepool_link'}</a><br>
+    <a href="./index.php?page=freeres&pool_id={$pool->id}">{lang->getMsg p1='showpool_freeres_link'}</a></p>
     {/if}
   {/if}
   </div>
@@ -44,15 +45,19 @@
   <a href="./index.php?page=pooladmin&pool_id={$pool->id}">{lang->getMsg p1='mysite_poolsadmintable_adminlink'}</a><br><br>
   </div>
 {/if}
+{if !$not_member}  <div class="resnavi4"><b>{lang->getMsg p1='showpool_admins_header'}</b></div>
+  <div class="resnavi5"><br>
+    {foreach from=$members item="member"}{if $member.admin}
+     <a href="./index.php?page=showmember&showmember={$member.obj->id}">{$member.obj->name}</a><br>  
+    {/if}{/foreach}<br>
+  </div>
+  {/if}
 {if $members}
   <div class="resnavi4"><b>{lang->getMsg p1='showpool_members_header'}</b></div>
   <div class="resnavi5"><br>
-    {foreach from=$members item="member"}
-    {if $member.count != 1}<br>
-    {/if}
-     <a href="./index.php?page=showmember&showmember={$member.obj->id}">{$member.obj->name}</a>{if $member.admin}(Admin) {/if}  
-    {/foreach}
-    </p>
+    {foreach from=$members item="member"}{if !$member.admin}
+     <a href="./index.php?page=showmember&showmember={$member.obj->id}">{$member.obj->name}</a><br>  
+    {/if}{/foreach}<br><br>
   </div>
 {/if}
 </div>

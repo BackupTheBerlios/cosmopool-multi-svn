@@ -67,8 +67,9 @@ class pageResManager extends pageCommon{
           $wait_res->res->deleteWaiting($wait_res->user_id);
 		    $wait_res->fetchUser();
 
-          $this->addMsg('msg_request_success');
-          $mail->send('nogood_accepted', $wait_res->user->email, $wait_res->res);
+          $wait_res->res->fetchUser();
+          $mail->send('nogood_accepted', $wait_res->user, $wait_res->res, $wait_res->res->user);
+          $this->switchPage('resmanager&msg=msg_request_success');
          }
 
         // give
@@ -84,8 +85,9 @@ class pageResManager extends pageCommon{
           // delete all interessants
           $wait_res->res->deleteWaiting();
 
-          $this->addMsg('msg_give_success');
-          $mail->send('give_accepted', $wait_res->user->email, $wait_res->res);
+          $wait_res->res->fetchUser();
+          $mail->send('give_accepted', $wait_res->user, $wait_res->res, $wait_res->res->user);
+          $this->switchPage('resmanager&msg=msg_give_success');
          }
           
         // borrow
@@ -98,8 +100,9 @@ class pageResManager extends pageCommon{
           // delete all interessants
           $wait_res->res->deleteWaiting();
 
-          $this->addMsg('msg_borrow_success');
-          $mail->send('borrow_accepted', $wait_res->user->email, $wait_res->res);
+          $wait_res->res->fetchUser();
+          $mail->send('borrow_accepted', $wait_res->user, $wait_res->res, $wait_res->res->user);
+          $this->switchPage('resmanager&msg=msg_borrow_success');
         }
         $this->toDoList();
       }
@@ -112,9 +115,11 @@ class pageResManager extends pageCommon{
 		  $waiter = new user;
 		  $waiter->get($wait_res->user_id);
 		  $wait_res->fetchRes();
-        $mail->send('refused', $waiter->email, $wait_res->res);
+        $wait_res->res->fetchUser();
+        $mail->send('refused', $waiter, $wait_res->res, $wait_res->res->user);
         $wait_res->delete();
         $this->toDoList();
+        $this->switchPage('resmanager&');
       }
 
       // res is given back
@@ -122,7 +127,7 @@ class pageResManager extends pageCommon{
         $bow_res = new resBorrowed;
         $bow_res->res_id = $params->getParam('res_id');
         if($bow_res->delete())
-          $this->addMsg('msg_res_back');
+          $this->switchPage('resmanager&msg=msg_res_back');
       }
 
       // delete resources
@@ -140,7 +145,7 @@ class pageResManager extends pageCommon{
   
         // set $msg
         if($deleted)
-          $this->addMsg('msg_delres_success');
+          $this->switchPage('resmanager&msg=msg_delres_success');
       }
 
       $userres = new resFetcher;
@@ -150,12 +155,6 @@ class pageResManager extends pageCommon{
 
       $userres->search();
       $this->userres = $userres->getAsArray();
-
-      // borrowed res are shown
-      $this->borrowed_res = $this->user->getBorrowedRes();
-
-      // waiting res are shown
-      $this->res_offers = $this->user->getWaitingRes();
 
       // function is set
       
@@ -184,8 +183,6 @@ class pageResManager extends pageCommon{
 
       $tpl_engine->assign('function', $this->function);
       $tpl_engine->assign('userres', $this->userres);
-      $tpl_engine->assign('res_offers', $this->res_offers);
-      $tpl_engine->assign('borrowed_res', $this->borrowed_res);
       $tpl_engine->assign('header', $lang->getMsg('resmanager_header'));
     }
     

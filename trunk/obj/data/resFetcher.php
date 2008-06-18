@@ -126,10 +126,15 @@ class resFetcher extends resources
     function getAsArray() {
       $array = array();
     
+      $oneatleast = false;
       while($this->res->fetch()) {
         $array[] = clone $this->res;
+        $oneatleast = true;
       }
-      return $array;
+      if($oneatleast)
+        return $array;
+      else
+        return false;
     }
     
 }

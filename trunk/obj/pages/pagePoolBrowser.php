@@ -28,6 +28,7 @@ require_once('./obj/ui/tables/tablePools.php');
  
 class pagePoolBrowser extends pageCommon{
 
+    private $function;
     private $header;
     private $table;
 
@@ -50,7 +51,16 @@ class pagePoolBrowser extends pageCommon{
       $lang = services::getService('lang');
       $params = services::getService('pageParams');
       
+      // function is set
+      
+      if($params->getParam('function'))
+        $this->function = $params->getParam('function');
+      else
+        $this->function = 'public';
+
       $table = new tablePools;
+      
+      if($this->function == 'public') {
 
       // fetch "Pool"
       
@@ -59,12 +69,20 @@ class pagePoolBrowser extends pageCommon{
       $pools_pool->find(true);
       $main_res = new resFetcher;
       $main_res->_pools = array(1);
-      $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools_pool->id.'&cat=0&type=0">'.$pools_pool->name.'</a>', $pools_pool->area, " ", $lang->getMsg('tables_is_public_yes'), $main_res->count()), array("class" => "pools3"));
+      $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools_pool->id.'&cat=0&type=0">'.$pools_pool->name.'</a>', $pools_pool->area, " ", $main_res->count()), array("class" => "pools3"));
+      
+      }
 
       // other pools
 
       $pools = new poolsFetcher;
-      $pools->_user = $params->getParam('pools');
+
+      if($this->function == 'public') {
+        $pools->_is_public = 1;
+      }
+      else {
+        $pools->_is_public = 0;
+      }
 
       $order = "country,plz";
       $pools->_order = $order;
@@ -92,10 +110,6 @@ class pagePoolBrowser extends pageCommon{
             $table->addRow(array('&nbsp;'), array("color" => "white"));
           }
 
-          if($pools->is_public == 1)
-            $is_public_cell = $lang->getMsg('tables_is_public_yes');
-          else
-            $is_public_cell = $lang->getMsg('tables_is_public_no');
           if($pools->plz)
             $plz = $pools->plz;
           else
@@ -103,15 +117,14 @@ class pagePoolBrowser extends pageCommon{
         
           $rescount = new resFetcher;
           $rescount->_pools = array($pools->id);
-          $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools->id.'">'.$pools->name.'</a>', $pools->area, $plz.' '.$pools->city, $is_public_cell, $rescount->count()), array("class" => "pools3"));
+          $table->addRow(array('<a href="./index.php?page=showpool&pool_id='.$pools->id.'">'.$pools->name.'</a>', $pools->area, $plz.' '.$pools->city, $rescount->count()), array("class" => "pools3"));
           $lastplz = $pools->plz;
         }
       }
       
       $this->table = $table;
 
-      if($params->getParam('pools') == 'all')
-        $this->header = $lang->getMsg('poolbrowser_all_header');
+      $this->header = $lang->getMsg('poolbrowser_all_header');
     }
     
     private function assignAll() {
@@ -122,6 +135,7 @@ class pagePoolBrowser extends pageCommon{
 
       $tpl_engine->assign('header', $this->header);
       
+      $tpl_engine->assign('function', $this->function);
       $tpl_engine->assign('poolstable', $this->table->toHTML());
     }
     

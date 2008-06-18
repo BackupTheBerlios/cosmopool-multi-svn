@@ -23,28 +23,63 @@
  * language-service
  */
  
+require_once './obj/services/lang_de.php';
+require_once './obj/services/lang_es.php';
+require_once './obj/services/lang_en.php';
+
 class lang {
 
+    public $languages = array('de', 'es', 'en');
     public $msg = array();
+    public $lang = "";
 
     // constructor
     public function lang() {
-      ;
+      $config = services::getService('config');
+      $params = services::getService('pageParams');
+      global $lang_de;
+      global $lang_es;
+      global $lang_en;
+      $this->msg = array("de" => $lang_de, "en" => $lang_en, "es" => $lang_es);
+          
+      // if there's a lang_cookie, the cookie-language is chosen
+      if($_GET['lang']) {
+        $this->lang = $_GET['lang'];
+      }
+      else if($_COOKIE['language']) {
+        $this->lang = $_COOKIE['language'];
+      }
+      else if(is_array(parseHttpAcceptLanguage())) {
+        $blang = parseHttpAcceptLanguage();
+        $this->lang = $blang[0]['code'];
+      }
+      else {
+        $this->lang = $config->getSetting('language');
+      }
+      if(!in_array($this->lang, $this->languages)) {
+        $this->lang = $config->getSetting('language');
+      }
     }
     
-    public function getMsg($name) {
-      if(is_array($name)) {
-        if(isset($this->msg[$name['p1']])) {
-          $msg = $this->msg[$name['p1']];
-          return $msg;
-        }
-      }
-      else if(isset($this->msg[$name])) {
-        $msg = $this->msg[$name];
+    public function getMsg($name, $special_lang = "") {
+      $config = services::getService('config');
+
+      $language = $this->lang;
+      if(in_array($special_lang, $this->languages)) 
+        $language = $special_lang;
+        
+      if(is_array($name)) 
+        $name = $name['p1'];
+        
+      if(isset($this->msg[$language][$name])) {
+        $msg = $this->msg[$language][$name];
         return $msg;
-      }
-      else
+      } else if(isset($this->msg[$config->getSetting('language')][$name])) {
+        $msg = $this->msg[$config->getSetting('language')][$name];
+        return $msg;
+      } else {
         return "msg doesn't exist: ".$name;
+      }
     }
     
     public function getLang() {

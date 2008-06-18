@@ -80,12 +80,13 @@ class pageShowPool extends pageCommon{
 		  
           // compose E-Mails
           if(!$pool->is_public) {
-            $tos = $pool->getAdminEMails();
-            foreach($tos as $to)
-              $mail->send('new_member', $to, $pool);
+            $tos = $pool->getAdmins();
+            foreach($tos as $to) {
+              $mail->send('new_member', $to, $pool, $this->user, $new_membership->comments);
+            }
           }
           else
-            $this->switchPage('mysite');
+            $this->switchPage('mysite&new_pool='.$pool->id);
           
 		  }
 		  else {
@@ -197,9 +198,10 @@ class pageShowPool extends pageCommon{
 	   }
 
 	   // build userlist
+	   if($pool->id != 1) {
 	  
 	   // assotiativ array with object and detail-flag
-	   if($pool->isMember($this->user->id) && $pool->is_public != 1){
+	   if($pool->isMember($this->user->id)){
 	     $members = array();
 		
 		$pool_users = new poolsUser;
@@ -215,13 +217,14 @@ class pageShowPool extends pageCommon{
 		      $pool_users->fetchUser();
 			  
 			  $member = array("obj" => $pool_users->user, "detail" => ($pool_users->user->id == $detail_id), "count" => $count, "admin" => $pool->isAdmin($pool_users->user->id));
-			  $members[] = $member;
+			  if($pool_users->user->name != "")
+			    $members[] = $member;
 			  ++$count;
 			}
 		  }
 		  $this->members = $members;
 		}
-	   }
+	   }}
         
       $this->pool = $pool;
       }

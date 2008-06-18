@@ -46,20 +46,32 @@ $default_element = '<tr><td class="forms6">{label}<!-- BEGIN required --><font c
 $zipcode_element = '<tr><td class="forms4">{label} <!-- BEGIN required --><font class="msg">*</font><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element} <font class="help">[<a href="./index.php?page=help#4">'.$lang->getMsg('common_help_link').'</a>]</font></td></tr>';
 $cat_element = '<tr><td class="forms6">{label}<!-- BEGIN required --><font class="msg">*</font><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr><tr><td></td><td class="forms2"><font color="#555555">('.$lang->getMsg('forms_cat_choosefirst').')</font></td></tr><tr><td colspan="2">&nbsp;</td></tr>';
 $isbn_element = '<tr><td class="forms6">{label}<!-- BEGIN required --><font class="msg">*</font><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element} ';
-$isbn_submit_element = '<!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
+$isbn_submit_element = '<!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}<br><font color="#555555">('.$lang->getMsg('forms_isbn_hint').')</font></td></tr>';
 $endtable_element = '<tr><td class="forms1">{label}<!-- BEGIN required --><font class="msg">*</font><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr></table>';
 $begintable_element = '<table class="forms"><tr><td class="forms1">{label}<!-- BEGIN required --><font class="msg">*</font><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
 $submit_element = '<tr><td class="forms2"><!-- BEGIN required --><font class="msg">*</font><!-- END required --></td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}<p class="standard">'.$lang->getMsg('forms_note_staredarenecessary-1').'<font class="msg">*</font>'.$lang->getMsg('forms_note_staredarenecessary-2').'</p></td></tr>';
+$msgsubmit = '<tr><td class="forms2"></td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
 $required_note = '';
 $login_default_form = '<form{attributes}><table class="login_form_table">{content}</table></form>';
 $login_default_header = '<p class="headline2">{header}</p>';
 $login_default_element = '<tr><td class="login_form_table" valign="top"><b>{label}</b><!-- BEGIN required --><!-- END required -->:<br><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
+$login_remember_element = '<tr><td class="login_form_table" valign="top"><!-- BEGIN required --><!-- END required --><!-- BEGIN error --><font class="msg">{error}</font><!-- END error -->{element} '.$lang->getMsg('home_login_remember').'</td></tr>';
 $login_endtable_element = '<tr><td class="forms4">{label}<!-- BEGIN required --><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr></table>';
 $login_begintable_element = '<table class="forms"><tr><td class="forms1">{label}<!-- BEGIN required --><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
 $login_submit_element = '<tr><td class="forms2"  valign="top" align="left">{label}<!-- BEGIN required --><!-- END required --><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
 $login_required_note = '';
-$search_default_form = '<form{attributes}><table class="pools">{content}</table></form>';
-$search_default_element = '<tr><td class="forms2" width="100"><b>{label}</b><!-- BEGIN required --><font class="msg">*</font><!-- END required -->:</td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
-$search_submit_element = '<tr><td class="forms2"></td><td class="forms2" valign="top" align="left"><!-- BEGIN error --><font class="msg">{error}</font><br /><!-- END error -->{element}</td></tr>';
+$search_default_form = '<form{attributes}>{content}</form>';
+$search_default_element = '<script>function clearText(thefield){
+if (thefield.defaultValue==thefield.value) { 
+thefield.value = "";
+thefield.style.color = "black";
+}
+}function addText(thefield){
+if (thefield.defaultValue!=thefield.value) { 
+thefield.value = thefield.defaultValue;
+thefield.style.color = "#666";
+}
+}</script>{element}';
+$search_submit_element = '{element}';
 
 ?>

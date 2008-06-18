@@ -68,13 +68,16 @@ class pageHome extends page{
           // write email
           $user = new user;
           $user->email = $this->pwform->exportValue('email');
-          $user->find(true);
+          if($user->find(true)) {
           
-          $mail->send('lostpassword', $user->email, $user->password);
-          $user->password = crypt($user->password, 'dl');
-          $user->update();
+            $mail->send('lostpassword', $user, $user->password);
+            $user->password = crypt($user->password, 'dl');
+            $user->update();
           
-          $this->switchPage('home&msg=msg_pw_sent');
+            $this->switchPage('home&msg=msg_pw_sent');
+          }
+          else
+            $this->switchPage('home&lostpassword=true&msg=msg_no_email');
         }
       }
       else 
@@ -141,10 +144,18 @@ class pageHome extends page{
       // Try to validate a form 
       if ($this->login_form->validate()) {
         if(loginCorrect($this->login_form->exportValue('login'), $this->login_form->exportValue('loginpassword'))) {
+        
           $session = services::getService('pageParams');
           
-          $session->addParam('login', $this->login_form->exportValue('login'), 'session');
-          $session->addParam('password', $this->login_form->exportValue('loginpassword'), 'session');
+          if($this->login_form->exportValue('remember')) {
+            setcookie('login', $this->login_form->exportValue('login'), time()+60*60*24*365);
+            setcookie('password', $this->login_form->exportValue('loginpassword'), time()+60*60*24*365);
+          }
+          else {
+            $session->addParam('login', $this->login_form->exportValue('login'), 'session');
+            $session->addParam('password', $this->login_form->exportValue('loginpassword'), 'session');
+          }
+          
           $session->addParam('msg', 'msg_login_correct', 'page');
 		  
           $this->switchPage('mysite');

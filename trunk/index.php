@@ -33,6 +33,7 @@ foreach($config as $class=>$values) {
 }
 
 require_once './obj/data/userPhotos.php';
+require_once './obj/data/adressbook.php';
 require_once './obj/data/forumThreads.php';
 require_once './obj/data/forumEntries.php';
 require_once './obj/data/resources.php';
@@ -42,6 +43,7 @@ require_once './obj/data/poolsUser.php';
 require_once './obj/data/poolsAdmin.php';
 require_once './obj/data/poolsResources.php';
 require_once './obj/data/user.php';
+require_once './obj/data/userPreferences.php';
 require_once './obj/data/resWait.php';
 require_once './obj/data/resBorrowed.php';
 require_once './obj/data/collectivesTime.php';
@@ -52,6 +54,7 @@ require_once './obj/data/attributesSelect.php';
 require_once './obj/data/attributesSelectKeys.php';
 require_once './obj/data/resFetcher.php';
 require_once './obj/data/news.php';
+require_once './obj/data/pm.php';
 
 require_once './obj/services/services.php';
 
@@ -160,6 +163,18 @@ switch ($pagename) {
   case 'showpicture':
     include('./obj/pages/pageShowPicture.php');
     $page = new pageShowPicture;
+    break;
+  case 'pm':
+    include('./obj/pages/pagePM.php');
+    $page = new pagePM;
+    break;
+  case 'invite':
+    include('./obj/pages/pageInvite.php');
+    $page = new pageInvite;
+    break;
+  case 'freeres':
+    include('./obj/pages/pageFreeRes.php');
+    $page = new pageFreeRes;
     break;
   case 'static':
     include('./obj/pages/pageStatic.php');

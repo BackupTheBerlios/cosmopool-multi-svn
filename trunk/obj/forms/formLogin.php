@@ -35,8 +35,9 @@ class formLogin extends form {
       $this->form($name);
 
       // Add some elements to the form
-      $this->addElement('text', 'login', $lang->getMsg('form_login'), array('size' => 18, 'maxlength' => 50, 'class' => 'inputtext'));
-      $this->addElement('password', 'loginpassword', $lang->getMsg('form_password'), array('size' => 18, 'maxlength' => 50, 'class' => 'inputtext'));
+      $this->addElement('text', 'login', $lang->getMsg('form_login'), array('size' => 15, 'maxlength' => 50, 'class' => 'inputtext'));
+      $this->addElement('password', 'loginpassword', $lang->getMsg('form_password'), array('size' => 15, 'maxlength' => 50, 'class' => 'inputtext'));
+      $this->addElement('checkbox', 'remember', "");
       $this->addElement('submit', 'submit', $lang->getMsg('form_submit_login'), array('class' => 'inputsubmit'));
 
       // Define filters and validation rules

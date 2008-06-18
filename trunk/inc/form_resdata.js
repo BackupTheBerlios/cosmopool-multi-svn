@@ -6,16 +6,24 @@ function init(items)
 	type_change();
 }
 
+function Hinzufuegen () {
+  NeuerEintrag = new Option("---", 0, false, false);
+  document.forms[1].type.options[document.forms[1].type.length] = NeuerEintrag;
+}
+
 function type_change()
 {
   // change type field
-  var selected = document.forms[0].resdata_cat.value;
+  var selected = document.forms[1].resdata_cat.value;
   var is_item = false;
   for (var i = 0; i < items_array.length; ++i) {
     if (selected == items_array[i]) is_item = true;
   }
-  document.forms[0].type.disabled = !is_item;
-  
+  document.forms[1].type.disabled = !is_item;
+  if(is_item == false) {
+    Hinzufuegen();
+    document.forms[1].type.value = 0;
+  }
 }
 
 function resdata_cat_change(x, res_id)

@@ -23,16 +23,7 @@
  * language-service
  */
  
-require_once('./obj/services/lang.php');
-
-class lang_de extends lang {
-
-    // constructor
-    public function lang_de() {
-    
-      $this->lang = 'de';
-    
-      $this->    msg = array(
+      $lang_de = array(
       
       // countries
       
@@ -45,10 +36,14 @@ class lang_de extends lang {
 
       // header texts
 
-      "html_title" => "whopools.net - resource sharing project",
+      "html_title" => "whopools.net",
+      "html_title-2" => "resource sharing network",
+      "html_keywords" => "Umsonst&ouml;konomie, Potlatch, Gratis&ouml;konomie, social network",
+      "html_description" => "Eine soziale Website um G&uuml;ter, F&auml;higkeiten, Infrastruktur, etc. zu teilen",
       "language_changer" => "Sprache:",
 
       // messages, the ones written in red
+      "msg_no_email" => "Diese E-Mail-Adresse ist nicht registriert.",
       "msg_add_picture" => "Bild hinzuf&uuml;gt.",
       "msg_delete_picture" => "Bild gel&ouml;scht.",
       "msg_login_correct" => "Du bist jetzt eingeloggt",
@@ -87,6 +82,13 @@ class lang_de extends lang {
       "msg_nice_try" => "netter Versuch...",
       "msg_pw_sent" => "Dir wurde ein neues Passwort zugeschickt.",
       "msg_forum_entry_made" => "Eintrag gemacht.",
+      "msg_adressbook_add_success" => "Person hinzufügt.",
+      "msg_adressbook_add_allready" => "Ist schon in deinem Adressbuch.",
+      "msg_msg_deleted" => "Nachricht gel&ouml;scht.",
+      "msg_msg_sent" => "Nachricht gesendet.",
+      "msg_contact_deleted" => "Kontakt gel&ouml;scht.",
+      "msg_freeres_nores" => "Du hast keine Ressourcen zum freischalten",
+      "msg_freeres_alldeleted" => "Alle Ressourcen wurden aus dem Pool gel&ouml;scht",
       
       // tables
       
@@ -106,7 +108,7 @@ class lang_de extends lang {
       "tables_comment_for_the_owner" => "Bemerkungen f&uuml;r den Besitzer(optional)",
       "tables_contactdata" => "Kontaktdaten",
       "tables_contactdata_youdontneed" => "brauchst Du nicht, ist ja deine eigene Ressource.",
-      "tables_contactdata_isinvisible" => "sind unsichtbar, weil diese &ouml;ffentliche Ressource jemandem geh&ouml;rt, der in keiner Ihrer Pools ist. Nutze das Formular.",
+      "tables_contactdata_isinvisible" => "Die Kontaktdaten sind nicht &ouml;ffentlich. Sie werden dir zugeschickt, wenn der Besitzer der Ressource deine Anfrage akzeptiert.",
       "tables_contactbutton_noitem" => "Anfragen",
       "tables_contactbutton_gift" => "Schenken lassen",
       "tables_contactbutton_borrow" => "Ausleihen",
@@ -121,9 +123,14 @@ class lang_de extends lang {
       "common_footerlinks_resmanager" => "RessourcenAdmin",
       "common_footerlinks_poolbrowser" => "alle Pools",
       "common_footerlinks_pooldata_new" => "Pool gr&uuml;nden",
+      "common_footerlinks_pm" => "Meine Nachrichten",
+      "common_footerlinks_invite" => "Leute Einladen",
       "common_help_link" => "Hilfe",
+      "common_todo_msgs" => "neue Nachricht",
+      "common_todo_msgs_plural" => "en",
       "common_todo_request" => "Anfragen",
       "common_todo_userswait" => "Nutzer warten",
+      "common_bottom_blog" => "Neues",
       "common_bottom_developers" => "Entwicklerseite",
       "common_bottom_about" => "&Uuml;ber whopools.net",
       "common_bottom_contact" => "Kontakt",
@@ -138,20 +145,21 @@ class lang_de extends lang {
       "link_mysite" => "Meine Seite",
 
       // text on the homepage
-
       "homepage_backlink" => "zur&uuml;ck zur Homepage",      
       "home_header" => "Willkommen!",
       "home_lostpasswordheader" => "Passwort vergessen",
       "home_lostpassword_link" => "Passwort vergessen?",
       "home_lostpassword_text" => "Tippe deine E-Mail Adresse ein, und das Passwort wird dir zugeschickt.",
-      "home_welcome-1" => "Who<b>pools</b>.<i>net</i> ist ein Online-Tool um jegliche Art von Ressourcen mit anderen zu teilen. Gründe Ressourcen<b>pools</b>, tritt welchen bei, leihe, schenke, werde beschenkt. Einfach registrieren und dann loslegen.<br>",
-      "home_links_1" => "die SuperSite",
+      "home_welcome-1" => "Who<b>pools</b>.<i>net</i> ist ein Opensource-Online-Tool, um eigene Ressourcen verfügbar zu machen, und die Ressourcen anderer zu nutzen. <br><br>Zum Beispiel Bücher und DVDs, Schlafplätze, Bahntickets, Werkzeug, handwerkliche Fähigkeiten, Autos, Veranstaltungsräume, Zeit zum Schachspielen. Und anderes.<br><br>Die Ressourcen sind verfügbar in Ressourcenpools. Es gibt private und öffentliche Pools. Diese können bestehen aus Freundeskreisen, Nachbarn oder auch Leuten mit gleichen Interessen. M&ouml;glich sind etwa dezentrale Videotheken, Kiezpools, sogar Produktionsgemeinschaften(Filmemacher, ...).<br>",
+      "home_welcome-2" => "<br><b>Unsere Lage im Moment</b><br><br>Wir brauchen Hilfe: &Uuml;bersetzer_innen, Programmierer_innen, ..., Geld, Au&szlig;endienst. <a href=\"./index.php?page=static&pageid=contact\">Nehmt mit uns Kontakt auf &raquo;</a>",
+      "home_links_1" => "mehr &uuml;ber whopools.net",
       "home_links_2" => "die Software hier",
       "home_links_3" => "die neue Software(-planung)",
       "home_ng_res_count-1" => "Auf diesem Server gibt es ",
       "home_ng_res_count-2" => " Pools und ",
       "home_ng_res_count-3" => " Ressourcen",
       "home_login_header" => "Login",
+      "home_login_remember" => "Login merken.",
       "home_login_registertext-1" => "Du musst registriert sein, sonst:",
       "home_login_registertext-2" => "Registrieren",
       "home_news_name" => "&Uuml;berschrift",
@@ -190,11 +198,23 @@ class lang_de extends lang {
       "resdata_form_title" => "Titel",      
       "resdata_form_binding" => "Bindung",      
       "resdata_form_publication_date" => "Jahr der Herausgabe",      
+      "resdata_form_publication_place" => "Ort der Herausgabe",      
       "resdata_form_publisher" => "Verlag",      
       "resdata_form_number_of_pages" => "Seitenzahl",      
       "resdata_form_signature" => "Signatur",      
+      "resdata_form_year" => "Jahr",      
+      "resdata_form_manufacturer" => "Hersteller",      
+      "resdata_form_genre" => "Genre",      
+      "resdata_form_medium" => "Medium",      
 
       // books keywords
+      "resdata_form_select_action" => "Action",
+      "resdata_form_select_strategy" => "Strategie",
+      "resdata_form_select_adventure" => "Adventure",
+      "resdata_form_select_roleplaying" => "Rollenspiel",
+      "resdata_form_select_simulation" => "Simulation",
+      "resdata_form_select_cdrom" => "CD-Rom",
+      "resdata_form_select_dvd" => "DVD",
       "resdata_form_select_philosophy" => "Philosophie",
       "resdata_form_select_aesthetics" => "Ästhetik",
       "resdata_form_select_theory of history" => "Geschichtstheorie",
@@ -423,8 +443,13 @@ allgemeinen Nutzungsbedingungen durch.",
       "register_agb_desc-2" => "Klick auf \"Einverstanden\", um die
 oben genannten <br>allgemeinen Nutzungsbedingungen
 anzunehmen",
-      "register_header1" => "Registrieren - Schritt 1",
+      "register_header1" => "Registrieren",
       "register_header2" => "Registrieren - Schritt 2",
+      "register_agb_text" => "Du verpflichtest dich, kein antisemitisches/rassistisches/sexistisches Zeug auf wp.net zu veröffentlichen. Verstöße gegen diese Regel führen zu sofortiger und permanenter Sperrung. Du stimmst zu, dass die im Rahmen der Registrierung erhobenen Daten in einer Datenbank gespeichert werden.
+
+Dieses System verwendet Cookies, um Informationen auf Deinem Computer zu speichern. Diese Cookies enthalten keine der oben angegebenen Informationen, sondern dienen ausschließlich Deinem Komfort.
+
+Durch das Abschließen der Registrierung stimmst Du diesen Nutzungsbedingungen zu.",
 
       // mysite-page
 
@@ -433,15 +458,23 @@ anzunehmen",
       "mysite_res_header" => "Meine Ressourcen",
       "mysite_userdata_header" => "Meine Daten",
       "mysite_searchres_header" => "Ressourcensuche",
+      "mysite_nowelcome" => "diese Nachricht ausblenden",
+      "mysite_registered" => "Du bist registiert und kannst auf alle Funktionen zugreifen. Bitte gib aber noch deine Kontaktdaten an, damit Du mit anderen Benutzern in Kontakt treten kannst.
+      Spambots k&ouml;nnen die Daten nat&uuml;rlich nicht sehen.",
+      "mysite_registered_link_userdata" => "jetzt eingeben",
+      "mysite_registered_link_nomore" => "nicht mehr nachfragen",
       "mysite_freeres_header-1" => "Ressourcen für ",
       "mysite_freeres_header-2" => " freischalten",
       "mysite_freeres_msg-1" => "Du wurdest bei ",
-      "mysite_freeres_msg-2" => " aufgenommen. W&auml;hl die Ressourcen, die Du für die Pool freischalten willst.",
+      "mysite_freeres_msg-2" => " aufgenommen.",
+      "mysite_freeres_msg-3" => "W&auml;hl die Ressourcen, die Du für den Pool freischalten willst",
+      "mysite_freeres_msg-4" => "Jetzt w&auml;hlen",
+      "mysite_freeres_msg-5" => "Keine freischalten",
       "mysite_freerestable_header_category" => "Kategorie",
       "mysite_freerestable_header_name_description" => "Resource",
       "mysite_freerestable_header_since" => "Seit",
       "mysite_freerestable_header_type" => "Typ",
-      "mysite_freeres_button_submit-1" => "markierte Ressourcen für ",
+      "mysite_freeres_button_submit-1" => "markierte Ressourcen freischalten",
       "mysite_freeres_button_submit-2" => " freischalten",
       "mysite_freeres_button_clear" => "keine Resourcen freischalten",
       "mysite_borrowed_header" => "Ausgeliehene Ressourcen",
@@ -463,6 +496,51 @@ anzunehmen",
       "mysite_fun" => "Do.",
       "mysite_by" => "von",
       
+      // showmember-page
+      
+      "showmember_adressbooklink" => "zum Adressbuch hinzuf&uuml;gen",
+      "showmember_adress" => "Adresse",
+      "showmember_email" => "E-Mail",
+      "showmember_phone" => "Telefonnummer",
+      "showmember_description" => "Beschreibung",
+      "showmember_notpublic" => "nicht &ouml;ffentlich",
+      "showmember_msglink" => "Nachricht schreiben",
+      "showmember_distance" => "Entfernung",
+      "showmember_userfalse" => "Deine Adresse konnte nicht gefunden werden",
+      "showmember_memberfalse" => "Dieses Mitglied hat keine Adresse angegeben",
+      
+      // pm-page
+      
+      "pm_header" => "Meine Nachrichten",
+      "pm_navi_inbox" => "Eingang",
+      "pm_navi_new" => "Adressbuch",
+      "pm_navi_sent" => "Gesendet",
+      "pm_header_write" => "Nachricht schreiben",
+      "pm_form_title" => "Titel",
+      "pm_form_body" => "Nachricht",
+      "pm_form_submit" => "Senden",
+      "pm_form_titlenecessary" => "Du musst einen Titel angeben",
+      "pm_form_bodynecessary" => "Deine Nachricht ist leer",
+      "pm_navi_backtolist" => "Zur&uuml;ck zur Liste",
+      "pm_view_to" => "An",
+      "pm_view_from" => "Von",
+      "pm_view_title" => "Titel",
+      "pm_view_body" => "Nachricht",
+      "pm_view_answer" => "antworten",
+      "pm_view_delete" => "l&ouml;schen",
+      "pm_inbox_by" => "von",
+      "pm_inbox_do" => "do",
+      "pm_inbox_new" => "neu",
+      "pm_inbox_delete" => "l&ouml;schen",
+      "pm_inbox_markread" => "als gelesen markieren",
+      "pm_inbox_nomsgs" => "keine Nachrichten.",
+      "pm_sent_to" => "an",
+      "pm_sent_nomsgs" => "Du hast keine Nachrichten geschrieben.",
+      "pm_new_recipient" => "Empf&auml;nger",
+      "pm_new_writelink" => "Nachricht schreiben",
+      "pm_new_deletecontactlink" => "Kontakt l&ouml;schen",
+      "pm_new_empty" => "Dein Adressbuch ist leer.",
+
       // help-page
       
       "help_header" => "Hilfe",
@@ -549,6 +627,8 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "resbrowser_refinesearch_header" => "Suche verfeinern: ",
       "resbrowser_page" => "Seite: ",
       "resbrowser_notmaterial" => "nicht materiell",
+      "resbrowser_backtolist" => "zur&uuml;ck zur Liste",
+      "resbrowser_owner" => "Diese Ressource geh&ouml;rt ",
       
       // resmanager-page
 
@@ -560,7 +640,7 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "resmanager_myrestable_changelink" => "&auml;ndern",
       "resmanager_myrestable_noentrys" => "bisher keine Eintr&auml;ge",
       "resmanager_myrestable_delmarked" => "markierte l&ouml;schen",
-      "resmanager_borrowed_header" => "Verliehene Ressourcen",
+      "resmanager_borrowed_header" => "Verliehen",
       "resmanager_all_header" => "Alle Ressourcen",
       "resmanager_myres_header" => "Meine Ressourcen",
       "resmanager_borrowed_tableheader_what" => "Angebot",
@@ -584,8 +664,10 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "showpool_become_member_public_link" => "Anmelden",
       "showpool_become_member_msg_isproven" => "Antrag wird &uuml;berpr&uuml;ft, es kann etwas dauern, bis sie freigeschaltet werden. Sie bekommen dann eine E-Mail.",
       "showpool_leavepool_link" => "Von Pool abmelden",
+      "showpool_freeres_link" => "Ressourcen freischalten",
       "showpool_res_header" => "Ressourcen",
       "showpool_admin_header" => "Administration",
+      "showpool_admins_header" => "Administratoren",
       "showpool_res_category" => "Kategorie",
       "showpool_res_goods" => "Ressourcen",
       "showpool_forum_header" => "Forum",
@@ -606,6 +688,12 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "showpool_place" => "Ort",
       "showpool_public" => "&Ouml;ffentlich?",
       
+      // freeres-page
+      
+      "freeres_back" => "zur&uuml;ck zur Pool-Hauptseite",
+      "freeres_cancel" => "Abbrechen",
+      "freeres_clear_old" => "alle Res. aus dem Pool l&ouml;schen",
+
       // threadbrowser
       
       "threadbrowser_by" => "von",
@@ -621,6 +709,8 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       // poolbrowser-page
 
       "poolbrowser_all_header" => "Pools auf diesem Server",
+      "poolbrowser_headers_public" => "&ouml;ffentliche Pools",
+      "poolbrowser_headers_private" => "private Pools",
       
       // search-page
       
@@ -638,6 +728,7 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       // forms
       
       "forms_cat_choosefirst" => "zuerst w&auml;hlen",
+      "forms_isbn_hint" => "ohne Bindestriche eingeben",
       "forms_note_staredarenecessary-1" => "Felder mit ",
       "forms_note_staredarenecessary-2" => " m&uuml;ssen ausgef&uuml;llt werden.",
 
@@ -653,8 +744,31 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       "required_name" => "Du musst einen Namen eingeben.",
       "required_password" => "Du musst ein Passwort eingeben.",
       
+      // invite-page
+      
+      "invite_header" => "Leute Einladen",
+      "invite_form_emails" => "E-Mail-Adressen der einzuladenden Personen",
+      "invite_form_message" => "Optionale Nachricht",
+      "invite_welcome" => "Lade Leute ein, dich auf whopools.net zu treffen und Ressourcen mit dir zu nutzen.",
+      "invite_form_submit" => "Einladen",
+      "invite_form_wholemessage" => "Gesamte Nachricht",
+      "invite_seperate_emails" => "Trenne mehrere E-Mails durch ein Komma.",
+      "msg_no_real_emails" => "Da ist keine funktionierende E-Mail dabei.",
+      "msg_invite_success" => "Die Leute wurden eingeladen.",
+      "whole_your_msg" => "Deine optionale Nachricht",
+      "invite_body" => "Du wurdest von [NAME] auf whopools.net eingeladen.<br><br>
+
+Whopools.net ist ein Opensource-Online-Tool, um eigene Ressourcen verfügbar zu machen, und die Ressourcen anderer zu nutzen.<br><br>
+
+Zum Beispiel Bücher und DVDs, Schlafplätze, Bahntickets, Werkzeug, handwerkliche Fähigkeiten, Autos, Veranstaltungsräume, Zeit zum Schachspielen. Und anderes.<br><br>
+
+Die Ressourcen sind verfügbar in Ressourcenpools. Es gibt private und öffentliche Pools. Diese können bestehen aus Freundeskreisen, Nachbarn oder auch Leuten mit gleichen Interessen. Möglich sind etwa dezentrale Videotheken, Kiezpools, sogar Produktionsgemeinschaften(Filmemacher, ...).<br><br>
+
+Diese Einladung wurde im Namen von [NAME] <[EMAIL]> gesendet.<br><br>",
+      
       // categories
       
+      "cat_videogames" => "Videospiele",
       "cat_all" => "Alle",
       "cat_advising" => "Beratung",
       "cat_arts" => "Kunst/Kultur",
@@ -702,6 +816,16 @@ Will man in einem größeren Gebiet aktiv sein, gebe man nur die ersten beiden Z
       
       // mails
       
+      "mails_pool_deleted_header" => "whopools.net: Pool gelöscht" ,
+      "mails_pool_deleted_body" => "Hallo,
+
+Der Pool, den Du administriert hast, wurde gelöscht:
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+Sorry." ,
       "mails_registered_header" => "whopools.net: Registriert" ,
       "mails_registered_body" => "Hallo,
 
@@ -721,90 +845,185 @@ Es lautet: [PASSWORD]
 Es wurde automatisch generiert. Bitte ändere es bald.
 
 Viel Spaß" ,
-      "mails_found_pool_founder_header" => "Pool gegründet" ,
+      "mails_found_pool_founder_header" => "whopools.net: Pool gründen" ,
       "mails_found_pool_founder_body" => "Guten Tag,
+
+Du willst den Pool \"[POOLNAME]\" gründen.
 
 Deine Daten werden überprüft. Das sollte nicht allzu lange dauern.
 Wenn der Pool freigeschaltet wurde, bekommst Du eine E-Mail." ,
-      "mails_found_pool_admin_header" => "neuer Pool gegründet" ,
+      "mails_found_pool_admin_header" => "whopools.net: neuer Pool gegründet" ,
       "mails_found_pool_admin_body" => "Guten Tag,
 
-Es wurde ein neuer Pool gegründet, bitte schalte den jemand frei,
+Es wurde ein neuer Pool gegründet:
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+Bitte schalte den jemand frei,
 oder halt nicht." ,
-      "mails_found_pool_accepted_header" => "neuer Pool freigeschaltet" ,
+      "mails_found_pool_accepted_header" => "whopools.net: neuer Pool freigeschaltet" ,
       "mails_found_pool_accepted_body" => "Guten Tag,
 
-Dein neuer Pool ist jetzt freigeschaltet." ,
-      "mails_found_pool_refused_header" => "neuer Pool abgelehnt" ,
+Der Pool, den Du gründen wolltest:
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+ist freigeschaltet worden." ,
+      "mails_found_pool_refused_header" => "whopools.net: neuer Pool abgelehnt" ,
       "mails_found_pool_refused_body" => "Guten Tag,
 
-Der Pool, den Du gründen wolltest, ist leider abgelehnt worden.
+Der Pool, den Du gründen wolltest:
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+ist leider abgelehnt worden.
 
 Viel Spaß trotzdem!" ,
-      "mails_new_admin_header" => "Du bist neuer Admin von [POOLNAME].", 
+      "mails_new_admin_header" => "whopools.net: Du bist neuer Admin von [POOLNAME].", 
       "mails_new_admin_body" => "Guten Tag,
 
 Du wurdest zum Admin von [POOLNAME] ernannt." ,
-      "mails_kick_member_header" => "Du wurdest aus [POOLNAME] ausgeschlossen.", 
+      "mails_kick_member_header" => "whopools.net: Du wurdest aus [POOLNAME] ausgeschlossen.", 
       "mails_kick_member_body" => "Guten Tag,
 
 [POOLNAME] hat dich leider ausgeschlossen." ,
-      "mails_new_member_header" => "Neues Mitglied für [POOLNAME]" ,
+      "mails_new_member_header" => "whopools.net: Neues Mitglied für [POOLNAME]" ,
       "mails_new_member_body" => "Guten Tag,
 
 Jemand hat sich bei [POOLNAME] um eine
-Mitgliedschaft beworben. Bitte schalte denjenigen frei,
+Mitgliedschaft beworben.
+
+Name:      [USERNAME]
+E-Mail:    [USEREMAIL]
+
+Kommentar: [USERCOMMENT]
+
+Bitte schalte denjenigen frei,
 oder auch nicht." ,
-      "mails_user_accepted_header" => "Du bist für [POOLNAME] freigeschaltet.", 
+      "mails_user_accepted_header" => "whopools.net: Du bist für [POOLNAME] freigeschaltet.", 
       "mails_user_accepted_body" => "Guten Tag,
 
-Der Pool [POOLNAME], bei dem Du dich beworben hast, hat deine
+Der Pool \"[POOLNAME]\", bei dem Du dich beworben hast, hat deine
 Mitgliedschaft akzeptiert.
 
 Wenn Du dich das nächste Mal einloggst, kannst Du auswählen, welche
 Ressourcen Du für den Pool freischalten willst." ,
-      "mails_user_refused_header" => "\"[POOLNAME]\" hat deine Mitgliedschaft nicht akzeptiert.", 
+      "mails_user_refused_header" => "whopools.net: \"[POOLNAME]\" hat deine Mitgliedschaft nicht akzeptiert.", 
       "mails_user_refused_body" => "Guten Tag,
 
 Der Pool \"[POOLNAME]\", bei der Du dich beworben hast, hat deine
 Mitgliedschaft leider nicht akzeptiert." ,
-      "mails_give_order_header" => "Anfrage nach \"[RESNAME]\"." ,
+      "mails_give_order_header" => "whopools.net: Anfrage nach \"[RESNAME]\"." ,
       "mails_give_order_body" => "Guten Tag,
 
-Jemand möchte sich \"[RESNAME]\" schenken lassen, bitte beantworte seine Anfrage." ,
-      "mails_give_accepted_header" => "Dir wurde \"[RESNAME]\" geschenkt.", 
+Jemand möchte sich \"[RESNAME]\" schenken lassen. 
+
+Name:      [USERNAME]
+E-Mail:    [USEREMAIL]
+Telefon:   [USERPHONE]
+Adresse:   [USERSTREET] [USERHOUSE]
+           [USERCOUNTRY]-[USERPLZ] [USERCITY]
+
+Kommentar: [USERCOMMENT]
+
+Bitte beantworte seine Anfrage." ,
+      "mails_give_accepted_header" => "whopools.net: Dir wurde \"[RESNAME]\" geschenkt.", 
       "mails_give_accepted_body" => "Guten Tag,
 
-Deine Anfrage bezüglich der Resource \"[RESNAME]\" wurde angenommen. Macht das untereinander klar." ,
-      "mails_nogood_order_header" => "Anfrage nach [RESNAME]" ,
+Deine Anfrage bezüglich der Resource \"[RESNAME]\" wurde angenommen. 
+
+Hier die Kontaktdaten des Besitzers:
+
+Name:      [USERNAME]
+E-Mail:    [USEREMAIL]
+Telefon:   [USERPHONE]
+Adresse:   [USERSTREET] [USERHOUSE]
+           [USERCOUNTRY]-[USERPLZ] [USERCITY]
+" ,
+      "mails_nogood_order_header" => "whopools.net: Anfrage nach [RESNAME]" ,
       "mails_nogood_order_body" => "Guten Tag,
 
-Es gibt eine Anfrage bezüglich der Resource \"[RESNAME]\". Bitte beantworte diese Anfrage." ,
-      "mails_nogood_accepted_header" => "Dir wurde \"[RESNAME]\" ausgeliehen.", 
+Es gibt eine Anfrage bezüglich der Resource \"[RESNAME]\".
+
+Name:      [USERNAME]
+E-Mail:    [USEREMAIL]
+Telefon:   [USERPHONE]
+Adresse:   [USERSTREET] [USERHOUSE]
+           [USERCOUNTRY]-[USERPLZ] [USERCITY]
+
+Kommentar: [USERCOMMENT]
+
+Bitte beantworte diese Anfrage." ,
+      "mails_nogood_accepted_header" => "whopools.net: Dir wurde \"[RESNAME]\" ausgeliehen.", 
       "mails_nogood_accepted_body" => "Guten Tag,
 
-Deine Anfrage bezüglich der Resource \"[RESNAME]\" wurde angenommen. Macht das untereinander klar." ,
-      "mails_borrow_order_header" => "Anfrage nach [RESNAME]" ,
-      "mails_borrow_order_body" => "Guten Tag,
+Deine Anfrage bezüglich der Resource \"[RESNAME]\" wurde angenommen. 
 
-Es gibt eine Anfrage bezüglich der Resource \"[RESNAME]\". Bitte beantworte diese Anfrage." ,
-      "mails_borrow_accepted_header" => "Dir wurde \"[RESNAME]\" ausgeliehen.", 
+Hier die Kontaktdaten des Besitzers:
+
+Name:      [USERNAME]
+E-Mail:    [USEREMAIL]
+Telefon:   [USERPHONE]
+Adresse:   [USERSTREET] [USERHOUSE]
+           [USERCOUNTRY]-[USERPLZ] [USERCITY]
+" ,
+      "mails_borrow_order_header" => "whopools.net: Anfrage nach [RESNAME]" ,
+      "mails_borrow_order_body" => "Guten Tag,
+      
+Es gibt eine Anfrage bezüglich der Resource \"[RESNAME]\".
+
+Name:      [USERNAME]
+E-Mail:    [USEREMAIL]
+Telefon:   [USERPHONE]
+Adresse:   [USERSTREET] [USERHOUSE]
+           [USERCOUNTRY]-[USERPLZ] [USERCITY]
+
+Kommentar: [USERCOMMENT]
+
+Bitte beantworte diese Anfrage." ,
+      "mails_borrow_accepted_header" => "whopools.net: Dir wurde \"[RESNAME]\" ausgeliehen.", 
       "mails_borrow_accepted_body" => "Guten Tag,
 
-Deine Anfrage bezüglich der Resource \"[RESNAME]\" wurde angenommen. Macht das untereinander klar." ,
-      "mails_refused_header" => "Anfrage abgelehnt" ,
+Deine Anfrage bezüglich der Resource \"[RESNAME]\" wurde angenommen. 
+
+Hier die Kontaktdaten des Besitzers:
+
+Name:      [USERNAME]
+E-Mail:    [USEREMAIL]
+Telefon:   [USERPHONE]
+Adresse:   [USERSTREET] [USERHOUSE]
+           [USERCOUNTRY]-[USERPLZ] [USERCITY]
+" ,
+      "mails_invite_header" => "Du wurdest von [INVITERNAME]([INVITERMAIL]) auf whopools.net eingeladen.", 
+      "mails_invite_body" => "[ADDMSG]Du wurdest von [INVITERNAME] auf whopools.net eingeladen.
+
+Whopools.net ist ein Opensource-Online-Tool, um eigene Ressourcen verfügbar zu machen, und die Ressourcen anderer zu nutzen.
+
+Zum Beispiel Bücher und DVDs, Schlafplätze, Bahntickets, Werkzeug, handwerkliche Fähigkeiten, Autos, Veranstaltungsräume, Zeit zum Schachspielen. Und anderes.
+
+Die Ressourcen sind verfügbar in Ressourcenpools. Es gibt private und öffentliche Pools. Diese können bestehen aus Freundeskreisen, Nachbarn oder auch Leuten mit gleichen Interessen. Möglich sind etwa dezentrale Videotheken, Kiezpools, sogar Produktionsgemeinschaften(Filmemacher, ...).
+
+Diese Einladung wurde im Namen von [INVITERNAME] <[INVITERMAIL]> gesendet.  ",
+      "mails_refused_header" => "whopools.net: Anfrage abgelehnt" ,
       "mails_refused_body" => "Guten Tag,
 
 Deine Anfrage bezüglich der Resource \"[RESNAME]\" wurde abgelehnt." ,
+      "mails_new_pm_header" => "whopools.net: Neue Nachricht von [SENDERNAME]" ,
+      "mails_new_pm_body" => "Guten Tag,
+
+[SENDERNAME] hat dir eine Nachricht geschickt.
+Log dich auf WP ein, um sie zu lesen." ,
       "mails_goodbye" => "
 
 ---
 http://www.whopools.net/" 
     
       );
-    
-    }
-    
-}
 
 ?>

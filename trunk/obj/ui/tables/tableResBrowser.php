@@ -46,15 +46,8 @@ class tableResBrowser extends tableSort {
 
       $even = true;
       foreach($data as $row) {
-		
-		  if (!$row['detail']) {
-		
-		    $this->processRow($row);
-		  
-		  } else {
-		
-		    $this->processDetailRow($row);
-		  }
+	     $this->processRow($row);
+
 		  if($even) {
           $this -> updateRowAttributes($this->count, array("class" => "pools1"));
           $even = false;
@@ -78,9 +71,9 @@ class tableResBrowser extends tableSort {
      $lang = services::getService('lang');
 	
 	  if($row['available'])
-	    $title = '<b><a href="index.php?page=resbrowser&amp;show_page='.$params->getParam('show_page').'&amp;res_id=' . $row['res_id'] . $this->get_add.'#detailrow">' . $row['name'] . '</a></b>';
+	    $title = '<b><a href="index.php?page=resbrowser&amp;show_page='.$params->getParam('show_page').'&amp;res_id=' . $row['res_id'] . $this->get_add.'">' . $row['name'] . '</a></b>';
 	  else
-	    $title = '<b><a href="index.php?page=resbrowser&amp;show_page='.$params->getParam('show_page').'&amp;res_id=' . $row['res_id'] . $this->get_add.'#detailrow">' . $row['name'] . '</a></b>(<font class="msg">'.$lang->getMsg('tables_borrowed').'</font>)';
+	    $title = '<b><a href="index.php?page=resbrowser&amp;show_page='.$params->getParam('show_page').'&amp;res_id=' . $row['res_id'] . $this->get_add.'">' . $row['name'] . '</a></b>(<font class="msg">'.$lang->getMsg('tables_borrowed').'</font>)';
 
 	  $first_col = "$title\n";
 	  
@@ -95,48 +88,6 @@ class tableResBrowser extends tableSort {
 		 $this -> setCellContents($this->count, 2, $type_resolved);
 	  else 
 	    $this -> setCellContents($this->count, 2, $lang->getMsg('resbrowser_notmaterial'));
-	}
-	
-	private function processDetailRow($row) {
-     $lang = services::getService('lang');
-     
-     $title = '<b id="detailrow">'.$row['name'].'</b>';
-	  $desc = wordwrap($row['description'],55,' ',true);
-	  if(is_array($row['attributes'])) {
-	    foreach($row['attributes'] as $attribute) {
-	       $attr_fields .= '<b>'.$lang->getMsg('resdata_form_'.$attribute['name']).': </b> '.$attribute['value'].'<br>';
-	    }
-	  }
-
-	  if(!$row['available'])
-	    $do = '<font class="msg">'.$lang->getMsg('tables_allready_borrowed').'</font>';
-	  else if($row['is_waiting'])
-	    $do = '<font class="msg">'.$lang->getMsg('tables_request_running').'</font>';
-      else
-	    $do = '<b>'.$lang->getMsg('tables_comment_for_the_owner').': </b><br>
-	         <input type="hidden" name="id" value="'.$row['res_id'].'">
-			   <textarea name="comments" cols="30" rows="5"></textarea><br>
-	         <input type="submit" name="submit" value="'.$this->resolveType($row['type']).'">';
-	  if($row['prove_public'] == false)
-	    $contact = '<b>'.$lang->getMsg('tables_contactdata').'</b><br>'.
-	                $row['user_name'].'<br>'.
-	                $row['user_street'].' '.$row['user_house'].'<br>'.
-	                $row['user_plz'].' '.$row['user_city'].'<br>'.
-	                $row['user_email'].'<br>'.
-	                $row['user_phone'];
-	  else if($row['own_ressource']) {
-	    $contact = '<b>'.$lang->getMsg('tables_contactdata').'</b><br>
-		            '.$lang->getMsg('tables_contactdata_youdontneed');
-		$do = "";
-	  }
-	  else
-	    $contact = '<b>'.$lang->getMsg('tables_contactdata').'</b><br>
-		            '.$lang->getMsg('tables_contactdata_isinvisible');
-
-	  $first_col = "$title<br>\n$desc<br><br>\n$attr_fields<br>\n$contact<br><br>\n$do";
-	  
-	  $this -> setCellContents($this->count, 0, $first_col);
-     $this -> updateCellAttributes($this->count, 0, array("colspan" => "3"));
 	}
 	
 	private function resolveType($type) {

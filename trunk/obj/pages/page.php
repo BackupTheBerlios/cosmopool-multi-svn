@@ -41,29 +41,51 @@ class page {
       $this->act_page = $page_params->getParam('page');
       $this->act_get = $this->getActGet();
       
-      // set interface-language
-      // if lang is in get, a cookie is set, lang in get is set
-      // else if lang is in cookie, lang in cookie is set
-      // else if lang is in browser, a cookie is set etc.
-      // else if lang is in config.ini, cookie, set
-      if($_GET['lang']) {
-        setcookie('language', $_GET['lang'], time()+60*60*24*365);
-      }
-      else if($_COOKIE['language']) {;
-      }
-      else if(is_array(parseHttpAcceptLanguage())) {
-        $blang = parseHttpAcceptLanguage();
-        setcookie('language', $blang[0]['code'], time()+60*60*24*365);
-      }
-      else {
-        setcookie('language', $config->getSetting('language'), time()+60*60*24*365);
-      }
-
       if(($login != "") && ($password != "")){
         $user = new user($login, crypt($password, 'dl'));
         if($user->find(true))
           $this->user = $user;
       }
+
+      // set interface-language
+      // if lang is in get, a cookie is set, lang in get is set, is written in db
+      // else if lang is in db, a cookie is set
+      // else if lang is in cookie, lang in cookie is set, is written in db
+      // else if lang is in browser, a cookie is set etc., is written in db
+      // else if lang is in config.ini, cookie, set, written in db
+      if($_GET['lang']) {
+        setcookie('language', $_GET['lang'], time()+60*60*24*365);
+        if(is_object($user)) {
+          $this->user->language = $_GET['lang'];
+          $this->user->update();
+        }
+      }
+      else if($this->user->language) {
+        if($_COOKIE['language'] != $this->user->language)
+          setcookie('language', $this->user->language, time()+60*60*24*365);
+      }
+      else if($_COOKIE['language']) {
+        if(is_object($user)) {
+          $this->user->language = $_COOKIE['language'];
+          $this->user->update();
+        }
+      }
+      else if(is_array(parseHttpAcceptLanguage())) {
+        $blang = parseHttpAcceptLanguage();
+        setcookie('language', $blang[0]['code'], time()+60*60*24*365);
+        if(is_object($user)) {
+          $this->user->language = $blang[0]['code'];
+          $this->user->update();
+        }
+      }
+      else {
+        setcookie('language', $config->getSetting('language'), time()+60*60*24*365);
+        if(is_object($user)) {
+          $this->user->language = $config->getSetting('language');
+          $this->user->update();
+        }
+      }
+
       $this->addMsg($page_params->getParam('msg'));
       
       $this->assignAll();
@@ -100,7 +122,7 @@ class page {
       $get = "";
       if(is_array($getparams))
         foreach($getparams as $key => $value) {
-          if($key != 'lang')
+          if($key != 'lang' && (stripos($key, 'resdata_') === false))
             $get .= '&'.$key.'='.$value;
         }
       if(isset($_POST['page']))

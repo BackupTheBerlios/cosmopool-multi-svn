@@ -51,6 +51,7 @@ class pageParams {
       global $_POST;
       global $_GET;
       global $_SESSION;
+      global $_COOKIE;
       
       $this->params = "";
       $this->params = array();
@@ -63,6 +64,9 @@ class pageParams {
         $this->params_get[$param] = $value;
       }
       foreach($_POST as $param => $value) {
+        $this->params[$param] = $value;
+      }
+      foreach($_COOKIE as $param => $value) {
         $this->params[$param] = $value;
       }
 

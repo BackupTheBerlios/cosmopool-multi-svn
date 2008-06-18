@@ -78,8 +78,9 @@ class formResData extends form {
               $options = array();
               $options[0] = "----";
               while($keys->fetch())
-                $options[$keys->key] = $lang->getMsg('resdata_form_select_'.$keys->value); 
-              
+                $options[$keys->key] = $lang->getMsg('resdata_form_select_'.$keys->value);
+              sort($options); 
+
               $select_elements = array();
               for($i = 1; $attributes->amount >= $i; ++$i)
                 $select_elements[] = &HTML_QuickForm::createElement('select', $i, null, $options);

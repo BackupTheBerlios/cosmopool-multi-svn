@@ -43,6 +43,7 @@ class rendererLogin extends renderer
       $this->setElementTemplate($this->default_element);
       $this->setRequiredNoteTemplate($this->required_note);
       $this->setElementTemplate($this->submit_element, 'submit');
+      $this->setElementTemplate($login_remember_element, 'remember');
     }
     
 }

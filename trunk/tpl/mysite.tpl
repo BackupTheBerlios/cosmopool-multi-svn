@@ -1,50 +1,38 @@
 {include file="./header.tpl"}
 
-  <span id="content4">
+  <div id="content4">
 <div class="content4header">{lang->getMsg p1='mysite_mypools_header'}</div><br>
+<div id="content4links">
 {foreach from=$mypoolstable item="pool"}
 <img src="./images/linklist_dot.png"> <a href="./index.php?page=showpool&pool_id={$pool.id}">{$pool.name}</a><br>
 {/foreach}<br>
-<a href="index.php?page=poolbrowser&pools=all">{lang->getMsg p1='mysite_links_poolbrowser_name'}</a>
-  </span><div id="content3">
+<a href="index.php?page=poolbrowser&function=public">{lang->getMsg p1='mysite_links_poolbrowser_name'}</a>
+  </div></div><div id="content3">
 
-{if $userres}
-<p class="headline2">{lang->getMsg p1='mysite_freeres_header-1'}{$user_new_pool->name}{lang->getMsg p1='mysite_freeres_header-2'}</p>
-<p class="msg">{lang->getMsg p1='mysite_freeres_msg-1'}{$user_new_pool->name}{lang->getMsg p1='mysite_freeres_msg-2'}</p>
-<form action="./index.php?page=mysite&pool={$user_new_pool->id}" method="post">
-<table class="pools">
-	<tr>
-		<th class="pools"> </th>
-		<th class="pools">{lang->getMsg p1='mysite_freerestable_header_category'}</th>
-		<th class="pools">{lang->getMsg p1='mysite_freerestable_header_name_description'}</th>
-		<th class="pools">{lang->getMsg p1='mysite_freerestable_header_since'}</th>
-		<th class="pools">{lang->getMsg p1='mysite_freerestable_header_type'}</th>
-	</tr>
-
-   {foreach from=$userres item="res"}
-	<tr>
-		<td class="pools"><input type="checkbox" value="check" name="{$res->id}"></td>
-		<td class="pools">{$res->getCatFormat()}</td>
-		<td class="pools"><b>{$res->name}</b><br>{$res->description}</td>
-		<td class="pools">{$res->getSinceFormat()}</td>
-		<td class="pools">{$res->getTypeFormat()}</td>
-  </tr>
-  {/foreach}
-</table>
-<img src="./images/arrow.png"> <input type="submit" name="res_free_submit" value="{lang->getMsg p1='mysite_freeres_button_submit-1'}{$user_new_pool->name}{lang->getMsg p1='mysite_freeres_button_submit-2'}"> | <input type="submit" name="no_free_submit" value="{lang->getMsg p1='mysite_freeres_button_clear'}"></form><br />
-{else}
-{lang->getMsg p1='mysite_welcome'}<br><br>
-
+{if $new_pool}
+<div class="supermsg">{lang->getMsg p1='mysite_freeres_msg-1'}
+"{$new_pool->name}"
+{lang->getMsg p1='mysite_freeres_msg-2'}<br><br>
+{lang->getMsg p1='mysite_freeres_msg-3'}: 
+<a href="./index.php?page=freeres&pool_id={$new_pool->id}&refer=mysite">{lang->getMsg p1='mysite_freeres_msg-4'}</a> |
+<a href="./index.php?page=mysite&function=freenone&freenone_pool_id={$new_pool->id}">{lang->getMsg p1='mysite_freeres_msg-5'}</a></div><br><br>
 {/if}
 
+{if $registered_msg == true}
+<div class="supermsg">{lang->getMsg p1='mysite_registered'}<br><br>
+[<a href="./index.php?page=userdata&">{lang->getMsg p1='mysite_registered_link_userdata'}</a> | <a href="./index.php?page=mysite&function=noregistered&">{lang->getMsg p1='mysite_registered_link_nomore'}</a>]</div><br><br>
+{/if}
+
+{if $welcome_msg == true}
+<div class="welcomemsg">{lang->getMsg p1='mysite_welcome'}<br><br>
+[<a href="./index.php?page=mysite&function=nowelcome&">{lang->getMsg p1='mysite_nowelcome'}</a>]</div><br><br>
+{/if}
 
 <table class="pools">
   <tr>
 	<th class="pools">{lang->getMsg p1='mysite_res_header'}</th>
 	<th class="pools" width=25>&nbsp;</th>
 	<th class="pools">{lang->getMsg p1='mysite_userdata_header'}</th>
-	<th class="pools" width=25>&nbsp;</th>
-	<th class="pools">{lang->getMsg p1='mysite_searchres_header'}</th>
   </tr>
   <tr>
 	<td class="pools1">
@@ -59,19 +47,14 @@
      <img src="./images/linklist_dot.png"> <a href="index.php?page=userdata&function=password">{lang->getMsg p1='mysite_links_userdatapassword_name'}</a><br>
      <img src="./images/linklist_dot.png"> <a href="index.php?page=userdata&function=photos">{lang->getMsg p1='mysite_links_photos'}</a><br>
 	</td>
-	<td class="pools1"></td>
-
-	<td class="pools1">
-     <img src="./images/linklist_dot.png"> <a href="index.php?page=search">{lang->getMsg p1='mysite_links_search_name'}</a><br>
-	</td>
   </tr>
 
 {if $borrowed}
   <tr>
-	<td class="pools2">&nbsp;</td><td class="poolsblank"></td><td class="poolsblank"></td><td class="poolsblank"></td><td class="poolsblank"></td>
+	<td class="pools2">&nbsp;</td><td class="poolsblank"></td><td class="poolsblank"></td>
   </tr>
   <tr>
-	<td class="pools1" colspan="5">
+	<td class="pools1" colspan="3">
      <b>{lang->getMsg p1='mysite_borrowed_header'}: </b> 
   {foreach from=$borrowed key="key" item="res"}{if $key != 0}, {/if}"{$res->name}" {lang->getMsg p1='mysite_by'} <a href="./index.php?page=showmember&showmember={$res->user->id}">{$res->user->name}</a>{/foreach}
 	</td>

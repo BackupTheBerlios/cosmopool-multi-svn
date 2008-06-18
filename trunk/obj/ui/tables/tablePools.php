@@ -36,8 +36,7 @@ class tablePools extends HTML_Table {
       $this->setHeaderContents(0, 0, $lang->getMsg('tableheaders_name')); 
       $this->setHeaderContents(0, 1, $lang->getMsg('tableheaders_area'));
       $this->setHeaderContents(0, 2, $lang->getMsg('tableheaders_adress'));
-      $this->setHeaderContents(0, 3, $lang->getMsg('tableheaders_is_public'));
-      $this->setHeaderContents(0, 4, $lang->getMsg('tableheaders_rescount'));
+      $this->setHeaderContents(0, 3, $lang->getMsg('tableheaders_rescount'));
       $this->setRowAttributes(0, array("class" => "pools2"));
     }
     

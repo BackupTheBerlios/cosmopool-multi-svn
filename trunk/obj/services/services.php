@@ -24,13 +24,13 @@
  */
 
 require_once './obj/services/mail.php';
-require_once './obj/services/lang_de.php';
-require_once './obj/services/lang_es.php';
-require_once './obj/services/lang_en.php';
+require_once './obj/services/lang.php';
 require_once './obj/services/config.php';
+require_once './obj/services/geoinfo.php';
 require_once './obj/services/tpl.php';
 require_once './obj/services/pageParams.php';
 require_once './obj/services/cats.php';
+require_once './obj/services/countries.php';
 
 class services {
 
@@ -42,32 +42,7 @@ class services {
           self::$services[$service_name] = new mail;
           break;
         case 'lang':
-          $config = services::getService('config');
-          $params = services::getService('pageParams');
-          
-          // if there's a lang_cookie, the cookie-language is chosen
-      if($_GET['lang']) {
-        $language = $_GET['lang'];
-      }
-      else if($_COOKIE['language']) {
-        $language = $_COOKIE['language'];
-      }
-      else if(is_array(parseHttpAcceptLanguage())) {
-        $blang = parseHttpAcceptLanguage();
-        $language = $blang[0]['code'];
-      }
-      else {
-        $language = $config->getSetting('language');
-      }
-          
-          if($language == 'de')
-            self::$services[$service_name] = new lang_de;
-          else if($language == 'en')
-            self::$services[$service_name] = new lang_en;
-          else if($language == 'es')
-            self::$services[$service_name] = new lang_es;
-          else
-            self::$services[$service_name] = new lang_en;
+          self::$services[$service_name] = new lang;
           break;
         case 'pageParams':
           self::$services[$service_name] = new pageParams;
@@ -80,6 +55,12 @@ class services {
           break;
         case 'cats':
           self::$services[$service_name] = new cats;
+          break;
+        case 'countries':
+          self::$services[$service_name] = new countries;
+          break;
+        case 'geoinfo':
+          self::$services[$service_name] = new geoinfo;
           break;
       }
     }

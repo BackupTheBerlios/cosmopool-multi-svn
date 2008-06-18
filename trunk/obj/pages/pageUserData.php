@@ -68,11 +68,11 @@ class pageUserData extends pageCommon{
           'phonepublic' => $this->user->phone_public,
           'adress1' => array(
           'street' => $this->user->street,
-          'country' => $this->user->country,
           'house' => $this->user->house),
           'adress2' => array(
           'plz' => $this->user->plz,
           'city' => $this->user->city),
+          'country' => $this->user->country,
           'description' => $this->user->description,
           'adresspublic' => $this->user->plz_city_public
       ));
@@ -84,7 +84,7 @@ class pageUserData extends pageCommon{
         $adress1 = $this->form->getElementValue('adress1');
         $this->user->street = $adress1['street'];
         $this->user->house = $adress1['house'];
-        $this->user->country = $adress1['country'];
+        $this->user->country = $this->form->exportValue('country');
         $adress2 = $this->form->getElementValue('adress2');
         $this->user->plz = $adress2['plz'];
         $this->user->city = $adress2['city'];
@@ -113,6 +113,11 @@ class pageUserData extends pageCommon{
           $this->user->addMembership(1);
         
         $this->addMsg('msg_data_change_success');
+        
+        $this->user->fetchPreferences();
+        $this->user->preferences->delete();
+	     $this->user->preferences->registered_message = "2";
+	     $this->user->preferences->insert();
       }
       
       // password-form
@@ -165,7 +170,7 @@ class pageUserData extends pageCommon{
       $photos->user_id = $this->user->id;
       if($photos->find())
       while($photos->fetch()) {
-        $this->photos[] = array("id" => $photos->id, "name" => $photos->name);
+        $this->photos[] = array("id" => $photos->id, "name" => $photos->name, "obj" => clone $photos);
       }
       
       // photoupload-form

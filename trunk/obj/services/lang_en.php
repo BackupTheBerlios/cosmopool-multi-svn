@@ -23,16 +23,7 @@
  * language-service
  */
  
-require_once('./obj/services/lang.php');
-
-class lang_en extends lang {
-
-    // constructor
-    public function lang_en() {
-    
-      $this->lang = 'en';
-    
-      $this->msg = array(
+      $lang_en = array(
       
       // countries
       
@@ -45,10 +36,14 @@ class lang_en extends lang {
 
       // header texts
 
-      "html_title" => "whopools.net - resource sharing network",
+      "html_title" => "whopools.net",
+      "html_title-2" => "resource sharing network",
+      "html_keywords" => "gift economy, potlatch, resource sharing, social network",
+      "html_description" => "A social site for sharing goods, time, infrastructure, etc.",
       "language_changer" => "Language:",
 
       // messages, the ones written in red
+      "msg_no_email" => "This email is not registered.",
       "msg_add_picture" => "Picture added.",
       "msg_delete_picture" => "Picture deleted.",
       "msg_login_correct" => "you're logged in",
@@ -87,6 +82,13 @@ class lang_en extends lang {
       "msg_nice_try" => "nice try...",
       "msg_pw_sent" => "You were sent a new password.",
       "msg_forum_entry_made" => "Message entered.",
+      "msg_adressbook_add_success" => "Person has been added.",
+      "msg_adressbook_add_allready" => "Person is already in your address book.",
+      "msg_msg_deleted" => "Message deleted.",
+      "msg_msg_sent" => "Message sent.",
+      "msg_contact_deleted" => "Contact deleted.",
+      "msg_freeres_nores" => "You haven't got any resources to release",
+      "msg_freeres_alldeleted" => "All your resources were deleted from this pool",
       
       // tables
       
@@ -106,7 +108,7 @@ class lang_en extends lang {
       "tables_comment_for_the_owner" => "Comments for the owner(optional)",
       "tables_contactdata" => "Contact data",
       "tables_contactdata_youdontneed" => "No need to do this for it's your own resource.",
-      "tables_contactdata_isinvisible" => " invisible, since this resource belongs to somebody who is not within any of your pools. Use the form please.",
+      "tables_contactdata_isinvisible" => "Contactdata is not made public by the owner. If the user accepts your request, the data will be send to you.",
       "tables_contactbutton_noitem" => "Requests",
       "tables_contactbutton_gift" => "take it (as a gift)",
       "tables_contactbutton_borrow" => "borrow it",
@@ -120,11 +122,16 @@ class lang_en extends lang {
       "common_footerlinks_resdata_new" => "Resource input",
       "common_footerlinks_resmanager" => "Resource admin",
       "common_footerlinks_poolbrowser" => "all pools",
+      "common_footerlinks_pm" => "My Messages",
+      "common_footerlinks_invite" => "Invite people",
       "common_footerlinks_pooldata_new" => "found pool",
       "common_todo_request" => "requests",
+      "common_todo_msgs" => "new message",
+      "common_todo_msgs_plural" => "s",
       "common_todo_userswait" => "users wait",
       "common_help_link" => "help",
       "common_bottom_developers" => "developers",
+      "common_bottom_blog" => "news",
       "common_bottom_about" => "about",
       "common_bottom_contact" => "contact",
       "common_bottom_supersite" => "supersite",
@@ -144,14 +151,16 @@ class lang_en extends lang {
       "home_lostpasswordheader" => "Lost password",
       "home_lostpassword_link" => "Lost password?",
       "home_lostpassword_text" => "Type your email-adress. So a new password will be sent.",
-      "home_welcome-1" => "Welcome to who<b>pools</b>.<i>net</i>, an online-tool to share any kinds of resources. Become member of resource<b>pools</b>, found own ones, borrow, lend, give. Just register and then begin.",
-      "home_links_1" => "the SuperSite",
+      "home_welcome-1" => "Who<b>pools</b>.<i>net</i> is an online-tool for sharing resources.<br><br>For example books and dvds, a place to sleep, computers with the possibility of printing, sitting the babies, a car. And more.<br><br>These resources are shared in resourcepools. There's private and public pools, consisting of friends, neighbors or people that share interests. Some of the possibilities are distributed libraries, neighborhood pools or even production communities(filmmakers, ...).<br>",
+      "home_welcome-2" => "<br><b>Our current state</b><br><br>We need help: translators, programmers, ..., money, field staff, creative writers. <a href=\"./index.php?page=static&pageid=contact\">Contact us &raquo;</a>",
+      "home_links_1" => "more about whopools.net",
       "home_links_2" => "this software",
       "home_links_3" => "the new software(-plan)",
       "home_ng_res_count-1" => "On this server there are ",
       "home_ng_res_count-2" => " pools and ",
       "home_ng_res_count-3" => " resources",
       "home_login_header" => "login",
+      "home_login_remember" => "Remember login.",
       "home_login_registertext-1" => "You have to create an account, otherwise:",
       "home_login_registertext-2" => "Signup",
       "home_news_name" => "&Uuml;berschrift",
@@ -190,11 +199,23 @@ class lang_en extends lang {
       "resdata_form_title" => "title",      
       "resdata_form_binding" => "binding",      
       "resdata_form_publication_date" => "publication year",      
+      "resdata_form_publication_place" => "publication place",      
       "resdata_form_publisher" => "publisher",      
       "resdata_form_number_of_pages" => "number of pages",      
       "resdata_form_signature" => "signature",      
+      "resdata_form_year" => "Year",      
+      "resdata_form_manufacturer" => "Manufacturer",      
+      "resdata_form_genre" => "Genre",      
+      "resdata_form_medium" => "Medium",      
 
       // books keywords
+      "resdata_form_select_action" => "Action",
+      "resdata_form_select_strategy" => "Strategy",
+      "resdata_form_select_adventure" => "Adventure",
+      "resdata_form_select_roleplaying" => "Role-playing",
+      "resdata_form_select_simulation" => "Simulation",
+      "resdata_form_select_cdrom" => "CD-Rom",
+      "resdata_form_select_dvd" => "DVD",
       "resdata_form_select_philosophy" => "philosophy",
       "resdata_form_select_aesthetics" => "aesthetics",
       "resdata_form_select_theory of history" => "theory of history",
@@ -354,7 +375,7 @@ class lang_en extends lang {
       // search-page
       
       "search_text" => "Please separate searchwords with spaces.",
-      "search_header" => "Search resources",
+      "search_header" => "search resources",
       "search_option_all_pools" => "my pools",
 
       // userdatapassword-page
@@ -420,8 +441,13 @@ class lang_en extends lang {
       "register_agb_desc-1" => "Please check the data you've entered above and review the <br>
       terms of service below.",
       "register_agb_desc-2" => "Click \"Ok\", to accept the terms of service above.",
-      "register_header1" => "Register - Step 1",
+      "register_header1" => "Register",
       "register_header2" => "Register - Step 2",
+      "register_agb_text" => "You promise not to publish any antisemitic/racist/sexist stuff on wp.net. If you do, you'll be kicked out of it immediately and forever. You accept that the data entered by you during registration are stored in a database.
+
+This system uses cookies to store data on your computer. These cookies contain no data of the above mentioned, but are just set for your own comfort.
+
+By completing registration you agree to these terms. ",
 
       // mysite-page
 
@@ -430,15 +456,23 @@ class lang_en extends lang {
       "mysite_res_header" => "My resources",
       "mysite_userdata_header" => "My pers. data",
       "mysite_searchres_header" => "Search 4 resources",
+      "mysite_nowelcome" => "Don't show this message",
+      "mysite_registered" => "You are now a member of wp.net and can reach all functions. Please add some contact-data so other users can contact you.
+      Spambots can't see your data.",
+      "mysite_registered_link_userdata" => "ok do it",
+      "mysite_registered_link_nomore" => "don't ask again",
       "mysite_freeres_header-1" => "Release resources for ",
       "mysite_freeres_header-2" => " ",
       "mysite_freeres_msg-1" => "You are now a member of ",
-      "mysite_freeres_msg-2" => ". Choose resources, you want to release for this pool.",
+      "mysite_freeres_msg-2" => ".",
+      "mysite_freeres_msg-3" => "Choose resources, you want to release for this pool",
+      "mysite_freeres_msg-4" => "Choose now",
+      "mysite_freeres_msg-5" => "Release none",
       "mysite_freerestable_header_category" => "Category",
       "mysite_freerestable_header_name_description" => "Resource",
       "mysite_freerestable_header_since" => "Since",
       "mysite_freerestable_header_type" => "Type",
-      "mysite_freeres_button_submit-1" => "Release marked resources for ",
+      "mysite_freeres_button_submit-1" => "Release marked resources",
       "mysite_freeres_button_submit-2" => "",
       "mysite_freeres_button_clear" => "Release no resources",
       "mysite_borrowed_header" => "Borrowed resources",
@@ -460,6 +494,52 @@ class lang_en extends lang {
       "mysite_fun" => "Do.",
       "mysite_by" => "from",
       
+      // showmember-page
+      
+      "showmember_adressbooklink" => "add to address book",
+      "showmember_msglink" => "write message",
+      "showmember_back" => "back to previous page",
+      "showmember_adress" => "adress",
+      "showmember_email" => "email",
+      "showmember_phone" => "phone",
+      "showmember_description" => "description",
+      "showmember_notpublic" => "not public",
+      "showmember_distance" => "distance",
+      "showmember_userfalse" => "your adress couldn't be located",
+      "showmember_memberfalse" => "this user's adress couldn't be located",
+      
+      // pm-page
+      
+      "pm_header" => "My messages",
+      "pm_navi_inbox" => "Inbox",
+      "pm_navi_new" => "Address book",
+      "pm_navi_sent" => "Sent",
+      "pm_header_write" => "Write message",
+      "pm_form_title" => "title",
+      "pm_form_body" => "body",
+      "pm_form_submit" => "send",
+      "pm_form_titlenecessary" => "you have add some title",
+      "pm_form_bodynecessary" => "your message is empty",
+      "pm_navi_backtolist" => "Back to list",
+      "pm_view_to" => "to",
+      "pm_view_from" => "from",
+      "pm_view_title" => "title",
+      "pm_view_body" => "body",
+      "pm_view_answer" => "answer",
+      "pm_view_delete" => "delete",
+      "pm_inbox_by" => "by",
+      "pm_inbox_do" => "do",
+      "pm_inbox_new" => "new",
+      "pm_inbox_delete" => "delete",
+      "pm_inbox_markread" => "mark read",
+      "pm_inbox_nomsgs" => "no messages.",
+      "pm_sent_to" => "to",
+      "pm_sent_nomsgs" => "you have not written any messages.",
+      "pm_new_recipient" => "recipient",
+      "pm_new_writelink" => "write message",
+      "pm_new_deletecontactlink" => "delete contact",
+      "pm_new_empty" => "your address book is empty.",
+
       // help-page
       
       "help_header" => "Help",
@@ -506,6 +586,8 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "resbrowser_refinesearch_header" => "Refine search: ",
       "resbrowser_page" => "page: ",
       "resbrowser_notmaterial" => "not physical",
+      "resbrowser_backtolist" => "back to the list",
+      "resbrowser_owner" => "This resource is owned by ",
       
       // resmanager-page
 
@@ -541,8 +623,10 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "showpool_become_member_public_link" => "become a member",
       "showpool_become_member_msg_isproven" => "Your request is beeing checked. Maybe it will take a while until you will be a member. You will be sent an email.",
       "showpool_leavepool_link" => "Give up membership",
+      "showpool_freeres_link" => "Release resources",
       "showpool_res_header" => "Resources",
       "showpool_admin_header" => "Administration",
+      "showpool_admins_header" => "Administrators",
       "showpool_res_category" => "Category",
       "showpool_res_goods" => "Resources",
       "showpool_forum_header" => "Forum",
@@ -555,13 +639,19 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "showpool_forum_text_required" => "Text is required",
       "showpool_membercount_text-1" => "There are ",
       "showpool_membercount_text-2" => " resources in this pool",
-      "showpool_members_header" => "members",
+      "showpool_members_header" => "Members",
       "showpool_nocountry_header" => "no/every country",
       "showpool_do" => "Do",
       "showpool_description" => "description",
       "showpool_area" => "area",
       "showpool_place" => "place",
       "showpool_public" => "public?",
+      
+      // freeres-page
+      
+      "freeres_back" => "back to the pool's main page",
+      "freeres_cancel" => "Cancel",
+      "freeres_clear_old" => "Delete all res. from pool",
 
       // threadbrowser
       
@@ -578,6 +668,8 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       // poolbrowser-page
 
       "poolbrowser_all_header" => "Pools on this server",
+      "poolbrowser_headers_public" => "Public pools",
+      "poolbrowser_headers_private" => "Private pools",
       
       // search-page
       
@@ -588,14 +680,11 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "search_form_where" => "where",
       "search_form_submit" => "search",
 
-      // showmember-page
-      
-      "showmember_back" => "back to previous page",
-
       // forms
       
       "forms_note_staredarenecessary-1" => "Fields marked with ",
       "forms_cat_choosefirst" => "choose first",
+      "forms_isbn_hint" => "enter without hyphens",
       "forms_note_staredarenecessary-2" => " have to be filled.",
 
       // formular-element-names
@@ -610,8 +699,31 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       "required_name" => "Name required.",
       "required_password" => "Password required.",
       
+      // invite-page
+      
+      "invite_header" => "Invite people",
+      "invite_form_emails" => "email addresses to invite",
+      "invite_form_message" => "optional message",
+      "invite_welcome" => "Invite your friends to join you on whopools.net and share resources with you.",
+      "invite_form_submit" => "invite",
+      "invite_form_wholemessage" => "full message",
+      "invite_seperate_emails" => "Separate multiple emails with a comma.",
+      "msg_no_real_emails" => "Not any working/real emails.",
+      "msg_invite_success" => "People were invited.",
+      "whole_your_msg" => "your optional message",
+      "invite_body" => "You have been invited by [NAME] to join the whopools.net resource sharing network.<br><br>
+
+Whopools.net is an online-tool for sharing resources.<br><br>
+
+For example books and dvds, a place to sleep, computers with the possibility of printing, sitting the babies, a car. And more.<br><br>
+
+These resources are shared in resourcepools. There's private and public pools, consisting of friends, neighbors or people that share interests. Some of the possibilities are distributed libraries, neighborhood pools or even production communities(filmmakers, ...).<br><br>
+
+This invitation was sent by [NAME] <[EMAIL]>.<br><br>",
+      
       // categories
       
+      "cat_videogames" => "Videogames",
       "cat_all" => "All",
       "cat_advising" => "Advice",
       "cat_arts" => "Arts/culture",
@@ -659,6 +771,16 @@ When someone translates it. See <a href=\"http://www.nutzigems.org/wiki/\">Wiki!
       
       // mails
       
+      "mails_pool_deleted_header" => "whopools.net: Pool deleted" ,
+      "mails_pool_deleted_body" => "Hello,
+
+a pool you was an administrator of was deleted:
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+Sorry." ,
       "mails_registered_header" => "whopools.net: Registered" ,
       "mails_registered_body" => "Hello,
 
@@ -678,29 +800,49 @@ Here's your password: [PASSWORD]
 It has been generated automatically, so please change it as fast as possible.
 
 Fun!" ,
-      "mails_found_pool_founder_header" => "whopools.net: Pool founded" ,
+      "mails_found_pool_founder_header" => "whopools.net: found pool" ,
       "mails_found_pool_founder_body" => "Hello,
+
+You want to found the pool \"[POOLNAME]\".
 
 Your data is beeing checked. This should not take too much time.
 As soon as the pool will be accepted, you will be sent an email." ,
       "mails_found_pool_admin_header" => "whopools.net: Neuer Pool gegründet" ,
-      "mails_found_pool_admin_body" => "Guten Tag,
+      "mails_found_pool_admin_body" => "Hello,
 
-There's a new pool. Please someone accept it or refuse it." ,
+There's a new pool. 
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+Please someone accept it or refuse it." ,
       "mails_found_pool_accepted_header" => "whopools.net: Your new pool has been accepted" ,
       "mails_found_pool_accepted_body" => "Hello,
       
-The pool you founded has now been accepted." ,
+The pool you founded:
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+has now been accepted." ,
       "mails_found_pool_refused_header" => "whopools.net: New pool refused" ,
       "mails_found_pool_refused_body" => "Hello,
 
-For some reason, your pool has not been accepted.
+The pool you wanted to found:
+
+[POOLNAME]
+[POOLDESC]
+[POOLAREA]
+
+for some reason has not been accepted.
 
 Have fun anyway!" ,
       "mails_new_admin_header" => "whopools.net: You became admin of [POOLNAME].", 
       "mails_new_admin_body" => "Hello,
 
-You became admin of [POOLNAME]." ,
+You became admin of \"[POOLNAME]\"." ,
       "mails_kick_member_header" => "whopools.net: You were expelled from [POOLNAME].", 
       "mails_kick_member_body" => "Hello,
 
@@ -708,7 +850,13 @@ Some admin of [POOLNAME] has kicked you right out of it." ,
       "mails_new_member_header" => "whopools.net: New member for [POOLNAME]" ,
       "mails_new_member_body" => "Hello,
 
-Someone wants to become a member of [POOLNAME]. 
+Someone wants to become a member of \"[POOLNAME]\". 
+
+name:     [USERNAME]
+email:    [USEREMAIL]
+
+comments: [USERCOMMENT]
+
 Please, somebody out of its admins accept/refuse his membership." ,
       "mails_user_accepted_header" => "whopools.net: [POOLNAME] accepts you.", 
       "mails_user_accepted_body" => "Hello,
@@ -726,43 +874,108 @@ not accepted your membership." ,
       "mails_give_order_header" => "whopools.net: Request for \"[RESNAME]\"." ,
       "mails_give_order_body" => "Hello,
 
-Someone would like to be given \"[RESNAME]\". So please answer his/her request." ,
+Someone would like to be given \"[RESNAME]\".
+
+name:     [USERNAME]
+email:    [USEREMAIL]
+phone:    [USERPHONE]
+adress:   [USERSTREET] [USERHOUSE]
+          [USERCOUNTRY]-[USERPLZ] [USERCITY]
+
+comments: [USERCOMMENT]
+
+So please answer his/her request." ,
       "mails_give_accepted_header" => "whopools.net: You were given \"[RESNAME]\"", 
       "mails_give_accepted_body" => "Hello,
 
 Your request for \"[RESNAME]\" has been accepted.
-Get this clear together." ,
+
+Here is the owners contact-data:
+
+name:     [USERNAME]
+email:    [USEREMAIL]
+phone:    [USERPHONE]
+adress:   [USERSTREET] [USERHOUSE]
+          [USERCOUNTRY]-[USERPLZ] [USERCITY]
+" ,
       "mails_nogood_order_header" => "whopools.net: Request for [RESNAME]" ,
       "mails_nogood_order_body" => "Hello,
 
-There is a request for \"[RESNAME]\". Please answer it." ,
+There is a request for \"[RESNAME]\". 
+
+name:     [USERNAME]
+email:    [USEREMAIL]
+phone:    [USERPHONE]
+adress:   [USERSTREET] [USERHOUSE]
+          [USERCOUNTRY]-[USERPLZ] [USERCITY]
+
+comments: [USERCOMMENT]
+
+Please answer it." ,
       "mails_nogood_accepted_header" => "whopools.net: You were lent \"[RESNAME]\"", 
       "mails_nogood_accepted_body" => "Hello,
 
 Your request for \"[RESNAME]\" has been accepted.
-Get this clear together." ,
+
+Here is the owners contact-data:
+
+name:     [USERNAME]
+email:    [USEREMAIL]
+phone:    [USERPHONE]
+adress:   [USERSTREET] [USERHOUSE]
+          [USERCOUNTRY]-[USERPLZ] [USERCITY]
+" ,
       "mails_borrow_order_header" => "whopools.net: Request for [RESNAME]" ,
       "mails_borrow_order_body" => "Hello,
 
-There's a request for your resource \"[RESNAME]\". Please answer it." ,
+There's a request for your resource \"[RESNAME]\". 
+
+name:     [USERNAME]
+email:    [USEREMAIL]
+phone:    [USERPHONE]
+adress:   [USERSTREET] [USERHOUSE]
+          [USERCOUNTRY]-[USERPLZ] [USERCITY]
+
+comments: [USERCOMMENT]
+
+Please answer it." ,
       "mails_borrow_accepted_header" => "whopools.net: \"[RESNAME]\" was lent to you", 
       "mails_borrow_accepted_body" => "Hello,
 
 Your request for \"[RESNAME]\" has just been accepted.
-Get this clear together." ,
+
+Here is the owners contact-data:
+
+name:     [USERNAME]
+email:    [USEREMAIL]
+phone:    [USERPHONE]
+adress:   [USERSTREET] [USERHOUSE]
+          [USERCOUNTRY]-[USERPLZ] [USERCITY]
+" ,
+      "mails_invite_header" => "Invitation by [INVITERNAME]([INVITERMAIL]) to join whopools.net", 
+      "mails_invite_body" => "[ADDMSG]You have been invited by [INVITERNAME] to join the whopools.net resource sharing network.
+
+Whopools.net is an online-tool for sharing resources.
+
+For example books and dvds, a place to sleep, computers with the possibility of printing, sitting the babies, a car. And more.
+
+These resources are shared in resourcepools. There's private and public pools, consisting of friends, neighbors or people that share interests. Some of the possibilities are distributed libraries, neighborhood pools or even production communities(filmmakers, ...).
+
+This invitation was sent by [INVITERNAME] <[INVITERMAIL]>.",
       "mails_refused_header" => "whopools.net: Request refused" ,
       "mails_refused_body" => "Hello,
 
 Your request for \"[RESNAME]\" has been refused. So sorry." ,
+      "mails_new_pm_header" => "whopools.net: New message from [SENDERNAME]" ,
+      "mails_new_pm_body" => "Hello,
+
+[SENDERNAME] has send you a message.
+Log in on WP.net to read it." ,
       "mails_goodbye" => "
 
 ---
 http://www.whopools.net/" 
     
       );
-    
-    }
-    
-}
 
 ?>

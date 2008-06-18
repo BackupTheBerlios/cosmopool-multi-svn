@@ -29,6 +29,7 @@ class user extends DB_DataObject
 
     var $login = FALSE;
     var $photo = FALSE;
+    var $preferences;
 
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -49,6 +50,7 @@ class user extends DB_DataObject
     var $phone_public;                    // int(1)  
     var $description;                     // blob(16777215)  blob
     var $main_photo;
+    var $language;                           // string(10)  
 
     /* Static get */
     function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('data_obj_Pools_user',$k,$v); }
@@ -65,6 +67,18 @@ class user extends DB_DataObject
       }
     }
     
+    function fetchPreferences() {
+      $this->preferences = new userPreferences;
+      $this->preferences->user_id = $this->id;
+      if($this->preferences->find())
+        $this->preferences->fetch();
+      else {
+        $this->preferences->welcome_message = 1;
+        $this->preferences->insert();
+        
+      }
+    }
+    
     function isAdmin($pool_id = "") {
       $is_admin = new poolsAdmin;
       if($pool_id != "")
@@ -75,15 +89,16 @@ class user extends DB_DataObject
 
     function inMine($user_id) {
       $pools = new poolsUser;
-	  $pools->wait = 0;
-	  $pools->user_id = $user_id;
-	  $pools->find();
-	  while($pools->fetch()){
-	    if(!$pools->is_public) {
+	   $pools->wait = 0;
+	   $pools->user_id = $user_id;
+	   $pools->find();
+	   while($pools->fetch()){
+	     $pools->fetchPool();
+	     if(!$pools->pool->is_public) {
 		  if ($this->isMember($pools->pool_id))
 		    return true;
-		}
-	  }
+		  }
+	   }
       return false;
     }
 	
@@ -166,7 +181,7 @@ class user extends DB_DataObject
       // compose E-Mails, if it wasn't the pool to be added
       $new_apply_pool = new pools;
       $new_apply_pool->get($pool_id);
-      $tos = $new_apply_pool->getAdminEMails();
+      $tos = $new_apply_pool->getAdmins();
       foreach($tos as $to)
         $mail->send('new_member', $to, $new_apply_pool);
     }
@@ -182,6 +197,22 @@ class user extends DB_DataObject
       else
         return false;
       }
+    }
+    
+    function getCountry() {
+      $countries = services::getService('countries');
+      if($this->country) {
+        return $countries->getCountry($this->country);
+      }
+    }
+    
+    function hasResources() {
+      $resources = new resources;
+      $resources->user_id = $this->id;
+      if($resources->find())
+        return true;
+      else
+        return false;
     }
 }
 ?>

@@ -2,12 +2,16 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title>{lang->getMsg p1='html_title'}</title>
+<meta name="description" content="{lang->getMsg p1='html_description'}">
+<meta name="keywords" content="{lang->getMsg p1='html_keywords'}">
+<title>{lang->getMsg p1='html_title'} - {lang->getMsg p1='html_title-2'}</title>
 <link rel="stylesheet" type="text/css" href="./inc/style.css">
 {if $javascript}<script src="./inc/form_resdata.js" type="text/javascript"></script>{/if}
 <script src="./inc/lang_menu.js" type="text/javascript"></script>
 </head>
 <body class="page"{if $javascript} onload="init({$javascript})"{/if}>
+<div id="space"> </div>
+<div id="page">
   <div id="header">
     <img src="./images/logo.png" id="logo_left" usemap="logolink">
     <map name="logolink">
@@ -39,6 +43,23 @@
     {/if}{/if}
   </div>
 
+{if $lostpassword}
+<div id="leftcolumn"><br>
+  <div id="linklist">
+        <a class="navi" href="index.php?page=home">{lang->getMsg p1='homepage_backlink'}</a>
+  </div>
+  </div>
+{else}
+		<div id="login">
+        {$login_form}
+        <div class="logintext"><br><a href=./index.php?page=home&lostpassword=true>{lang->getMsg p1='home_lostpassword_link'}</a><br><br></div>
+          <div class="logintext2">{lang->getMsg p1='home_login_registertext-1'} <a href="index.php?page=register">{lang->getMsg p1='home_login_registertext-2'}</a>.</div>
+</div><script type="text/javascript">
+		<!--
+		document.loginform.login_login.focus();
+		//-->
+		</script>
+{/if}
 
 
   <div id="content">
@@ -59,14 +80,14 @@
 
 {lang->getMsg p1='home_lostpassword_text'}<br><br>
 {$pwform}
-</div>
-</div>
-  <div id="linklist">
-        <a href="index.php?page=home"><< {lang->getMsg p1='homepage_backlink'}</a>
-  </div>
 {else}
 
-        {lang->getMsg p1='home_welcome-1'}
+        {lang->getMsg p1='home_welcome-1'}<br>
+        <a href="./index.php?page=static&pageid=about">{lang->getMsg p1='home_links_1'} &raquo;</a> 
+        <br>{lang->getMsg p1='home_welcome-2'}<br><br>
+        {lang->getMsg p1='home_ng_res_count-1'}
+        <font class="msg">{$res_count}</font>
+        {lang->getMsg p1='home_ng_res_count-3'}.
 <!--        <table align="center"><tr>
                    <td width=30 align=center><img src="./images/home-links-2.png"></td>
                    <td width=160 align=center><a href="http://www.whopools.net/software/" target="_blank">cosmopool-multi</a><br>
@@ -74,25 +95,20 @@
                    <td width=30 align=center><img src="./images/home-links-3.png"></td>
                    <td width=210 align=center><a href="http://wws.dynalias.org/" target="_blank">cosmopool-global wiki</a><br>
                        {lang->getMsg p1='home_links_3'}</td></tr></table>-->
+                       
+{/if}
+</div>
 </div>
     <div id="footer"> <a href="./index.php?page=static&pageid=about">{lang->getMsg p1='common_bottom_about'}</a> |&nbsp; 
+    <a href="http://www.whopools.net/blog/" target="_blank">{lang->getMsg p1='common_bottom_blog'}</a> |&nbsp;
     <a href="http://www.whopools.net/software/" target="_blank">{lang->getMsg p1='common_bottom_developers'}</a> |&nbsp;
     <a href="http://www.cosmopool.net" target="_blank">{lang->getMsg p1='common_bottom_supersite'}</a>    |&nbsp; 
     <a href="./index.php?page=static&pageid=contact">{lang->getMsg p1='common_bottom_contact'}</a> </div>
-</div>
-		<div id="login">
-        {$login_form}
-        <div class="logintext"><br><a href=./index.php?page=home&lostpassword=true>{lang->getMsg p1='home_lostpassword_link'}</a><br><br></div>
-          <div class="logintext2">{lang->getMsg p1='home_login_registertext-1'} <a href="index.php?page=register">{lang->getMsg p1='home_login_registertext-2'}</a>.</div>
-{/if}
-</div><script type="text/javascript">
-		<!--
-		document.loginform.login_login.focus();
-		//-->
-		</script>
+
 <!-- 4stats Tracker Code // begin -->
 <script type="text/javascript" language="javascript" src="http://4stats.de/de/counter?id=21841&cntr=hide"></script><noscript><a href="http://www.4stats.de/" target="_blank"><img src="http://4stats.de/de/stats?id=21841&cntr=hide" border="0" alt="4stats Webseiten Statistik + Counter" /></a></noscript>
 <!-- 4stats Tracker Code // end -->
+</div>
 </body>
 </html>
 

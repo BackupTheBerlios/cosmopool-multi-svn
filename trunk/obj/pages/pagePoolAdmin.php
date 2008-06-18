@@ -149,7 +149,7 @@ class pagePoolAdmin extends pageCommon{
             $refused = TRUE;
             $refused_mail = new user;
             $refused_mail->get($refuse_user->user_id);
-            $mail->send("user_refused", $refused_mail->email, $pool);
+            $mail->send("user_refused", $refused_mail, $pool);
           }
         }
         // set $msg
@@ -174,7 +174,7 @@ class pagePoolAdmin extends pageCommon{
             $accepted_mail = new user;
             $accepted_mail->get($user_id);
 			
-            $mail->send("user_accepted", $accepted_mail->email, $pool);
+            $mail->send("user_accepted", $accepted_mail, $pool);
           }
         }
 		
@@ -191,7 +191,7 @@ class pagePoolAdmin extends pageCommon{
           $this->addMsg('msg_add_admin');
 		  $new_admin = new user;
 		  $new_admin->get($params->getParam('user'));
-		  $mail->send('new_admin', $new_admin->email, $pool);
+		  $mail->send('new_admin', $new_admin, $pool);
 		}
 		else {
 		  $add_admin = new user;
@@ -207,7 +207,7 @@ class pagePoolAdmin extends pageCommon{
           $this->addMsg('msg_kick_member');
 		  $kicker = new user;
 		  $kicker->get($params->getParam('user'));
-		  $mail->send('kick_member', $kicker->email, $pool);
+		  $mail->send('kick_member', $kicker, $pool);
 		}
 		else {
 		  $kick_member = new user;
