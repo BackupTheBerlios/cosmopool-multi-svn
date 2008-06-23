@@ -1,0 +1,14 @@
+Here's a very primitive installation manual, but more than nothing. If you've got questions,
+just comment this page.
+
+* Check out the CVS-Tree(Link einfügen)
+* Now you've got the folder "idontknow". Copy it on your webserver.
+* There's a subfolder "config" with a file "config.ini" in it. Edit it.
+* Create a database "pools". There's not yet an easy way to change the db's name.
+* Execute the sql-files in subfolder "sql" on the datebase.
+* These contain the database-tables and also one pool ("main pool") 
+and one user called "admin" with the password "cosmopool". This user is the administrator of "main pool",
+which is a pool every registered user is a member of.  
+* Now the software should be running.[1]
+* The first thing you should do is to login as "admin" and change
+this user's password.
