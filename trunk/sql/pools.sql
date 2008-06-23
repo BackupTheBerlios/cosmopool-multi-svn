@@ -3,15 +3,28 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Erstellungszeit: 15. Juli 2007 um 16:42
--- Server Version: 5.0.41
--- PHP-Version: 5.2.0-10+lenny1
+-- Erstellungszeit: 23. Juni 2008 um 15:23
+-- Server Version: 5.0.51
+-- PHP-Version: 5.2.5-3+lenny1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 -- 
 -- Datenbank: `pools`
 -- 
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `pools_adressbook`
+-- 
+
+CREATE TABLE `pools_adressbook` (
+  `id` int(12) unsigned NOT NULL auto_increment,
+  `sender_id` int(8) unsigned NOT NULL,
+  `recipient_id` int(8) unsigned NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -26,7 +39,7 @@ CREATE TABLE `pools_attributes` (
   `type` varchar(50) default NULL,
   `amount` int(1) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -40,7 +53,7 @@ CREATE TABLE `pools_attributes_select` (
   `attribute_id` int(5) unsigned default NULL,
   `value` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=317 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=320 ;
 
 -- --------------------------------------------------------
 
@@ -54,7 +67,7 @@ CREATE TABLE `pools_attributes_select_keys` (
   `key` int(5) unsigned default NULL,
   `value` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=168 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=175 ;
 
 -- --------------------------------------------------------
 
@@ -68,7 +81,7 @@ CREATE TABLE `pools_attributes_string` (
   `attribute_id` int(5) unsigned default NULL,
   `value` varchar(250) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3964 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5261 ;
 
 -- --------------------------------------------------------
 
@@ -111,7 +124,7 @@ CREATE TABLE `pools_forum_entries` (
   `text` mediumtext,
   `date` int(16) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -125,7 +138,7 @@ CREATE TABLE `pools_forum_threads` (
   `title` varchar(250) default NULL,
   `act_date` int(16) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -142,6 +155,26 @@ CREATE TABLE `pools_news` (
   `lang` varchar(5) NOT NULL default '',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `pools_pm`
+-- 
+
+CREATE TABLE `pools_pm` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `sender_id` int(8) unsigned NOT NULL,
+  `recipient_id` int(8) unsigned NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` mediumtext NOT NULL,
+  `is_read` int(1) unsigned NOT NULL,
+  `is_in_draft` int(1) unsigned NOT NULL,
+  `date` int(16) unsigned NOT NULL,
+  `recipient_delete` int(1) unsigned NOT NULL,
+  `sender_delete` int(1) unsigned NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 -- --------------------------------------------------------
 
@@ -174,7 +207,7 @@ CREATE TABLE `pools_pools_admin` (
   `pool_id` int(4) unsigned default NULL,
   `user_id` int(6) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
 
 -- --------------------------------------------------------
 
@@ -192,6 +225,17 @@ CREATE TABLE `pools_pools_resources` (
 -- --------------------------------------------------------
 
 -- 
+-- Tabellenstruktur für Tabelle `pools_pools_resources_seq`
+-- 
+
+CREATE TABLE `pools_pools_resources_seq` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1651 ;
+
+-- --------------------------------------------------------
+
+-- 
 -- Tabellenstruktur für Tabelle `pools_pools_user`
 -- 
 
@@ -203,7 +247,7 @@ CREATE TABLE `pools_pools_user` (
   `comments` mediumtext,
   `res_to_free` int(1) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=313 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=336 ;
 
 -- --------------------------------------------------------
 
@@ -220,7 +264,7 @@ CREATE TABLE `pools_resources` (
   `cat` int(2) default NULL,
   `type` int(1) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=927 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=934 ;
 
 -- --------------------------------------------------------
 
@@ -233,7 +277,7 @@ CREATE TABLE `pools_res_borrowed` (
   `user_id` int(6) unsigned NOT NULL default '0',
   `res_id` int(8) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 -- --------------------------------------------------------
 
@@ -247,7 +291,7 @@ CREATE TABLE `pools_res_wait` (
   `res_id` int(8) unsigned NOT NULL default '0',
   `comments` mediumtext,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 -- --------------------------------------------------------
 
@@ -262,6 +306,7 @@ CREATE TABLE `pools_user` (
   `city` varchar(30) default NULL,
   `street` varchar(50) default NULL,
   `house` varchar(10) default NULL,
+  `country` varchar(60) default NULL,
   `plz_city_public` int(1) default NULL,
   `email` varchar(50) default NULL,
   `password` varchar(40) default NULL,
@@ -269,5 +314,51 @@ CREATE TABLE `pools_user` (
   `phone_public` int(1) default NULL,
   `description` mediumtext,
   `email_public` int(1) unsigned default NULL,
+  `main_photo` int(9) unsigned NOT NULL,
+  `language` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=133 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=140 ;
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `pools_user_photos`
+-- 
+
+CREATE TABLE `pools_user_photos` (
+  `id` int(9) unsigned NOT NULL auto_increment,
+  `user_id` int(8) unsigned NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+-- --------------------------------------------------------
+
+-- 
+-- Tabellenstruktur für Tabelle `pools_user_preferences`
+-- 
+
+CREATE TABLE `pools_user_preferences` (
+  `id` int(7) unsigned NOT NULL auto_increment,
+  `user_id` int(7) unsigned NOT NULL,
+  `welcome_message` int(1) unsigned NOT NULL,
+  `registered_message` int(1) unsigned NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+
+INSERT INTO `pools_pools` (`id`, `name`, `description`, `country`, `area`, `wait`, `plz`, `city`, `is_public`, `is_located`) VALUES 
+(1, 'main Pool', 'everything - everywhere\r\n\r\neveryone is a member of this pool', '0', 'everything - everywhere', 0, '', '', 1, NULL);
+
+
+INSERT INTO `pools_user` (`id`, `name`, `plz`, `city`, `street`, `house`, `country`, `plz_city_public`, `email`, `password`, `phone`, `phone_public`, `description`, `email_public`, `main_photo`, `language`) VALUES 
+(1, 'admin', '00000', 'Stadt', 'Strasse', '00', 'DE', 0, 'email@domain.org', 'dlE3VUk/C8DKE', ' ', 1, ' ', 1, 17, 'de');
+
+
+INSERT INTO `pools_pools_admin` (`id`, `pool_id`, `user_id`) VALUES 
+(5, 1, 1);
+
+
+INSERT INTO `pools_pools_user` (`id`, `pool_id`, `user_id`, `wait`, `comments`, `res_to_free`) VALUES 
+(2, 1, 1, 0, NULL, NULL);
