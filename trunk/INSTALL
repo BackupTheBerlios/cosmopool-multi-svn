@@ -11,4 +11,4 @@ and one user called "admin" with the password "cosmopool". This user is the admi
 which is a pool every registered user is a member of.  
 * Now the software should be running.[1]
 * The first thing you should do is to login as "admin" and change
-this user's password.
+this user's password. 
