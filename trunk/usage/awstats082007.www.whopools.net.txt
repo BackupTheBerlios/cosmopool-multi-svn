@@ -1,0 +1,594 @@
+AWSTATS DATA FILE 6.6 (build 1.887)
+# If you remove this file, all statistics for date 200708 will be lost/reset.
+
+# Position (offset in bytes) in this file of beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 1864                
+POS_TIME 2543                
+POS_VISITOR 8608                
+POS_DAY 18404               
+POS_DOMAIN 3349                
+POS_LOGIN 3837                
+POS_ROBOT 3992                
+POS_WORMS 4668                
+POS_EMAILSENDER 4799                
+POS_EMAILRECEIVER 4942                
+POS_SESSION 19225               
+POS_SIDER 19436               
+POS_FILETYPES 5077                
+POS_OS 5237                
+POS_BROWSER 5459                
+POS_SCREENSIZE 5875                
+POS_UNKNOWNREFERER 5949                
+POS_UNKNOWNREFERERBROWSER 6459                
+POS_ORIGIN 6670                
+POS_SEREFERRALS 6812                
+POS_PAGEREFS 6976                
+POS_SEARCHWORDS 7834                
+POS_KEYWORDS 8030                
+POS_MISC 2207                
+POS_ERRORS 8133                
+POS_CLUSTER 3693                
+POS_SIDER_404 8248                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20070901024739 1017 242576 35195101339
+FirstTime 20070801015957
+LastTime 20070831122028
+LastUpdate 20070901033904 46 0 45 0 0
+TotalVisits 230                 
+TotalUnique 176                 
+MonthHostsKnown 168                 
+MonthHostsUnknown 27                  
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 2 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 49 91 242478 20 21 25698
+1 156 239 982460 55 58 48370
+2 174 232 908868 53 57 44155
+3 189 286 966851 65 68 69498
+4 82 96 333600 39 40 41955
+5 56 91 227795 31 32 36811
+6 9 16 48350 22 22 26617
+7 6 20 53068 28 28 41754
+8 8 56 173713 19 21 30419
+9 44 82 152630 15 15 17440
+10 7 27 90990 14 14 18104
+11 85 122 267323 31 32 38053
+12 120 187 414228 40 40 41189
+13 190 320 731927 47 48 52188
+14 55 135 326821 38 39 44410
+15 143 248 719808 38 38 34008
+16 137 288 761269 46 46 54833
+17 65 197 281277 36 40 35772
+18 75 215 615144 35 35 34407
+19 68 308 283401 41 49 72599
+20 70 143 340212 38 38 46819
+21 71 121 823720 40 40 529883
+22 77 145 460850 27 28 30942
+23 55 147 276788 28 30 35247
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 20
+us 1359 2366 7041775
+de 564 1281 3000118
+ch 18 34 74481
+eu 13 21 61880
+dk 7 14 34573
+my 6 6 21809
+ie 5 40 111529
+it 3 10 27196
+ca 3 10 28353
+ip 2 2 7286
+tw 2 2 7286
+ru 1 1 3831
+fr 1 1 3615
+au 1 14 15285
+gb 1 1 3643
+in 1 1 3643
+at 1 5 26167
+cz 1 1 3843
+py 1 1 3615
+ve 1 1 3643
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 16
+slurp 146 747966 20070831182325 0
+googlebot 143 262178 20070830180204 0
+jeeves 16 29594 20070831125109 0
+spider 10 35644 20070831200041 0
+msnbot\-media 10 26057 20070813073258 0
+surveybot 9 33114 20070828034651 0
+java 7 35900 20070820193343 0
+nutch 6 10081 20070823014428 0
+yahoo\-mmcrawler 5 10041 20070830144226 0
+msnbot 2 7422 20070828040756 0
+exabot 1 1897 20070828004839 0
+gigabot 1 2342 20070806184304 0
+heritrix 1 3848 20070831125651 0
+mj12bot 1 3643 20070817114553 0
+w3c_validator 1 3634 20070823150102 0
+crawl 1 1856 20070820193342 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 6
+css 246 2117318 0 0
+php 1990 6342500 0 0
+png 1291 1248057 0 0
+js 238 279940 0 0
+gif 46 2812 0 0
+gz 1 492944 0 0
+END_FILETYPES
+
+# OS ID - Hits
+BEGIN_OS 16
+winlong 8
+winxp 1259
+win2000 104
+symbian 1
+linuxfedora 8
+win2003 20
+linuxdebian 1350
+sunos 28
+winnt 1
+linuxubuntu 547
+win98 106
+linux 140
+macosx 146
+bsdfreebsd 16
+winme 9
+Unknown 69
+END_OS
+
+# Browser ID - Hits
+BEGIN_BROWSER 26
+msie6.0 163
+firefox1.0.1 2
+galeon 5
+firefox1.5.0.12 73
+libwww 46
+opera 77
+firefox2.0.0.6 1342
+msie5.5 1
+firefox2.0.0.5 70
+firefox1.5.0.9 256
+firefox1.0.7 8
+nokia 1
+konqueror 17
+netscape7.1 12
+netscape7.0 83
+firefox1.0 2
+mozilla 1473
+firefox2.0.0.3 10
+msie7.0 25
+firefox1.5.0.11 12
+firefox2.0.0.4 48
+firefox2.0.0.2 6
+Unknown 23
+safari 32
+firefox1.5.0.7 11
+camino 14
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 13
+libwww-perl/5.65 20070807100913
+libwww-perl/5.79 20070808214507
+libwww-perl/5.803 20070822052227
+libwww-perl/5.808 20070819112533
+libwww-perl/5.807 20070820004348
+libwww-perl/5.69 20070807021147
+libwww-perl/5.800 20070810045931
+terraminds-bot/1.0_(support@terraminds.de) 20070818222709
+- 20070813043203
+libwww-perl/5.76 20070828000135
+libwww-perl/5.805 20070828020523
+Snoopy_v1.2 20070830083738
+shelob_v1.0 20070817052659
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 4
+- 20070813043203
+Snoopy_v1.2 20070830083738
+shelob_v1.0 20070817052659
+terraminds-bot/1.0_(support@terraminds.de) 20070818222709
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 256 298
+From1 1 1
+From2 3 3
+From3 59 59
+From4 1672 3451
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 2
+google 2 2
+live 1 1
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 15
+http://www.autoorganisation.org/mediawiki/index.php/Systemfehler/Nutzungsgemeinschaften 25 25
+http://www.nutzigems.org/wiki/index.php 7 7
+http://wbk.in-berlin.de/wp/ 6 6
+http://deu.anarchopedia.org/Nutzungsgemeinschaften 4 4
+http://www.180-grad.net 3 3
+http://cosmopool.org 2 2
+http://wikishare.sourceforge.net/Links 2 2
+http://de.indymedia.org/2007/07/188561.shtml 2 2
+http://coforum.de 2 2
+http://www.autoorganisation.org/mediawiki/index.php/Anders_Leben/Anders_wirtschaften/Umsonst%C3%B6konomie 1 1
+http://de.f251.mail.yahoo.com/ym/ShowLetter 1 1
+http://service.gmx.net/de/cgi/derefer 1 1
+http://www.nettransfair.de/weblinks.php 1 1
+http://co-forum.de/index.php 1 1
+http://nettransfair.de/weblinks.php 1 1
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 3
+www.nutzigems.org 1
+volvo 1
+nutzigems.org 1
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 3
+www.nutzigems.org 1
+volvo 1
+nutzigems.org 1
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 3
+302 309 142117
+301 9 4932
+404 201 88905
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 3
+/sitemap.gz 1 -
+/robots.txt 199 -
+/favicon.gif 1 -
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 195
+p54b16ad6.dip.t-dialin.net 135 193 664936 20070810034122
+p5b03c4fe.dip0.t-ipconnect.de 116 131 272097 20070809135441
+p54b16639.dip.t-dialin.net 115 126 363465 20070803054855
+pd9e8f983.dip.t-dialin.net 96 354 378312 20070806010117
+e179005016.adsl.alicedsl.de 84 114 442106 20070829163900
+p54b15b9e.dip.t-dialin.net 75 93 243596 20070830030125
+84-73-66-30.dclient.hispeed.ch 59 98 217346 20070831122028
+pd9e8ef92.dip.t-dialin.net 56 68 259447 20070811162200
+pd9e8e0a4.dip.t-dialin.net 55 77 672548 20070813023142
+pd9e8c7b4.dip.t-dialin.net 54 100 209082 20070810211743
+dslb-082-083-253-115.pools.arcor-ip.net 5 16 32849 20070807123441
+fv.vc 1 1 3631 20070809152716
+m6037.m.strato-dslnet.de 4 11 29804 20070808184716
+xc172.x.pppool.de 8 9 15428 20070804053741
+i59f75c32.versanet.de 3 10 27447 20070814163659
+terra.geo.unizh.ch 11 20 41955 20070802134352
+crawl22.pub.colo.fo.brn1.verisign.com 8 8 24836 20070822055523
+85.255.120.90-xbox.dedi.inhoster.com 8 8 29004 20070802074506
+pd9e8c617.dip.t-dialin.net 23 34 60311 20070830191538
+cache-frr-ab01.proxy.aol.com 0 1 13630 
+p5084f881.dip.t-dialin.net 2 9 26175 20070822153455
+pd9e8f4a5.dip.t-dialin.net 2 8 13962 20070809171134
+security.lightspeedsystems.com 4 4 14115 20070828215726
+a6e41.a.strato-dslnet.de 2 2 3704 20070804162805
+pd9e8c633.dip.t-dialin.net 9 20 41474 20070807180642
+yb717.y.pppool.de 24 38 63658 20070804030553
+65.222.176.122 13 15 56931 20070816191623
+adsl-ull-160-160.41-151.net24.it 3 10 27196 20070810154839
+dslb-088-073-144-253.pools.arcor-ip.net 46 62 132334 20070813011905
+pd9e8ccae.dip.t-dialin.net 46 80 233339 20070825215108
+yasmeen.favo.tv 1 1 3984 20070830083738
+proxy2.search.dcn.yahoo.net 1 4 17758 20070824082434
+a617f.a.strato-dslnet.de 3 10 27946 20070809143053
+p54a0e558.dip.t-dialin.net 1 8 24319 20070815165044
+e178189082.adsl.alicedsl.de 1 8 24319 20070814082007
+snail.infocity.cz 1 1 3843 20070828020523
+a6f66.a.strato-dslnet.de 2 2 3716 20070807135332
+195.215.9.140 7 14 34573 20070811115734
+i577b46ad.versanet.de 1 8 30595 20070829133153
+o3177.o.pppool.de 15 34 67157 20070808221427
+acb052ef.ipt.aol.com 0 1 13630 
+lon-gs4lnxsh.mistral.net 1 1 3643 20070806001129
+cache-frr-ac04.proxy.aol.com 2 2 3654 20070813215314
+dslb-088-074-155-019.pools.arcor-ip.net 2 9 29640 20070809210113
+p5b115098.dip.t-dialin.net 9 17 48378 20070830153758
+p54beff6f.dip.t-dialin.net 1 8 24319 20070820083307
+frnk-590c43e7.pool.einsundeins.de 2 2 7244 20070808193322
+0x535b8156.bynxx17.adsl-dhcp.tele.dk 2 9 25649 20070813013413
+cache-frr-ae05.proxy.aol.com 0 1 3319 
+proxy3.search.scd.yahoo.net 0 1 193 
+proxy1.search.scd.yahoo.net 1 3 4128 20070824081528
+mnsr-d9bf1ad9.pool.mediaways.net 1 8 19283 20070801222803
+security-lab1.juniper.net 1 1 3631 20070817052659
+bas7-montrealak-1167895689.dsl.bell.ca 11 20 47712 20070806161552
+ev1s-64-246-32-27.ev1servers.net 1 1 3643 20070806060858
+p54bea6f0.dip0.t-ipconnect.de 6 14 33753 20070824110707
+server88-208-201-113.live-servers.net 2 2 7286 20070810035242
+134.102.77.208 1 8 24319 20070821133338
+220.181.19.79 0 8 13220 
+64.210.196.197 1 8 26094 20070812153906
+162.16.232.72.static.reverse.ltdomains.com 1 1 3643 20070808211449
+f048239150.adsl.alicedsl.de 9 19 42214 20070810175401
+dslb-082-083-063-106.pools.arcor-ip.net 1 7 30103 20070830175925
+cache-frr-ad04.proxy.aol.com 0 1 2232 
+p54bd3198.dip0.t-ipconnect.de 15 27 59069 20070826153849
+secure.madeiran.net 2 2 7286 20070807100913
+p57a0f2fd.dip.t-dialin.net 6 13 33259 20070821161557
+a62af.a.strato-dslnet.de 2 2 3716 20070811125009
+hughes023.networldnoc.net 2 2 7286 20070807174727
+pd9e8d364.dip.t-dialin.net 16 24 39309 20070817015606
+ottosuch.de 2 2 7262 20070813043203
+vps.1800e.com 1 1 3643 20070819112533
+h55eb147c.c45-01-05.dyn.perspektivbredband.net 17 31 59930 20070807094427
+dslb-082-083-242-125.pools.arcor-ip.net 1 8 19283 20070801073746
+abouttrianglehosting.com 1 1 3615 20070804230955
+proxy1.search.dcn.yahoo.net 0 3 6126 
+p54bd459f.dip.t-dialin.net 3 8 29522 20070831002422
+frnk-590c5a18.pool.einsundeins.de 9 61 210504 20070812184218
+pd9e02ab0.dip0.t-ipconnect.de 4 11 35328 20070827004137
+e179030036.adsl.alicedsl.de 29 67 173648 20070830181825
+pd9e8f3f9.dip.t-dialin.net 29 40 88896 20070821001126
+frnk-590c43c2.pool.einsundeins.de 1 8 24319 20070816231725
+baef4e6.bae.pppool.de 3 10 22583 20070802134943
+150.185.222.15 1 1 3643 20070806064430
+216.145.16.237 0 1 3417 
+e178240063.adsl.alicedsl.de 1 8 24319 20070813212146
+hosted-by.leaseweb.com 3 3 10929 20070808011137
+p54b16045.dip.t-dialin.net 43 61 429826 20070830035433
+cache-frr-ae10.proxy.aol.com 0 1 575 
+e178228068.adsl.alicedsl.de 2 9 25826 20070814184749
+s7.cyrux.info 1 1 3615 20070804151123
+ns.netcimes.com 1 1 3615 20070802233025
+cache-frr-ae01.proxy.aol.com 0 1 412 
+pd9e8e2dc.dip.t-dialin.net 10 58 141570 20070805031850
+g2spf.jeeves.ask.info 2 16 54843 20070830012935
+e179008154.adsl.alicedsl.de 5 24 61381 20070823141507
+hv49.steephost.com 2 2 7307 20070807121712
+cache-frr-ad10.proxy.aol.com 0 1 193 
+e178245072.adsl.alicedsl.de 1 8 19281 20070805090328
+84-74-160-121.dclient.hispeed.ch 12 23 45605 20070806120609
+70-89-108-241-busname-pittsburgh.pa.comcastbusiness.net 3 3 10929 20070810045931
+dslb-088-068-206-013.pools.arcor-ip.net 14 24 123738 20070830222804
+dslc-082-082-166-080.pools.arcor-ip.net 1 8 24228 20070807144129
+frnk-590c6bf7.pool.einsundeins.de 32 39 98825 20070830191825
+dslb-084-059-099-046.pools.arcor-ip.net 30 30 92496 20070830223948
+p54b19b9f.dip0.t-ipconnect.de 3 10 34294 20070829153759
+xdsleg216.osnanet.de 6 13 523268 20070811214022
+pd9e8ff69.dip.t-dialin.net 52 66 199553 20070811055706
+220.181.19.174 0 1 412 
+82.99.30.33 1 1 3631 20070818112736
+organicwebengine.de 2 2 7286 20070818150429
+idy01f50mac32.unizh.ch 6 6 8109 20070824132222
+o317d.o.pppool.de 32 49 116890 20070820123500
+p5089cbfc.dip.t-dialin.net 1 8 19283 20070804015939
+212.121.159.146 1 8 19283 20070801074602
+e179024039.adsl.alicedsl.de 13 35 94535 20070828133628
+e178092173.adsl.alicedsl.de 4 11 35197 20070826132928
+84.51.242.32 1 1 3634 20070820193342
+211.21.53.180 1 1 3643 20070808214507
+pd2px1.st.vc.shawcable.net 1 8 21046 20070804011542
+sd-6950.dedibox.fr 1 1 3615 20070804100927
+203.121.78.23 6 6 21809 20070806015332
+220.181.19.176 0 2 824 
+baed687.bae.pppool.de 7 14 33854 20070814164551
+cache-frr-ac01.proxy.aol.com 0 1 2102 
+wandsbek-online.com 1 1 3643 20070808211337
+port-87-234-156-111.dynamic.qsc.de 2 10 32442 20070827221349
+www5.internection.com 1 1 3643 20070822052227
+dslb-088-072-224-148.pools.arcor-ip.net 27 38 81272 20070813012109
+pedro.acucore.com 1 1 3615 20070803233221
+p57a25f41.dip.t-dialin.net 2 8 31451 20070827104052
+vps1.hosting53.com 1 1 3643 20070820004348
+146.82.90.2 1 1 3615 20070805061928
+proxy2.search.scd.yahoo.net 0 4 19756 
+217.232.219.184 2 9 3756 20070817154537
+pd952a183.dip0.t-ipconnect.de 5 12 31177 20070806024730
+cp15.secserverpros.com 1 1 3615 20070804224104
+p5482cae2.dip.t-dialin.net 5 12 36728 20070830164538
+p57b9bc47.dip0.t-ipconnect.de 1 8 19281 20070805145534
+58.137.13.2 1 1 3615 20070805130515
+tide526.microsoft.com 1 3 17685 20070814081016
+static-ip-62-75-156-12.inaddr.intergenia.de 1 1 3643 20070807021147
+75.subnet222-124-17.astinet.telkom.net.id 1 1 3643 20070806024100
+cache-asu1.telesurf.com.py 1 1 3615 20070805041854
+pd9e8fc08.dip.t-dialin.net 4 11 35305 20070829141533
+od461.o.pppool.de 1 8 30616 20070829153420
+bae300a.bae.pppool.de 1 8 30616 20070830123957
+a6a9c.a.strato-dslnet.de 3 10 28037 20070810170119
+p5b03c4b1.dip0.t-ipconnect.de 51 64 122142 20070807132945
+64.246.165.235 0 3 2849 
+p3ee37b82.dip.t-dialin.net 1 8 24321 20070823130640
+viola.tpa.kgix.net 1 1 5 20070806233419
+suse2.artofcomputing.net 2 2 7262 20070818222709
+ns1.indonusa.net.id 1 1 3643 20070813030200
+ns.evolutions6.co.uk 1 1 5 20070817194050
+92.f5.344a.static.theplanet.com 2 2 7253 20070816005230
+proxy3.search.dcn.yahoo.net 0 1 193 
+61.19.127.99 1 1 5 20070818203234
+chello084112104123.22.11.vie.surfer.at 1 8 24321 20070824141906
+m6147.m.strato-dslnet.de 3 3 5556 20070805173224
+dsl092-008-204.sfo1.dsl.speakeasy.net 4 4 14572 20070808135455
+134.102.149.130 15 65 155774 20070830150827
+pd9e8cf1e.dip.t-dialin.net 10 31 28148 20070815172737
+xdsle024.osnanet.de 35 56 66727 20070812163449
+p5b03c57b.dip0.t-ipconnect.de 51 61 125365 20070813111753
+193.95.154.69 5 40 111529 20070825053817
+p54b172d7.dip.t-dialin.net 18 43 77168 20070810053933
+chello213047058228.23.11.vie.surfer.at 1 5 26167 20070830195154
+220.181.19.179 0 2 824 
+pd9e8eaf6.dip.t-dialin.net 1 8 19271 20070801041620
+e179031189.adsl.alicedsl.de 30 150 129703 20070825185026
+dslb-082-083-033-158.pools.arcor-ip.net 5 12 31451 20070823155000
+b2.45.1243.static.theplanet.com 1 1 3643 20070808212718
+mkfw.fh-trier.de 3 10 26933 20070821231614
+bae2d00.bae.pppool.de 1 4 6699 20070827225036
+delta430.server4you.de 2 2 7286 20070808211455
+60.191.36.91 2 2 6076 20070819231723
+c249154.customer.hansenet.de 7 15 43159 20070829223936
+m6328.m.strato-dslnet.de 2 2 3716 20070806144658
+64.246.165.130 0 3 11165 
+pd958bd39.dip.t-dialin.net 2 9 26030 20070808141944
+p54b16076.dip.t-dialin.net 27 34 146677 20070830044211
+tropo.geo.unizh.ch 1 8 24417 20070823142749
+e178205098.adsl.alicedsl.de 1 8 24319 20070810151847
+pd9e8e45a.dip.t-dialin.net 10 52 39581 20070810232551
+61-219-209-43.hinet-ip.hinet.net 1 1 3643 20070808221445
+www.hcs-gruppe.com 1 1 3843 20070828000135
+dsl-64-92-199-61.savvis.thenewpush.com.thenewpush.com 1 1 3631 20070823111156
+nat-gw-21-adsl.wbt.ru 1 1 3831 20070828111914
+p508a1879.dip0.t-ipconnect.de 1 1 3634 20070810065135
+domonoserver7.de 1 1 3615 20070805063520
+65.214.39.180 6 48 147073 20070828223434
+217.88.191.79 15 26 50729 20070818123210
+e178022104.adsl.alicedsl.de 1 8 24319 20070813104953
+64.246.165.237 1 1 3603 20070801162410
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 31
+20070801 14 56 146441 8
+20070802 20 43 101938 5
+20070803 117 128 368932 3
+20070804 40 76 155010 11
+20070805 72 362 403463 11
+20070806 82 146 351179 13
+20070807 91 147 308003 11
+20070808 39 86 229697 18
+20070809 130 169 363716 8
+20070810 238 440 1130727 14
+20070811 125 179 1069199 9
+20070812 75 175 392228 6
+20070813 168 247 1091779 12
+20070814 14 44 129131 5
+20070815 12 44 62708 3
+20070816 31 55 146691 5
+20070817 5 12 9299 4
+20070818 20 40 86784 6
+20070819 4 11 34040 3
+20070820 63 98 235484 5
+20070821 11 32 86409 4
+20070822 11 18 54654 3
+20070823 13 54 145613 6
+20070824 20 63 168602 7
+20070825 81 256 421884 7
+20070826 19 38 94266 2
+20070827 9 33 105920 4
+20070828 21 54 157374 6
+20070829 140 240 784515 10
+20070830 290 435 1566941 19
+20070831 16 31 80944 2
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 7
+1h+ 9
+5mn-15mn 19
+0s-30s 148
+2mn-5mn 15
+30s-2mn 18
+15mn-30mn 8
+30mn-1h 13
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 20
+/ 1823 5958317 220 209
+/software/ 58 82688 10 11
+/software/mantis/view_all_bug_page.php 22 125960 0 3
+/software/mailinglist.php 12 21697 0 2
+/software/mantis/my_view_page.php 10 36854 0 1
+/software/history.php 9 12596 0 1
+/software/mantis/login_page.php 9 15382 0 0
+/software/download.php 9 15811 0 1
+/software/about.php 8 10780 0 0
+/software/mantis/bug_report.php 7 13039 0 0
+/software/mantis/lost_pwd_page.php 1 3107 0 0
+/software/mantis/view.php 1 4970 0 1
+/software/downloads/cosmopool-multi-06062007.tar.gz 1 492944 0 0
+/software/mantis/return_dynamic_filters.php 2 1481 0 0
+/software/mantis/changelog_page.php 1 1722 0 0
+/software/mantis/signup_page.php 1 3489 0 0
+/software/install.php 7 10960 0 0
+/software/mantis/bug_report_page.php 5 12857 0 0
+/software/mantis/make_captcha_img.php 1 2398 0 1
+/software/mantis/bug_actiongroup_page.php 4 8392 0 0
+END_SIDER

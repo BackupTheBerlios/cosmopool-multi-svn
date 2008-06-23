@@ -1,0 +1,5 @@
+background-image:url(../images/logo_bg.png); 
+    <img src="./images/logo.png" id="logo_left" usemap="logolink">
+    <map name="logolink">
+      <area shape="rect" coords="248,35,365,50" href="http://www.cosmopool.net/">
+    </map>

@@ -1,0 +1,290 @@
+AWSTATS DATA FILE 6.6 (build 1.887)
+# If you remove this file, all statistics for date 200709 will be lost/reset.
+
+# Position (offset in bytes) in this file of beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 1864                
+POS_TIME 2530                
+POS_VISITOR 6346                
+POS_DAY 7574                
+POS_DOMAIN 3147                
+POS_LOGIN 3433                
+POS_ROBOT 3588                
+POS_WORMS 4003                
+POS_EMAILSENDER 4134                
+POS_EMAILRECEIVER 4277                
+POS_SESSION 7748                
+POS_SIDER 7938                
+POS_FILETYPES 4412                
+POS_OS 4531                
+POS_BROWSER 4660                
+POS_SCREENSIZE 4829                
+POS_UNKNOWNREFERER 4903                
+POS_UNKNOWNREFERERBROWSER 5074                
+POS_ORIGIN 5156                
+POS_SEREFERRALS 5292                
+POS_PAGEREFS 5447                
+POS_SEARCHWORDS 5709                
+POS_KEYWORDS 5861                
+POS_MISC 2194                
+POS_ERRORS 5920                
+POS_CLUSTER 3289                
+POS_SIDER_404 6020                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20070906005540 285 61025 43687138056
+FirstTime 0
+LastTime 20070905205603
+LastUpdate 20070906025622 145 0 145 0 0
+TotalVisits 23                  
+TotalUnique 23                  
+MonthHostsKnown 18                  
+MonthHostsUnknown 5                   
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 0 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 44 59 108396 9 9 7918
+1 0 0 0 0 0 0
+2 0 0 0 12 14 17879
+3 0 0 0 11 12 18699
+4 1 6 26233 4 4 5547
+5 0 0 0 9 9 29398
+6 1 1 3836 0 0 0
+7 0 0 0 1 1 1441
+8 0 0 0 1 1 2143
+9 0 0 0 4 4 4694
+10 0 0 0 3 3 6263
+11 11 29 98161 1 1 365
+12 52 72 189241 10 10 8454
+13 4 17 57226 6 6 5771
+14 2 9 46112 4 4 5059
+15 1 1 1946 5 5 7951
+16 11 26 74315 2 2 2537
+17 0 0 0 2 2 1945
+18 0 0 0 5 5 5292
+19 2 7 28267 2 2 2455
+20 35 53 118834 6 6 3400
+21 0 0 0 2 2 2454
+22 16 29 58260 6 6 5024
+23 1 6 26188 1 1 1524
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 5
+us 89 176 500475
+es 74 103 214473
+de 16 24 69646
+ie 1 6 26233
+kr 1 6 26188
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 8
+slurp 19 35641 20070906005540 0
+googlebot 18 30661 20070905141750 0
+java 7 26943 20070902055426 0
+jeeves 3 5851 20070905125933 0
+yahoo\-mmcrawler 3 1193 20070904020133 0
+microsoft\surl\scontrol 2 7696 20070904034445 0
+surveybot 2 7687 20070904023237 0
+spider 2 7694 20070905104302 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 4
+css 20 316170 0 0
+php 181 393780 0 0
+png 90 116005 0 0
+js 24 11060 0 0
+END_FILETYPES
+
+# OS ID - Hits
+BEGIN_OS 8
+linuxmandr 20
+win95 1
+winxp 211
+linuxdebian 35
+win98 23
+linuxubuntu 12
+Unknown 1
+linux 12
+END_OS
+
+# Browser ID - Hits
+BEGIN_BROWSER 8
+msie6.0 7
+netscape7.0 23
+mozilla 48
+firefox2.0.0.6 107
+firefox2.0.0.3 6
+firefox1.5.0.12 50
+firefox2.0.0.1 73
+msie2.0 1
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 1
+Mozilla/5.0_(compatible;_Bot;__http://pressemitteilung.ws/spamfilter 20070905154627
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 0
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 15 16
+From1 0 0
+From2 1 1
+From3 5 5
+From4 160 293
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 1
+google 1 1
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 3
+http://www.nutzigems.org/wiki/index.php 3 3
+http://www.cosmopool.net/index.php 1 1
+http://pressemitteilung.ws 1 1
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 2
+302 21 8325
+404 32 14522
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 1
+/robots.txt 32 -
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 23
+130.red-81-43-32.staticip.rima-tde.net 39 50 95639 20070905125732
+80.30.129.222 35 53 118834 20070905205603
+i577b7740.versanet.de 21 26 43114 20070902002604
+pd9e8fde3.dip.t-dialin.net 16 24 69646 20070901120403
+o3171.o.pppool.de 15 23 56361 20070901221222
+e178236237.adsl.alicedsl.de 10 20 48191 20070902161146
+i577b5cc0.versanet.de 8 8 13546 20070902003124
+i577b4a35.versanet.de 6 11 35218 20070902001034
+e177090231.adsl.alicedsl.de 6 15 69741 20070903123026
+i577b57b4.versanet.de 5 10 9397 20070902001230
+c-24-62-182-98.hsd1.nh.comcast.net 1 1 3836 20070901063839
+dslb-088-074-035-148.pools.arcor-ip.net 1 6 26186 20070903130811
+e179014122.adsl.alicedsl.de 1 6 26124 20070905161948
+87.139.126.43 1 6 26188 20070903115032
+e179060238.adsl.alicedsl.de 2 7 28267 20070903193748
+p57a70998.dip0.t-ipconnect.de 1 6 26188 20070904232552
+193.95.154.69 1 6 26233 20070901041357
+p57a4e9eb.dip.t-dialin.net 1 1 1946 20070905154627
+e179040045.adsl.alicedsl.de 4 14 50919 20070901141849
+65.214.39.180 1 6 26233 20070902142105
+211.61.111.140 1 6 26188 20070903112023
+84-73-66-30.dclient.hispeed.ch 1 6 1899 20070902222116
+i577b6bac.versanet.de 4 4 7121 20070902001800
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 5
+20070901 37 68 206995 5
+20070902 56 91 184719 8
+20070903 11 40 176570 5
+20070904 1 6 26188 1
+20070905 76 110 242543 4
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 5
+5mn-15mn 3
+30s-2mn 5
+2mn-5mn 1
+15mn-30mn 3
+0s-30s 11
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 5
+/ 172 381281 23 22
+/software/ 5 6650 0 1
+/software/mailinglist.php 2 2910 0 0
+/software/install.php 1 1391 0 0
+/software/download.php 1 1548 0 0
+END_SIDER
